@@ -3,7 +3,7 @@
 ***             Centro de Ensino Superior do Seridó                         ***
 ***             Departamento de Computação e Tecnologia                     ***
 ***             Disciplina: Programação                                     ***
-***             Professor: Flavius Gorgônio                                 ***
+***             Professor: Flavius Gorgonio                                 ***
 ***             Projeto: Sistema de Gestão de Hamburgueria                  ***
 ***             Aluno: Emerson da Silva Santos                              ***
 ***             Linguagem: C                                                ***
@@ -14,6 +14,9 @@
 #include<stdlib.h>
 
 /* Funções de exibição de telas */
+
+/* Tela de login*/
+void login(void);
 
 /* Tela principal*/
 void menu_principal(void);
@@ -53,4 +56,51 @@ int main(void){
 
 
     return 0;
+}
+
+void login(void){
+
+
+
+
+
+
+
+
+
+    
+}
+
+
+
+
+
+void menu_principal(void) {
+    char opcao;
+    system("clear||cls");
+    printf("\n");
+    printf("*******************************************************************************\n");
+    printf("***             Universidade Federal do Rio Grande do Norte                 ***\n");
+    printf("***             Centro de Ensino Superior do Seridó                         ***\n");
+    printf("***             Departamento de Computação e Tecnologia                     ***\n");
+    printf("***             Disciplina: Programação                                     ***\n");
+    printf("***             Professor: Flavius Gorgonio                                 ***\n");
+    printf("***             Projeto: Sistema de Gestão de Hamburgueria                  ***\n");
+    printf("***             Aluno: Emerson da Silva Santos                              ***\n");
+    printf("***             Linguagem: C                                                ***\n");
+    printf("*******************************************************************************\n");
+    printf("*******************************************************************************\n");
+    printf("***             = = = = = Sistema de Gestão de Hamburgueria = = = = =       ***\n");
+    printf("***                                                                         ***\n");
+    printf("***             1. Módulo Aluno                                             ***\n");
+    printf("***             2. Módulo Professor                                         ***\n");
+    printf("***             3. Módulo Turma                                             ***\n");
+    printf("***             4. Módulo Matrícula                                         ***\n");
+    printf("***             5. Módulo Relatórios                                        ***\n");
+    printf("***             0. Sair                                                     ***\n");
+    printf("***                                                                         ***\n");
+    printf("*******************************************************************************\n");
+    printf("Escolha uma opcao\n");
+    scanf("%c", &opcao);
+    getchar();
 }
