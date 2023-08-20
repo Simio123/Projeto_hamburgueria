@@ -15,33 +15,28 @@
 
 /* Funções de exibição de telas */
 
-/* Telas principal*/
+/* Tela principal*/
 void menu_principal(void);
 
-void menu_pedidos(void);
+/* Telas de funcionários */
 void menu_funcionarios(void);
-
-void informacoes(void);
-
-/* Telas de cadastramento */
-
-/* Telas de cadastramento */
-void tela_informacoes(void);
-void tela_informacoes(void);
-void tela_informacoes(void);
-void tela_informacoes(void);
-void tela_informacoes(void);
+void cadastrar_funcionario(void);
+void descadastrar_funcionario(void);
+void promover_funcionario(void);
+void rebaixar_funcionario(void);
+void informacoes_funcionario(void);
 
 
-/* Telas de descadastramento */
+/* Funções auxiliares*/
 
-/* Telas de exibição */
+void valida_cpf(void);
+void salva_arquivos(void);
+void recupera_arquivos(void);
 
-/* Telas principais */
 
-/* Telas principais */
 
-/* Telas principais */
+
+
 int main(void){
 
     printf("Insira um numero  \n");
