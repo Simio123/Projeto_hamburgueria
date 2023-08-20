@@ -13,34 +13,14 @@
 #include<stdio.h>
 #include<stdlib.h>
 
-/* Funções de exibição de telas */
-
-/* Tela de login*/
+/* Assinatura das funções de telas */
+/* Telas principais*/
+void boas_vindas(void);
 void login(void);
-
-/* Tela principal*/
+void info_projeto(void);
+void info_equipe(void);
 void menu_principal(void);
 
-/* Telas de funcionários */
-void menu_funcionarios(void);
-void cadastrar_funcionario(void);
-void descadastrar_funcionario(void);
-void promover_funcionario(void);
-void rebaixar_funcionario(void);
-void informacoes_funcionario(void);
-
-/* Telas de mesas */
-void menu_mesas(void);
-void adicionar_mesa(void);
-void retirar_mesa(void);
-void informacoes_mesas(void);
-
-/* Telas de pedidos */
-void menu_pedidos(void);
-void tipo_pedido(void);
-void cadastrar_pedido(void);
-void cancelar_pedido(void);
-void informacoes_pedido(void);
 
 /* Funções auxiliares*/
 void valida_cpf(void);
@@ -49,6 +29,8 @@ void recupera_arquivos(void);
 void mensagem_erros_numericos(void);
 void mensagem_erros_caracteres(void);
 void emissao_nota_fiscal(void);
+void pesquisa_pessoas(void);
+void pesquisa_pedidos(void);
 
 int main(void){
 
@@ -58,24 +40,7 @@ int main(void){
     return 0;
 }
 
-void login(void){
-
-
-
-
-
-
-
-
-
-    
-}
-
-
-
-
-
-void menu_principal(void) {
+void boas_vindas(void){
     char opcao;
     system("clear||cls");
     printf("\n");
@@ -90,7 +55,52 @@ void menu_principal(void) {
     printf("***             Linguagem: C                                                ***\n");
     printf("*******************************************************************************\n");
     printf("*******************************************************************************\n");
-    printf("***             = = = = = Sistema de Gestão de Hamburgueria = = = = =       ***\n");
+    printf("***   = = = = =  Bem vindo ao Sistema de Gestão de Hamburgueria = = = = =   ***\n");
+    printf("***                                                                         ***\n");
+    printf("***             1. Login                                                    ***\n");
+    printf("***             2. Consultar informações sobre o projeto                    ***\n");
+    printf("***             3. Consultar informações sobre Equipe responsavel           ***\n");
+    printf("***             0. Sair                                                     ***\n");
+    printf("***                                                                         ***\n");
+    printf("*******************************************************************************\n");
+    printf("O que deseja fazer?\n");
+    scanf("%c", &opcao);
+}
+
+void login(void){
+    char opcao;
+    system("clear||cls");
+    printf("*******************************************************************************\n");
+    printf("***             = = = = = Menu de login = = = = =                           ***\n");
+    printf("***                                                                         ***\n");
+    printf("***             1. Administrador                                            ***\n");
+    printf("***             2. Funcionário                                              ***\n");
+    printf("***             3. Cliente                                                  ***\n");
+    printf("***             0. Sair                                                     ***\n");
+    printf("***                                                                         ***\n");
+    printf("*******************************************************************************\n");
+    printf("Como deseja entrar no sistema?\n");
+    scanf("%c", &opcao);
+}
+
+void info_projeto(void);
+{
+
+
+
+
+
+
+
+
+}
+void info_equipe(void);
+
+void menu_principal(void) {
+    char opcao;
+    system("clear||cls");
+    printf("*******************************************************************************\n");
+    printf("***             = = = = = Menu principal = = = = =                          ***\n");
     printf("***                                                                         ***\n");
     printf("***             1. Módulo Aluno                                             ***\n");
     printf("***             2. Módulo Professor                                         ***\n");
@@ -102,5 +112,4 @@ void menu_principal(void) {
     printf("*******************************************************************************\n");
     printf("Escolha uma opcao\n");
     scanf("%c", &opcao);
-    getchar();
 }
