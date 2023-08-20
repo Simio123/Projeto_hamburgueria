@@ -21,6 +21,7 @@ void info_projeto(void);
 void info_equipe(void);
 void menu_principal(void);
 
+// outras funções serão colocadas aqui
 
 /* Funções auxiliares*/
 void valida_cpf(void);
@@ -83,18 +84,36 @@ void login(void){
     scanf("%c", &opcao);
 }
 
-void info_projeto(void);
-{
-
-
-
-
-
-
-
-
+void info_projeto(void);{
+    char opcao;
+    system("clear||cls");
+    printf("*******************************************************************************\n");
+    printf("***             = = = = = informações sobre o projeto = = = = =             ***\n");
+    printf("***                                                                         ***\n");
+    printf("***             O Programa gerencia o funcionamento de uma hamburgueria     ***\n");
+    printf("***       fins didáticos de ilustração. O programa contém os principais     ***\n");
+    printf("***       e funcionalidades que serão exigidos na avaliação dos projetos    ***\n");
+    printf("***       desenvolvidos pelos alunos ao longo da disciplina. Serve como u   ***\n");
+    printf("***       de consulta e referência para o desenvolvidos dos demais proje    ***\n");
+    printf("***                                                                         ***\n");
+    printf("*******************************************************************************\n");
+    system("pause");
 }
-void info_equipe(void);
+
+void info_equipe(void){
+    char opcao;
+    system("clear||cls");
+    printf("*******************************************************************************\n");
+    printf("***             = = = = =informações sobre Equipe responsavel = = = = =     ***\n");
+    printf("***                                                                         ***\n");
+    printf("***             Este projeto exemplo foi desenvolvido por:                  ***\n");
+    printf("***             Emerson da Silva santos                                     ***\n");
+    printf("***             E-mail: emerson.santos.125@ufrn.edu.br                      ***\n");
+    printf("***             Git: https://github.com/Simio123/Projeto_hamburgueria.git   ***\n");
+    printf("***                                                                         ***\n");
+    printf("*******************************************************************************\n");
+    system("pause");
+}
 
 void menu_principal(void) {
     char opcao;
