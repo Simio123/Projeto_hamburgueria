@@ -11,14 +11,14 @@
 
 /* Bibliotecas */
 #include<stdio.h>
-#include<stdlib.h>
+#include<stdlib.h> /*/SEXOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO*/
 
 /* Assinatura das funções de telas */
 /* Telas principais*/
 int boas_vindas(int opcao);
-int login();
-int info_projeto();
-int info_equipe();
+int login(int opcao);
+void info_projeto(void);
+void info_equipe(void);
 int menu_principal();
 
 // outras funções serão colocadas aqui
@@ -70,7 +70,7 @@ int main(void){
 }
 
 int boas_vindas(int opcao){
-    system("clear||cls");
+    system("cls");
     printf("\n");
     printf("*******************************************************************************\n");
     printf("***             Universidade Federal do Rio Grande do Norte                 ***\n");
@@ -96,8 +96,8 @@ int boas_vindas(int opcao){
     return opcao;
 }
 
-int login(){
-    system("clear||cls");
+int login(int opcao){
+    system("cls");
     printf("*******************************************************************************\n");
     printf("***             = = = = = Menu de login = = = = =                           ***\n");
     printf("***                                                                         ***\n");
@@ -112,9 +112,8 @@ int login(){
     return opcao;
 }
 
-int info_projeto();{
-    char opcao;
-    system("clear||cls");
+void info_projeto(void);{
+    system("cls");
     printf("*******************************************************************************\n");
     printf("***             = = = = = informações sobre o projeto = = = = =             ***\n");
     printf("***                                                                         ***\n");
@@ -126,10 +125,10 @@ int info_projeto();{
     printf("***                                                                         ***\n");
     printf("*******************************************************************************\n");
     system("pause");
+    boas_vindas(opcao);
 }
 
-int info_equipe(){
-
+void info_equipe(void){
     system("clear||cls");
     printf("*******************************************************************************\n");
     printf("***             = = = = =informações sobre Equipe responsavel = = = = =     ***\n");
@@ -141,6 +140,7 @@ int info_equipe(){
     printf("***                                                                         ***\n");
     printf("*******************************************************************************\n");
     system("pause");
+    boas_vindas(opcao);
 }
 
 int menu_principal() {
