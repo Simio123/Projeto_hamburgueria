@@ -15,7 +15,7 @@
 
 /* Assinatura das funções de telas */
 /* Telas principais*/
-void boas_vindas(void);
+void boas_vindas(int opcao);
 void login(void);
 void info_projeto(void);
 void info_equipe(void);
@@ -35,14 +35,40 @@ void pesquisa_pedidos(void);
 
 int main(void){
 
+    int opcao;
 
+    boas_vindas(opcao);
 
+    if ( opcao != 123)
+    {
+        print("sim");
+    }
+
+    else{
+
+        switch (opcao){
+
+            case 1:
+            break;
+                
+            case 2: 
+            break;
+
+            case 3: 
+            break;
+
+            case 0: 
+            break;
+
+            default:
+            printf("Escolha uma opcao valida\n");
+        }
+    }
 
     return 0;
 }
 
-void boas_vindas(void){
-    char opcao;
+void boas_vindas(int opcao){
     system("clear||cls");
     printf("\n");
     printf("*******************************************************************************\n");
@@ -65,11 +91,10 @@ void boas_vindas(void){
     printf("***                                                                         ***\n");
     printf("*******************************************************************************\n");
     printf("O que deseja fazer?\n");
-    scanf("%c", &opcao);
+    scanf("%d", &opcao);
 }
 
 void login(void){
-    char opcao;
     system("clear||cls");
     printf("*******************************************************************************\n");
     printf("***             = = = = = Menu de login = = = = =                           ***\n");
@@ -81,7 +106,7 @@ void login(void){
     printf("***                                                                         ***\n");
     printf("*******************************************************************************\n");
     printf("Como deseja entrar no sistema?\n");
-    scanf("%c", &opcao);
+    scanf("%d", &opcao);
 }
 
 void info_projeto(void);{
