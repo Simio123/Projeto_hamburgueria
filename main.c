@@ -11,7 +11,7 @@
 
 /* Bibliotecas */
 #include<stdio.h>
-#include<stdlib.h> /*/SEXOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO*/
+#include<stdlib.h> /*SEXOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO*/
 
 /* Assinatura das funções de telas */
 /* Telas principais*/
@@ -36,29 +36,33 @@ void pesquisa_pedidos(void);
 
 int main(void){
 
-    int opcao = 10;
+    int opcao1, opcao2;
 
-    boas_vindas(opcao);
+    opcao1 = boas_vindas(opcao1);
 
-    if ( opcao != 123)
+    if ( opcao1 == 0)
     {
-        print("sim");
+        print("ate logo");
     }
 
     else{
 
-        switch (opcao){
+        switch (opcao1){
 
             case 1:
+            login(opcao1);
             break;
                 
             case 2: 
+            info_projeto(opcao1);
             break;
 
             case 3: 
+            info_equipe(opcao1);
             break;
 
             case 0: 
+            
             break;
 
             default:
@@ -69,7 +73,7 @@ int main(void){
     return 0;
 }
 
-int boas_vindas(int opcao){
+int boas_vindas(int opcao1){
     system("cls");
     printf("\n");
     printf("*******************************************************************************\n");
@@ -92,11 +96,11 @@ int boas_vindas(int opcao){
     printf("***                                                                         ***\n");
     printf("*******************************************************************************\n");
     printf("O que deseja fazer?\n");
-    scanf("%d", &opcao);
-    return opcao;
+    scanf("%d", &opcao1);
+    return opcao1;
 }
 
-int login(int opcao){
+int login(int opcao1){
     system("cls");
     printf("*******************************************************************************\n");
     printf("***             = = = = = Menu de login = = = = =                           ***\n");
@@ -108,8 +112,8 @@ int login(int opcao){
     printf("***                                                                         ***\n");
     printf("*******************************************************************************\n");
     printf("Como deseja entrar no sistema?\n");
-    scanf("%d", &opcao);
-    return opcao;
+    scanf("%d", &opcao1);
+    return opcao1;
 }
 
 void info_projeto(void);{
