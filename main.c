@@ -15,15 +15,15 @@
 
 /* Assinatura das funções de telas */
 /* Telas principais*/
-void boas_vindas(int opcao);
-void login(void);
-void info_projeto(void);
-void info_equipe(void);
-void menu_principal(void);
+int boas_vindas(int opcao);
+int login();
+int info_projeto();
+int info_equipe();
+int menu_principal();
 
 // outras funções serão colocadas aqui
 
-/* Funções auxiliares*/
+/* Funções auxiliares
 void valida_cpf(void);
 void salva_arquivos(void);
 void recupera_arquivos(void);
@@ -32,10 +32,11 @@ void mensagem_erros_caracteres(void);
 void emissao_nota_fiscal(void);
 void pesquisa_pessoas(void);
 void pesquisa_pedidos(void);
+*/
 
 int main(void){
 
-    int opcao;
+    int opcao = 10;
 
     boas_vindas(opcao);
 
@@ -68,7 +69,7 @@ int main(void){
     return 0;
 }
 
-void boas_vindas(int opcao){
+int boas_vindas(int opcao){
     system("clear||cls");
     printf("\n");
     printf("*******************************************************************************\n");
@@ -92,9 +93,10 @@ void boas_vindas(int opcao){
     printf("*******************************************************************************\n");
     printf("O que deseja fazer?\n");
     scanf("%d", &opcao);
+    return opcao;
 }
 
-void login(void){
+int login(){
     system("clear||cls");
     printf("*******************************************************************************\n");
     printf("***             = = = = = Menu de login = = = = =                           ***\n");
@@ -107,9 +109,10 @@ void login(void){
     printf("*******************************************************************************\n");
     printf("Como deseja entrar no sistema?\n");
     scanf("%d", &opcao);
+    return opcao;
 }
 
-void info_projeto(void);{
+int info_projeto();{
     char opcao;
     system("clear||cls");
     printf("*******************************************************************************\n");
@@ -125,8 +128,8 @@ void info_projeto(void);{
     system("pause");
 }
 
-void info_equipe(void){
-    char opcao;
+int info_equipe(){
+
     system("clear||cls");
     printf("*******************************************************************************\n");
     printf("***             = = = = =informações sobre Equipe responsavel = = = = =     ***\n");
@@ -140,7 +143,7 @@ void info_equipe(void){
     system("pause");
 }
 
-void menu_principal(void) {
+int menu_principal() {
     char opcao;
     system("clear||cls");
     printf("*******************************************************************************\n");
@@ -156,4 +159,5 @@ void menu_principal(void) {
     printf("*******************************************************************************\n");
     printf("Escolha uma opcao\n");
     scanf("%c", &opcao);
+    return opcao;
 }
