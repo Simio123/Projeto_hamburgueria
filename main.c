@@ -11,64 +11,21 @@
 
 /* Bibliotecas */
 #include<stdio.h>
-#include<stdlib.h> /*SEXOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO*/
+#include<stdlib.h> 
 
-/* Assinatura das funções de telas */
-/* Telas principais*/
-int boas_vindas(int opcao);
-int login(int opcao);
-void info_projeto(void);
-void info_equipe(void);
-int menu_principal();
-
-// outras funções serão colocadas aqui
-
-/* Funções auxiliares
-void valida_cpf(void);
-void salva_arquivos(void);
-void recupera_arquivos(void);
-void mensagem_erros_numericos(void);
-void mensagem_erros_caracteres(void);
-void emissao_nota_fiscal(void);
-void pesquisa_pessoas(void);
-void pesquisa_pedidos(void);
-*/
+#include "defs.h"
 
 int main(void){
 
-    int opcao1, opcao2;
+const char *screen_type_str[] {
 
-    opcao1 = boas_vindas(opcao1);
+};
 
-    if ( opcao1 == 0)
-    {
-        print("ate logo");
-    }
+typedef enum {
 
-    else{
+} Screen;
 
-        switch (opcao1){
 
-            case 1:
-            login(opcao1);
-            break;
-                
-            case 2: 
-            info_projeto(opcao1);
-            break;
-
-            case 3: 
-            info_equipe(opcao1);
-            break;
-
-            case 0: 
-            
-            break;
-
-            default:
-            printf("Escolha uma opcao valida\n");
-        }
-    }
 
     return 0;
 }
