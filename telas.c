@@ -1,0 +1,212 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include "telas.h"
+
+struct No
+{
+	enum Tela tela;
+	struct No* proximo;
+};
+
+struct Pilha
+{
+	struct No* topo;
+};
+
+struct Pilha* criarPilha()
+{
+	struct Pilha* pilha = (struct Pilha*)malloc(sizeof(struct Pilha));
+	pilha->topo = NULL;
+	return pilha;
+}
+
+void empilhar(struct Pilha* pilha, enum Tela tela)
+{
+	struct No* novoNo = (struct No*)malloc(sizeof(struct No));
+	novoNo->tela = tela;
+	novoNo->proximo = pilha->topo;
+	pilha->topo = novoNo;
+}
+
+enum Tela desempilhar(struct Pilha* pilha)
+{
+	if (pilha->topo == NULL)
+	{
+		printf("A pilha está vazia!\n");
+		exit(1);
+	}
+
+	struct No* temp = pilha->topo;
+	enum Tela telaDesempilhada = temp->tela;
+	pilha->topo = temp->proximo;
+	free(temp);
+
+	return telaDesempilhada;
+}
+
+void executarTela(struct Pilha* pilha)
+{
+	int opcao = 10;
+
+	while (1)
+	{
+		enum Tela telaAtual = pilha->topo->tela;
+
+		switch (telaAtual)
+		{
+		case TELA_INICIAL:
+
+			tela_inicial(opcao, pilha);
+
+			break;
+
+		case TELA_LOGIN:
+
+			tela_login(opcao, pilha);
+
+			break;
+
+		case TELA_INFO_PROJETO:
+
+			tela_info_projeto(opcao, pilha);
+
+			break;
+
+		case TELA_INFO_EQUIPE:
+
+			tela_info_equipe(opcao, pilha);
+
+			break;
+		}
+	}
+}
+
+// Telas principais
+
+void tela_inicial(int opcao, struct Pilha* pilha)
+{
+	system("clear||cls");
+	printf("\n");
+	printf("*******************************************************************************\n");
+	printf("***             Universidade Federal do Rio Grande do Norte                 ***\n");
+	printf("***             Centro de Ensino Superior do Seridó                         ***\n");
+	printf("***             Departamento de Computação e Tecnologia                     ***\n");
+	printf("***             Disciplina: Programação                                     ***\n");
+	printf("***             Professor: Flavius Gorgonio                                 ***\n");
+	printf("***             Projeto: Sistema de Gestão de Hamburgueria                  ***\n");
+	printf("***             Aluno: Emerson da Silva Santos                              ***\n");
+	printf("***             Linguagem: C                                                ***\n");
+	printf("*******************************************************************************\n");
+	printf("*******************************************************************************\n");
+	printf("***   = = = = =  Bem vindo ao Sistema de Gestão de Hamburgueria = = = = =   ***\n");
+	printf("***                                                                         ***\n");
+	printf("***             1. Login                                                    ***\n");
+	printf("***             2. Consultar informações sobre o projeto                    ***\n");
+	printf("***             3. Consultar informações sobre Equipe responsavel           ***\n");
+	printf("***             0. Sair                                                     ***\n");
+	printf("***                                                                         ***\n");
+	printf("*******************************************************************************\n");
+	printf("O que deseja fazer?\n");
+	scanf("%d", &opcao);
+
+	if (opcao == 1)
+	{
+		empilhar(pilha, TELA_LOGIN);
+	}
+	else if (opcao == 2)
+	{
+		empilhar(pilha, TELA_INFO_PROJETO);
+	}
+	else if (opcao == 3)
+	{
+		empilhar(pilha, TELA_INFO_EQUIPE);
+	}
+	else if (opcao == 0)
+	{
+		printf("Saindo do programa...\n");
+		free(pilha);
+		exit(0);
+	}
+}
+
+void tela_login(int opcao, struct Pilha* pilha)
+{
+	system("clear||cls");
+	printf("*******************************************************************************\n");
+	printf("***             = = = = = Menu de login = = = = =                           ***\n");
+	printf("***                                                                         ***\n");
+	printf("***             1. Administrador                                            ***\n");
+	printf("***             2. Funcionário                                              ***\n");
+	printf("***             3. Cliente                                                  ***\n");
+	printf("***             4. Voltar                                                  	***\n");
+	printf("***                                                                         ***\n");
+	printf("*******************************************************************************\n");
+	printf("Como deseja entrar no sistema?\n");
+	scanf("%d", &opcao);
+
+	if (opcao == 1)
+	{
+		printf("Tela administrador");
+	}
+	else if (opcao == 3)
+	{
+		printf("Tela funcinario");
+	}
+	else if (opcao == 3)
+	{
+		printf("Tela cliente");
+	}
+	else if (opcao == 4)
+	{
+		desempilhar(pilha);
+	}
+}
+
+void tela_info_projeto(int opcao, struct Pilha* pilha)
+{
+	system("clear||cls");
+	printf("*******************************************************************************\n");
+	printf("***             = = = = = informações sobre o projeto = = = = =             ***\n");
+	printf("***                                                                         ***\n");
+	printf("***             O Programa gerencia o funcionamento de uma hamburgueria     ***\n");
+	printf("***       fins didáticos de ilustração. O programa contém os principais     ***\n");
+	printf("***       e funcionalidades que serão exigidos na avaliação dos projetos    ***\n");
+	printf("***       desenvolvidos pelos alunos ao longo da disciplina. Serve como u   ***\n");
+	printf("***       de consulta e referência para o desenvolvidos dos demais proje    ***\n");
+	printf("***                                                                         ***\n");
+	printf("*******************************************************************************\n");
+
+	printf("Insira 0 para voltar\n");
+	scanf("%d", &opcao);
+
+	if (opcao == 0)
+	{
+		desempilhar(pilha);
+	}
+}
+
+void tela_info_equipe(int opcao, struct Pilha* pilha)
+{
+	system("clear||cls");
+	printf("*******************************************************************************\n");
+	printf("***             = = = = =informações sobre Equipe responsavel = = = = =     ***\n");
+	printf("***                                                                         ***\n");
+	printf("***             Este projeto exemplo foi desenvolvido por:                  ***\n");
+	printf("***             Emerson da Silva santos                                     ***\n");
+	printf("***             E-mail: emerson.santos.125@ufrn.edu.br                      ***\n");
+	printf("***             Git: https://github.com/Simio123/Projeto_hamburgueria.git   ***\n");
+	printf("***                                                                         ***\n");
+	printf("*******************************************************************************\n");
+
+	printf("Insira 0 para voltar\n");
+	scanf("%d", &opcao);
+
+	if (opcao == 0)
+	{
+		desempilhar(pilha);
+	}
+}
+
+
+// Telas secundárias
+
