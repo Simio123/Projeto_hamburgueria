@@ -21,7 +21,7 @@ void tela_login(int opcao, struct Pilha* pilha);
 void tela_info_projeto(int opcao, struct Pilha* pilha);
 void tela_info_equipe(int opcao, struct Pilha* pilha);
 
-// Telas secundárias
+// Telas secundarias
 
 
 
