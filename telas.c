@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "telas.h"
+#include "funcoes.h"
 
 struct No
 {
@@ -46,7 +48,7 @@ enum Tela desempilhar(struct Pilha* pilha)
 
 void executarTela(struct Pilha* pilha)
 {
-	int opcao = 10;
+	int opcao = 1000;
 
 	while (1)
 	{
@@ -55,27 +57,19 @@ void executarTela(struct Pilha* pilha)
 		switch (telaAtual)
 		{
 		case TELA_INICIAL:
-
 			tela_inicial(opcao, pilha);
-
 			break;
 
 		case TELA_LOGIN:
-
 			tela_login(opcao, pilha);
-
 			break;
 
 		case TELA_INFO_PROJETO:
-
 			tela_info_projeto(opcao, pilha);
-
 			break;
 
 		case TELA_INFO_EQUIPE:
-
 			tela_info_equipe(opcao, pilha);
-
 			break;
 		}
 	}
@@ -109,23 +103,25 @@ void tela_inicial(int opcao, struct Pilha* pilha)
 	printf("O que deseja fazer?\n");
 	scanf("%d", &opcao);
 
-	if (opcao == 1)
+	switch(opcao)
 	{
+	case 1:
 		empilhar(pilha, TELA_LOGIN);
-	}
-	else if (opcao == 2)
-	{
+		break;
+
+	case 2:
 		empilhar(pilha, TELA_INFO_PROJETO);
-	}
-	else if (opcao == 3)
-	{
+		break;
+
+	case 3:
 		empilhar(pilha, TELA_INFO_EQUIPE);
-	}
-	else if (opcao == 0)
-	{
+		break;
+
+	case 0:
 		printf("Saindo do programa...\n");
 		free(pilha);
 		exit(0);
+		break;
 	}
 }
 
@@ -138,27 +134,29 @@ void tela_login(int opcao, struct Pilha* pilha)
 	printf("***             1. Administrador                                            ***\n");
 	printf("***             2. Funcionário                                              ***\n");
 	printf("***             3. Cliente                                                  ***\n");
-	printf("***             4. Voltar                                                  	***\n");
+	printf("***             0. Voltar                                                   ***\n");
 	printf("***                                                                         ***\n");
 	printf("*******************************************************************************\n");
 	printf("Como deseja entrar no sistema?\n");
 	scanf("%d", &opcao);
 
-	if (opcao == 1)
+	switch(opcao)
 	{
-		printf("Tela administrador");
-	}
-	else if (opcao == 3)
-	{
+	case 1:
+		login();
+		break;
+
+	case 2:
 		printf("Tela funcinario");
-	}
-	else if (opcao == 3)
-	{
+		break;
+
+	case 3:
 		printf("Tela cliente");
-	}
-	else if (opcao == 4)
-	{
+		break;
+
+	case 0:
 		desempilhar(pilha);
+		break;
 	}
 }
 
@@ -175,7 +173,6 @@ void tela_info_projeto(int opcao, struct Pilha* pilha)
 	printf("***       de consulta e referência para o desenvolvidos dos demais proje    ***\n");
 	printf("***                                                                         ***\n");
 	printf("*******************************************************************************\n");
-
 	printf("Insira 0 para voltar\n");
 	scanf("%d", &opcao);
 
@@ -189,7 +186,7 @@ void tela_info_equipe(int opcao, struct Pilha* pilha)
 {
 	system("clear||cls");
 	printf("*******************************************************************************\n");
-	printf("***             = = = = =informações sobre Equipe responsavel = = = = =     ***\n");
+	printf("***             = = = = = informações sobre Equipe responsavel = = = = =    ***\n");
 	printf("***                                                                         ***\n");
 	printf("***             Este projeto exemplo foi desenvolvido por:                  ***\n");
 	printf("***             Emerson da Silva santos                                     ***\n");
@@ -197,7 +194,6 @@ void tela_info_equipe(int opcao, struct Pilha* pilha)
 	printf("***             Git: https://github.com/Simio123/Projeto_hamburgueria.git   ***\n");
 	printf("***                                                                         ***\n");
 	printf("*******************************************************************************\n");
-
 	printf("Insira 0 para voltar\n");
 	scanf("%d", &opcao);
 

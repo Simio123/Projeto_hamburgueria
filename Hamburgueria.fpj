@@ -32,5 +32,7 @@
 		<File Name="main.c"/>
 		<File Name="telas.h"/>
 		<File Name="telas.c"/>
+		<File Name="funcoes.h"/>
+		<File Name="funcoes.c"/>
 	</Files>
 </Project>
