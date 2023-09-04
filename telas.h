@@ -2,10 +2,15 @@
 #define TELAS_H
 
 enum Tela {
+	// Telas iniciais
     TELA_INICIAL,
     TELA_LOGIN,
     TELA_INFO_PROJETO,
-    TELA_INFO_EQUIPE
+    TELA_INFO_EQUIPE,
+    // Easter egg
+    BEIJO,
+    // Telas secundárias 
+    
 };
 
 struct Pilha;
@@ -22,7 +27,6 @@ void tela_info_projeto(int opcao, struct Pilha* pilha);
 void tela_info_equipe(int opcao, struct Pilha* pilha);
 
 // Telas secundárias
-
-
+void beijo(int opcao, struct Pilha* pilha);
 
 #endif

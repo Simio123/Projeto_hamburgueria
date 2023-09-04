@@ -2,20 +2,19 @@
 <Layout>
 	<Files>
 		<File Name="main.c" Top="No" Tabpos="1" TopLine="1">
-			<Cursor Line="17" Column="1"/>
-			<Selection Line="17" Column="21"/>
+			<Cursor Line="26" Column="2"/>
 		</File>
-		<File Name="telas.h" Top="Yes" Tabpos="2" TopLine="1">
-			<Cursor Line="23" Column="1"/>
+		<File Name="telas.h" Top="No" Tabpos="2" TopLine="1">
+			<Cursor Line="13" Column="5"/>
 		</File>
-		<File Name="telas.c" Top="No" Tabpos="3" TopLine="1">
-			<Cursor Line="146" Column="11"/>
+		<File Name="telas.c" Top="Yes" Tabpos="3" TopLine="284">
+			<Cursor Line="312" Column="9"/>
 		</File>
 		<File Name="funcoes.h" Top="No" Tabpos="4" TopLine="1">
-			<Cursor Line="4" Column="4"/>
+			<Cursor Line="5" Column="1"/>
 		</File>
 		<File Name="funcoes.c" Top="No" Tabpos="5" TopLine="1">
-			<Cursor Line="19" Column="3"/>
+			<Cursor Line="23" Column="3"/>
 		</File>
 	</Files>
 </Layout>
