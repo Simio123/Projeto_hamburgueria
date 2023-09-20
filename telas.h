@@ -7,9 +7,9 @@ enum Tela {
     TELA_LOGIN,
     TELA_INFO_PROJETO,
     TELA_INFO_EQUIPE,
-    // Easter egg
+    // Easter eggs
     BEIJO,
-    // Telas secund·rias 
+    // Telas secund√°rias 
     
 };
 
@@ -26,7 +26,7 @@ void tela_login(int opcao, struct Pilha* pilha);
 void tela_info_projeto(int opcao, struct Pilha* pilha);
 void tela_info_equipe(int opcao, struct Pilha* pilha);
 
-// Telas secund·rias
+// Easter eggs
 void beijo(int opcao, struct Pilha* pilha);
 
 #endif
