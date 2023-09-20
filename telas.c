@@ -56,6 +56,8 @@ void executarTela(struct Pilha* pilha)
 
 		switch (telaAtual)
 		{
+			
+		// Telas iniciais
 		case TELA_INICIAL:
 			tela_inicial(opcao, pilha);
 			break;
@@ -72,9 +74,45 @@ void executarTela(struct Pilha* pilha)
 			tela_info_equipe(opcao, pilha);
 			break;
 
+		// Telas secundárias
+		case TELA_ADMINISTRADOR:
+			administrador(opcao, pilha);
+			break;
+			
+		case TELA_FUNCIONARIO:
+			funcionario(opcao, pilha);
+			break;
+		
+		case TELA_CLIENTE:
+			cliente(opcao, pilha);
+			break;
+
+		// Telas terciarias
+		case TELA_ESTOQUE:
+			estoque(opcao, pilha);
+			break;
+			
+		case TELA_PEDIDOS:
+			pedidos(opcao, pilha);
+			break;
+		
+		case TELA_RELATORIOS:
+			relatorios(opcao, pilha);
+			break;
+			
+		case TELA_DELIVERY:
+			delivery(opcao, pilha);
+			break;
+			
+		case TELA_OPCOES_DE_PAGAMENTO:
+			opcoes_de_pagamento(opcao, pilha);
+			break;
+			
+		// Easter eggs
 		case BEIJO:
 			beijo(opcao, pilha);
 			break;
+			
 		}
 	}
 }
