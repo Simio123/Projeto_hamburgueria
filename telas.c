@@ -554,49 +554,7 @@ void opcoes_de_pagamento(int opcao, struct Pilha * pilha)
 	}
 }
 
-void delivery(int opcao, struct Pilha * pilha)
-{
-	system("clear||cls");
-	printf("*******************************************************************************\n");
-	printf("***             = = = = = Menu delivery = = = = =                           ***\n");
-	printf("***                                                                         ***\n");
-	printf("***             1. Registrar pedido                                         ***\n");
-	printf("***             2. Finalizar pedido                                         ***\n");
-	printf("***             3. Rastrear pedido                                          ***\n");
-	printf("***             4. Visualizar pedidos                                       ***\n");
-	printf("***             0. Voltar                                                   ***\n");
-	printf("***                                                                         ***\n");
-	printf("*******************************************************************************\n");
-	printf("Como deseja entrar no sistema?\n");
-	scanf("%d", &opcao);
-
-	switch(opcao)
-	{
-	case 1:
-		printf("Tela");
-		break;
-
-	case 2:
-		printf("Tela");
-		break;
-
-	case 3:
-		printf("Tela");
-		break;
-
-	case 4:
-		printf("Tela");
-		break;
-
-	case 0:
-		desempilhar(pilha);
-		break;
-	}
-}
-
-
 // easter eggs
-
 void beijo(int opcao, struct Pilha* pilha)
 {
 	printf("+******##############################***++++++++++++++++++++++++++++++++++++++++++++++*+************\n");
