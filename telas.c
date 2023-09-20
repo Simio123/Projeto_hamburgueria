@@ -254,7 +254,7 @@ void administrador(int opcao, struct Pilha* pilha)
 		break;
 	}
 
-	void funcionario(int opcao, struct Pilha * pilha)
+void funcionario(int opcao, struct Pilha * pilha)
 	{
 		system("clear||cls");
 		printf("*******************************************************************************\n");
@@ -294,7 +294,7 @@ void administrador(int opcao, struct Pilha* pilha)
 		}
 	}
 
-	void cliente(int opcao, struct Pilha * pilha)
+void cliente(int opcao, struct Pilha * pilha)
 	{
 		system("clear||cls");
 		printf("*******************************************************************************\n");
@@ -338,7 +338,6 @@ void administrador(int opcao, struct Pilha* pilha)
 			break;
 		}
 	}
-
 
 }
 
