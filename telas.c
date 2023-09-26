@@ -34,7 +34,7 @@ enum Tela desempilhar(struct Pilha* pilha)
 {
 	if (pilha->topo == NULL)
 	{
-		printf("A pilha est√° vazia!\n");
+		printf("A pilha est· vazia!\n");
 		exit(1);
 	}
 
@@ -56,8 +56,6 @@ void executarTela(struct Pilha* pilha)
 
 		switch (telaAtual)
 		{
-			
-		// Telas iniciais
 		case TELA_INICIAL:
 			tela_inicial(opcao, pilha);
 			break;
@@ -74,45 +72,45 @@ void executarTela(struct Pilha* pilha)
 			tela_info_equipe(opcao, pilha);
 			break;
 
-		// Telas secund√°rias
+			// Telas secund·rias
 		case TELA_ADMINISTRADOR:
 			administrador(opcao, pilha);
 			break;
-			
+
 		case TELA_FUNCIONARIO:
 			funcionario(opcao, pilha);
 			break;
-		
+
 		case TELA_CLIENTE:
 			cliente(opcao, pilha);
 			break;
 
-		// Telas terciarias
+			// Telas terciarias
 		case TELA_ESTOQUE:
 			estoque(opcao, pilha);
 			break;
-			
+
 		case TELA_PEDIDOS:
 			pedidos(opcao, pilha);
 			break;
-		
+
 		case TELA_RELATORIOS:
 			relatorios(opcao, pilha);
 			break;
-			
+
 		case TELA_DELIVERY:
 			delivery(opcao, pilha);
 			break;
-			
+
 		case TELA_OPCOES_DE_PAGAMENTO:
 			opcoes_de_pagamento(opcao, pilha);
 			break;
-			
-		// Easter eggs
+
+			// Easter eggs
 		case BEIJO:
 			beijo(opcao, pilha);
 			break;
-			
+
 		}
 	}
 }
@@ -124,20 +122,20 @@ void tela_inicial(int opcao, struct Pilha* pilha)
 	printf("\n");
 	printf("*******************************************************************************\n");
 	printf("***             Universidade Federal do Rio Grande do Norte                 ***\n");
-	printf("***             Centro de Ensino Superior do Serid√≥                         ***\n");
-	printf("***             Departamento de Computa√ß√£o e Tecnologia                     ***\n");
-	printf("***             Disciplina: Programa√ß√£o                                     ***\n");
+	printf("***             Centro de Ensino Superior do SeridÛ                         ***\n");
+	printf("***             Departamento de ComputaÁ„o e Tecnologia                     ***\n");
+	printf("***             Disciplina: ProgramaÁ„o                                     ***\n");
 	printf("***             Professor: Flavius Gorgonio                                 ***\n");
-	printf("***             Projeto: Sistema de Gest√£o de Hamburgueria                  ***\n");
+	printf("***             Projeto: Sistema de Gest„o de Hamburgueria                  ***\n");
 	printf("***             Aluno: Emerson da Silva Santos                              ***\n");
 	printf("***             Linguagem: C                                                ***\n");
 	printf("*******************************************************************************\n");
 	printf("*******************************************************************************\n");
-	printf("***   = = = = =  Bem vindo ao Sistema de Gest√£o de Hamburgueria = = = = =   ***\n");
+	printf("***   = = = = =  Bem vindo ao Sistema de Gest„o de Hamburgueria = = = = =   ***\n");
 	printf("***                                                                         ***\n");
 	printf("***             1. Login                                                    ***\n");
-	printf("***             2. Consultar informa√ß√µes sobre o projeto                    ***\n");
-	printf("***             3. Consultar informa√ß√µes sobre Equipe responsavel           ***\n");
+	printf("***             2. Consultar informaÁıes sobre o projeto                    ***\n");
+	printf("***             3. Consultar informaÁıes sobre Equipe responsavel           ***\n");
 	printf("***             0. Sair                                                     ***\n");
 	printf("***                                                                         ***\n");
 	printf("*******************************************************************************\n");
@@ -173,7 +171,7 @@ void tela_login(int opcao, struct Pilha* pilha)
 	printf("***             = = = = = Menu de login = = = = =                           ***\n");
 	printf("***                                                                         ***\n");
 	printf("***             1. Administrador                                            ***\n");
-	printf("***             2. Funcion√°rio                                              ***\n");
+	printf("***             2. Funcion·rio                                              ***\n");
 	printf("***             3. Cliente                                                  ***\n");
 	printf("***             0. Voltar                                                   ***\n");
 	printf("***                                                                         ***\n");
@@ -185,14 +183,15 @@ void tela_login(int opcao, struct Pilha* pilha)
 	{
 	case 1:
 		login();
+		empilhar(pilha, TELA_ADMINISTRADOR);
 		break;
 
 	case 2:
-		empilhar(pilha, BEIJO);
+		empilhar(pilha, TELA_FUNCIONARIO);
 		break;
 
 	case 3:
-		printf("Tela cliente");
+		empilhar(pilha, TELA_CLIENTE);
 		break;
 
 	case 0:
@@ -205,13 +204,13 @@ void tela_info_projeto(int opcao, struct Pilha* pilha)
 {
 	system("clear||cls");
 	printf("*******************************************************************************\n");
-	printf("***             = = = = = informa√ß√µes sobre o projeto = = = = =             ***\n");
+	printf("***             = = = = = informaÁıes sobre o projeto = = = = =             ***\n");
 	printf("***                                                                         ***\n");
 	printf("***             O Programa gerencia o funcionamento de uma hamburgueria     ***\n");
-	printf("***       fins did√°ticos de ilustra√ß√£o. O programa cont√©m os principais     ***\n");
-	printf("***       e funcionalidades que ser√£o exigidos na avalia√ß√£o dos projetos    ***\n");
+	printf("***       fins did·ticos de ilustraÁ„o. O programa contÈm os principais     ***\n");
+	printf("***       e funcionalidades que ser„o exigidos na avaliaÁ„o dos projetos    ***\n");
 	printf("***       desenvolvidos pelos alunos ao longo da disciplina. Serve como u   ***\n");
-	printf("***       de consulta e refer√™ncia para o desenvolvidos dos demais proje    ***\n");
+	printf("***       de consulta e referÍncia para o desenvolvidos dos demais proje    ***\n");
 	printf("***                                                                         ***\n");
 	printf("*******************************************************************************\n");
 	printf("Insira 0 para voltar\n");
@@ -227,7 +226,7 @@ void tela_info_equipe(int opcao, struct Pilha* pilha)
 {
 	system("clear||cls");
 	printf("*******************************************************************************\n");
-	printf("***             = = = = = informa√ß√µes sobre Equipe responsavel = = = = =    ***\n");
+	printf("***             = = = = = informaÁıes sobre Equipe responsavel = = = = =    ***\n");
 	printf("***                                                                         ***\n");
 	printf("***             Este projeto exemplo foi desenvolvido por:                  ***\n");
 	printf("***             Emerson da Silva santos                                     ***\n");
@@ -245,7 +244,7 @@ void tela_info_equipe(int opcao, struct Pilha* pilha)
 }
 
 
-// Telas secund√°rias
+// Telas secund·rias
 
 void administrador(int opcao, struct Pilha* pilha)
 {
@@ -253,12 +252,97 @@ void administrador(int opcao, struct Pilha* pilha)
 	printf("*******************************************************************************\n");
 	printf("***             = = = = = Menu de administrador = = = = =                   ***\n");
 	printf("***                                                                         ***\n");
-	printf("***             1. Demitir funcion√°rio                                      ***\n");
+	printf("***             1. Demitir funcion·rio                                      ***\n");
 	printf("***             2. Acessar estoque                                          ***\n");
-	printf("***             3. Cadastrar Funcion√°rio                                    ***\n");
-	printf("***             4. Editar dados dos funcon√°rios                             ***\n");
-	printf("***             5. Exibir relatorios                             	    ***\n");
-	printf("***             6. Cadastrar promo√ß√£o                                       ***\n");
+	printf("***             3. Cadastrar Funcion·rio                                    ***\n");
+	printf("***             4. Editar dados dos funcon·rios                             ***\n");
+	printf("***             5. Exibir relatorios                             			***\n");
+	printf("***             6. Cadastrar promoÁ„o                                       ***\n");
+	printf("***             0. Voltar                                                   ***\n");
+	printf("***                                                                         ***\n");
+	printf("*******************************************************************************\n");
+	printf("Como deseja entrar no sistema?\n");
+	scanf("%d", &opcao);
+
+	switch(opcao)
+	{
+	case 1:
+		printf("funÁ„o demiss„o");
+		break;
+
+	case 2:
+		empilhar(pilha, TELA_ESTOQUE);
+		break;
+
+	case 3:
+		printf("Tela");
+		break;
+
+	case 4:
+		printf("Tela");
+		break;
+
+	case 5:
+		printf("Tela");
+		break;
+
+	case 0:
+		desempilhar(pilha);
+		break;
+	}
+}
+
+void funcionario(int opcao, struct Pilha * pilha)
+{
+	system("clear||cls");
+	printf("*******************************************************************************\n");
+	printf("***             = = = = = Menu de funcionario = = = = =                     ***\n");
+	printf("***                                                                         ***\n");
+	printf("***             1. Editar dados pessoais                                    ***\n");
+	printf("***             2. Pedir demiss„o                                           ***\n");
+	printf("***             3. Acessar estoque                                          ***\n");
+	printf("***             4. Verificar pedidos                                        ***\n");
+	printf("***             0. Voltar                                                   ***\n");
+	printf("***                                                                         ***\n");
+	printf("*******************************************************************************\n");
+	printf("Como deseja entrar no sistema?\n");
+	scanf("%d", &opcao);
+
+	switch(opcao)
+	{
+	case 1:
+		printf("Tela");
+		break;
+
+	case 2:
+		printf("Tela");
+		break;
+
+	case 3:
+		empilhar(pilha, TELA_ESTOQUE);
+		break;
+
+	case 4:
+		empilhar(pilha, TELA_PEDIDOS);
+		break;
+
+	case 0:
+		desempilhar(pilha);
+		break;
+	}
+}
+
+void cliente(int opcao, struct Pilha * pilha)
+{
+	system("clear||cls");
+	printf("*******************************************************************************\n");
+	printf("***             = = = = = Menu de cliente = = = = =                         ***\n");
+	printf("***                                                                         ***\n");
+	printf("***             1. Realizar pedido                                          ***\n");
+	printf("***             2. Reservar mesa                                            ***\n");
+	printf("***             3. Registrar reclamaÁ„o                                     ***\n");
+	printf("***             4. Registrar sugest„o                                       ***\n");
+	printf("***             5. Avaliar comida e atendimento                             ***\n");
 	printf("***             0. Voltar                                                   ***\n");
 	printf("***                                                                         ***\n");
 	printf("*******************************************************************************\n");
@@ -291,93 +375,8 @@ void administrador(int opcao, struct Pilha* pilha)
 		desempilhar(pilha);
 		break;
 	}
-
-void funcionario(int opcao, struct Pilha * pilha)
-	{
-		system("clear||cls");
-		printf("*******************************************************************************\n");
-		printf("***             = = = = = Menu de funcionario = = = = =                     ***\n");
-		printf("***                                                                         ***\n");
-		printf("***             1. Editar dados pessoais                                    ***\n");
-		printf("***             2. Pedir demiss√£o                                           ***\n");
-		printf("***             3. Acessar estoque                                          ***\n");
-		printf("***             4. Verificar pedidos                                        ***\n");
-		printf("***             0. Voltar                                                   ***\n");
-		printf("***                                                                         ***\n");
-		printf("*******************************************************************************\n");
-		printf("Como deseja entrar no sistema?\n");
-		scanf("%d", &opcao);
-
-		switch(opcao)
-		{
-		case 1:
-			printf("Tela");
-			break;
-
-		case 2:
-			printf("Tela");
-			break;
-
-		case 3:
-			printf("Tela");
-			break;
-
-		case 4:
-			printf("Tela");
-			break;
-
-		case 0:
-			desempilhar(pilha);
-			break;
-		}
-	}
-
-void cliente(int opcao, struct Pilha * pilha)
-	{
-		system("clear||cls");
-		printf("*******************************************************************************\n");
-		printf("***             = = = = = Menu de cliente = = = = =                         ***\n");
-		printf("***                                                                         ***\n");
-		printf("***             1. Realizar pedido                                          ***\n");
-		printf("***             2. Reservar mesa                                            ***\n");
-		printf("***             3. Registrar reclama√ß√£o                                     ***\n");
-		printf("***             4. Registrar sugest√£o                                       ***\n");
-		printf("***             5. Avaliar comida e atendimento                             ***\n");
-		printf("***             0. Voltar                                                   ***\n");
-		printf("***                                                                         ***\n");
-		printf("*******************************************************************************\n");
-		printf("Como deseja entrar no sistema?\n");
-		scanf("%d", &opcao);
-
-		switch(opcao)
-		{
-		case 1:
-			printf("Tela");
-			break;
-
-		case 2:
-			printf("Tela");
-			break;
-
-		case 3:
-			printf("Tela");
-			break;
-
-		case 4:
-			printf("Tela");
-			break;
-
-		case 5:
-			printf("Tela");
-			break;
-
-		case 0:
-			desempilhar(pilha);
-			break;
-		}
-	}
-
 }
+
 
 // Telas terciarias
 
@@ -459,11 +458,11 @@ void relatorios(int opcao, struct Pilha * pilha)
 	printf("***                                                                         ***\n");
 	printf("***             1. Vendas semanais                                          ***\n");
 	printf("***             2. Despesas semanais                                        ***\n");
-	printf("***             3. Lucro semanal                                            ***\n");
+	printf("***             3. Lucro semanal                                        	***\n");
 	printf("***             4. Vendas por item                                          ***\n");
 	printf("***             5. Atendimentos por dia                                     ***\n");
-	printf("***             6. Vendas por horario                                       ***\n");
-	printf("***             7. Lucro semanal                                            ***\n");
+	printf("***             6. Vendas por horario                                    	***\n");
+	printf("***             7. Lucro semanal                                        	***\n");
 	printf("***             0. Voltar                                                   ***\n");
 	printf("***                                                                         ***\n");
 	printf("*******************************************************************************\n");
@@ -514,7 +513,7 @@ void delivery(int opcao, struct Pilha * pilha)
 	printf("***                                                                         ***\n");
 	printf("***             1. Registrar pedido                                         ***\n");
 	printf("***             2. Finalizar pedido                                         ***\n");
-	printf("***             3. Rastrear pedido                                          ***\n");
+	printf("***             3. Rastrear pedido                                       	***\n");
 	printf("***             4. Visualizar pedidos                                       ***\n");
 	printf("***             0. Voltar                                                   ***\n");
 	printf("***                                                                         ***\n");
@@ -553,8 +552,8 @@ void opcoes_de_pagamento(int opcao, struct Pilha * pilha)
 	printf("***             = = = = = Menu pagamento = = = = =                          ***\n");
 	printf("***                                                                         ***\n");
 	printf("***             1. Dinheiro                                                 ***\n");
-	printf("***             2. Cart√£o de credito                                        ***\n");
-	printf("***             3. Cart√£o de debito                                         ***\n");
+	printf("***             2. Cart„o de credito                                        ***\n");
+	printf("***             3. Cart„o de debito                                       	***\n");
 	printf("***             4. Transferencia bancaria                                   ***\n");
 	printf("***             5. Pix                                                      ***\n");
 	printf("***             0. Voltar                                                   ***\n");
@@ -591,7 +590,9 @@ void opcoes_de_pagamento(int opcao, struct Pilha * pilha)
 	}
 }
 
+
 // easter eggs
+
 void beijo(int opcao, struct Pilha* pilha)
 {
 	printf("+******##############################***++++++++++++++++++++++++++++++++++++++++++++++*+************\n");

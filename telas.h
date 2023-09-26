@@ -8,7 +8,7 @@ enum Tela {
     TELA_INFO_PROJETO,
     TELA_INFO_EQUIPE,
 
-    // Telas secund√°rias 
+    // Telas secund·rias 
     TELA_ADMINISTRADOR,
     TELA_FUNCIONARIO,
     TELA_CLIENTE,
@@ -37,7 +37,7 @@ void tela_login(int opcao, struct Pilha* pilha);
 void tela_info_projeto(int opcao, struct Pilha* pilha);
 void tela_info_equipe(int opcao, struct Pilha* pilha);
 
-// Telas secund√°rias 
+// Telas secund·rias 
 void administrador(int opcao, struct Pilha* pilha);
 void funcionario(int opcao, struct Pilha * pilha);
 void cliente(int opcao, struct Pilha * pilha);
