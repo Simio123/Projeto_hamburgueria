@@ -50,7 +50,7 @@ void executarTela(struct Pilha* pilha)
 {
 	int opcao = 1000;
 
-	while (1)
+	while (pilha->topo != NULL)
 	{
 		enum Tela telaAtual = pilha->topo->tela;
 
