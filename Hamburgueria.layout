@@ -4,16 +4,16 @@
 		<File Name="main.c" Top="No" Tabpos="1" TopLine="1">
 			<Cursor Line="27" Column="1"/>
 		</File>
-		<File Name="telas.h" Top="No" Tabpos="2" TopLine="1">
-			<Cursor Line="55" Column="7"/>
+		<File Name="telas.h" Top="Yes" Tabpos="2" TopLine="17">
+			<Cursor Line="28" Column="1"/>
 		</File>
-		<File Name="telas.c" Top="No" Tabpos="3" TopLine="1">
-			<Cursor Line="6" Column="1"/>
+		<File Name="telas.c" Top="No" Tabpos="3" TopLine="26">
+			<Cursor Line="44" Column="1"/>
 		</File>
 		<File Name="funcoes.h" Top="No" Tabpos="4" TopLine="1">
-			<Cursor Line="5" Column="1"/>
+			<Cursor Line="18" Column="1"/>
 		</File>
-		<File Name="funcoes.c" Top="Yes" Tabpos="5" TopLine="1">
+		<File Name="funcoes.c" Top="No" Tabpos="5" TopLine="1">
 			<Cursor Line="240" Column="14"/>
 		</File>
 	</Files>

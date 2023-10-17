@@ -24,6 +24,14 @@ enum Tela {
     BEIJO,
 };
 
+
+
+
+struct Pessoa;
+struct Pessoa* criarPessoa(int id, const char* nome, const char* cargo, double salario, int idade, const char* endereco, const char* email, const char* telefone);
+
+
+
 struct Pilha;
 
 struct Pilha* criarPilha();

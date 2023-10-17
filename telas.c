@@ -4,6 +4,53 @@
 #include "telas.h"
 #include "funcoes.h"
 
+
+
+struct Pessoa
+{
+	int id;
+	char nome[50];
+	char cargo[50];
+	double salario;
+	int idade;
+	char endereco[100];
+	char email[100];
+	char telefone[20];
+	// demais atributos serão adicionados
+};
+
+struct Pessoa* criarPessoa(int id, const char* nome, const char* cargo, double salario, int idade, const char* endereco, const char* email, const char* telefone)
+{
+	struct Pessoa* pessoa = (struct Pessoa*)malloc(sizeof(struct Pessoa));
+
+	if (pessoa != NULL)
+	{
+		pessoa->id = id;
+		strncpy(pessoa->nome, nome, sizeof(pessoa->nome));
+		strncpy(pessoa->cargo, cargo, sizeof(pessoa->cargo));
+		pessoa->salario = salario;
+		pessoa->idade = idade;
+		strncpy(pessoa->endereco, endereco, sizeof(pessoa->endereco));
+		strncpy(pessoa->email, email, sizeof(pessoa->email));
+		strncpy(pessoa->telefone, telefone, sizeof(pessoa->telefone));
+	}
+
+	return pessoa;
+}
+
+/*
+    struct Pessoa* pessoa1 = criarPessoa(1, "João", "Analista", 5000.0, 30, "Rua A, 123", "joao@email.com", "123-456-7890");
+    struct Pessoa* pessoa2 = criarPessoa(2, "Maria", "Gerente", 7500.0, 35, "Avenida B, 456", "maria@email.com", "987-654-3210");
+
+    free(pessoa1);
+    free(pessoa2);
+*/
+
+
+
+
+
+
 struct No
 {
 	enum Tela tela;
