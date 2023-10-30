@@ -27,7 +27,7 @@ void recebe_nome()
 	else
 	{
 		printf("O nome é inválido.\n");
-		recebe_nome()
+		recebe_nome();
 	}
 }
 
@@ -173,7 +173,7 @@ void recebe_data()
 	else
 	{
 		printf("A data não é válida, insira novamente\n");
-		recebe_data()
+		recebe_data();
 	}
 
 }

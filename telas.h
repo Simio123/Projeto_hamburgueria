@@ -24,6 +24,13 @@ enum Tela {
     BEIJO,
 };
 
+
+typedef struct Produto Produto;
+Produto* criarProduto(int status, int codigo, int quantidade, const char* nome, const char* tipo, const char* validade);
+void e_empilhar(Produto** topo, Produto* produto);
+void e_desempilhar(Produto** topo);
+void e_exibirPilha(Produto* topo);
+
 typedef struct Pessoa Pessoa;
 Pessoa* criarPessoa(int status, int id, const char* nome, const char* cargo, double salario, int idade, const char* endereco, const char* email, const char* telefone, const char* cpf, const char* data);
 void p_empilhar(Pessoa** topo, Pessoa* pessoa);

@@ -5,71 +5,164 @@
 #include "funcoes.h"
 
 
-// Estrutua de pessoas
-typedef struct Pessoa {
+// Estrutura de pedidos
+typedef struct Pedido {
     // Atributos principais
-    int id;
+    int codigo;
+    int quantidade;
     char nome[100];
-    char cargo[100];
-    double salario;
-    int idade;
-    char endereco[150];
-    char email[150];
-    char telefone[20];
-    char cpf[12];
-    char data[11];
+    char tipo[50];
+    char validade[11];
 
-    // Aponta para o próximo funcionário na pilha
-    struct Pessoa* proximo;
+    // Aponta para o próximo produto na pilha
+    struct Produto* proximo;
 
-    // Define o status da pessoa na pilha (1 para ativo e 0 para inativo)
+    // Define o status do produto (1 para entregue e 0 para em preparação/a caminho)
     int status;
 };
 
-Pessoa* criarPessoa(int status, int id, const char* nome, const char* cargo, double salario, int idade, const char* endereco, const char* email, const char* telefone, const char* cpf, const char* data)
+
+
+
+// Estrutura de produtos
+typedef struct Produto {
+    // Atributos principais
+    int codigo;
+    int quantidade;
+    char nome[100];
+    char tipo[50];
+    char validade[11];
+
+    // Aponta para o próximo produto na pilha
+    struct Produto* proximo;
+
+    // Define o status do produto (1 para em estoque e 0 para em falta)
+    int status;
+};
+
+Produto* criarProduto(int status, int codigo, int quantidade, const char* nome, const char* tipo, const char* validade)
 {
-    Pessoa* pessoa = (Pessoa*)malloc(sizeof(Pessoa));
+    Produto* produto = (Produto*)malloc(sizeof(Produto));
 
-    if (pessoa != NULL)
+    if (produto != NULL)
     {
-        pessoa->status = status;
-        pessoa->id = id;
-        strncpy(pessoa->nome, nome, sizeof(pessoa->nome));
-        strncpy(pessoa->cargo, cargo, sizeof(pessoa->cargo));
-        pessoa->salario = salario;
-        pessoa->idade = idade;
-        strncpy(pessoa->endereco, endereco, sizeof(pessoa->endereco));
-        strncpy(pessoa->email, email, sizeof(pessoa->email));
-        strncpy(pessoa->telefone, telefone, sizeof(pessoa->telefone));
-        strncpy(pessoa->cpf, cpf, sizeof(pessoa->cpf));
-        strncpy(pessoa->data, data, sizeof(pessoa->data));
+        produto->status = status;
+        produto->codigo = codigo;
+        produto->quantidade = quantidade;
+        strncpy(produto->nome, nome, sizeof(produto->nome));
+        strncpy(produto->tipo, tipo, sizeof(produto->tipo));
+        strncpy(produto->validade, validade, sizeof(produto->validade));
+        produto->proximo = NULL; // Inicializa o próximo como NULL
     }
-    return pessoa;
+    return produto;
 }
 
-void p_empilhar(Pessoa** topo, Pessoa* pessoa) {
-    pessoa->proximo = *topo;
-    *topo = pessoa;
+void e_empilhar(Produto** topo, Produto* produto)
+{
+    if (produto != NULL)
+    {
+        produto->proximo = *topo;
+        *topo = produto;
+    }
 }
 
-void p_desempilhar(Pessoa** topo) {
-    if (*topo != NULL) {
-        Pessoa* temp = *topo;
+void e_desempilhar(Produto** topo)
+{
+    if (*topo != NULL)
+    {
+        Produto* temp = *topo;
         *topo = (*topo)->proximo;
         free(temp);
     }
 }
 
-void exibirPilha(Pessoa* topo) {
-    Pessoa* atual = topo;
-    while (atual != NULL) {
-        printf("ID: %d\n", atual->id);
+void e_exibirPilha(Produto* topo)
+{
+    Produto* atual = topo;
+    while (atual != NULL)
+    {
+        printf("Código: %d\n", atual->codigo); // Correção: exibir o campo 'codigo' corretamente
         printf("Nome: %s\n", atual->nome);
-        printf("Cargo: %s\n", atual->cargo);
-        printf("Salário: %.2f\n", atual->salario);
+        printf("Tipo: %s\n", atual->tipo);
+        printf("Quantidade: %d\n", atual->quantidade);
+        printf("Validade: %s\n", atual->validade);
+        printf("Status: %d\n", atual->status);
         printf("\n");
         atual = atual->proximo;
     }
+}
+
+// Estrutua de pessoas
+typedef struct Pessoa
+{
+	// Atributos principais
+	int id;
+	char nome[100];
+	char cargo[100];
+	double salario;
+	int idade;
+	char endereco[150];
+	char email[150];
+	char telefone[20];
+	char cpf[12];
+	char data[11];
+
+	// Aponta para o próximo funcionário na pilha
+	struct Pessoa* proximo;
+
+	// Define o status da pessoa na pilha (1 para ativo e 0 para inativo)
+	int status;
+};
+
+Pessoa* criarPessoa(int status, int id, const char* nome, const char* cargo, double salario, int idade, const char* endereco, const char* email, const char* telefone, const char* cpf, const char* data)
+{
+	Pessoa* pessoa = (Pessoa*)malloc(sizeof(Pessoa));
+
+	if (pessoa != NULL)
+	{
+		pessoa->status = status;
+		pessoa->id = id;
+		strncpy(pessoa->nome, nome, sizeof(pessoa->nome));
+		strncpy(pessoa->cargo, cargo, sizeof(pessoa->cargo));
+		pessoa->salario = salario;
+		pessoa->idade = idade;
+		strncpy(pessoa->endereco, endereco, sizeof(pessoa->endereco));
+		strncpy(pessoa->email, email, sizeof(pessoa->email));
+		strncpy(pessoa->telefone, telefone, sizeof(pessoa->telefone));
+		strncpy(pessoa->cpf, cpf, sizeof(pessoa->cpf));
+		strncpy(pessoa->data, data, sizeof(pessoa->data));
+	}
+	return pessoa;
+}
+
+void p_empilhar(Pessoa** topo, Pessoa* pessoa)
+{
+	pessoa->proximo = *topo;
+	*topo = pessoa;
+}
+
+void p_desempilhar(Pessoa** topo)
+{
+	if (*topo != NULL)
+	{
+		Pessoa* temp = *topo;
+		*topo = (*topo)->proximo;
+		free(temp);
+	}
+}
+
+void exibirPilha(Pessoa* topo)
+{
+	Pessoa* atual = topo;
+	while (atual != NULL)
+	{
+		printf("ID: %d\n", atual->id);
+		printf("Nome: %s\n", atual->nome);
+		printf("Cargo: %s\n", atual->cargo);
+		printf("Salário: %.2f\n", atual->salario);
+		printf("\n");
+		atual = atual->proximo;
+	}
 }
 
 

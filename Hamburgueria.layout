@@ -4,17 +4,17 @@
 		<File Name="main.c" Top="No" Tabpos="1" TopLine="1">
 			<Cursor Line="27" Column="1"/>
 		</File>
-		<File Name="telas.h" Top="No" Tabpos="2" TopLine="20">
-			<Cursor Line="36" Column="52"/>
+		<File Name="telas.h" Top="No" Tabpos="2" TopLine="43">
+			<Cursor Line="39" Column="1"/>
 		</File>
-		<File Name="telas.c" Top="Yes" Tabpos="3" TopLine="19">
-			<Cursor Line="40" Column="31"/>
+		<File Name="telas.c" Top="Yes" Tabpos="3" TopLine="5">
+			<Cursor Line="25" Column="1"/>
 		</File>
 		<File Name="funcoes.h" Top="No" Tabpos="4" TopLine="1">
-			<Cursor Line="5" Column="1"/>
+			<Cursor Line="1" Column="18"/>
 		</File>
 		<File Name="funcoes.c" Top="No" Tabpos="5" TopLine="1">
-			<Cursor Line="177" Column="3"/>
+			<Cursor Line="176" Column="17"/>
 		</File>
 	</Files>
 </Layout>
