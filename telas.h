@@ -24,16 +24,14 @@ enum Tela {
     BEIJO,
 };
 
-
-
-
-struct Pessoa;
-struct Pessoa* criarPessoa(int id, const char* nome, const char* cargo, double salario, int idade, const char* endereco, const char* email, const char* telefone);
-
+typedef struct Pessoa Pessoa;
+Pessoa* criarPessoa(int status, int id, const char* nome, const char* cargo, double salario, int idade, const char* endereco, const char* email, const char* telefone, const char* cpf, const char* data);
+void p_empilhar(Pessoa** topo, Pessoa* pessoa);
+void p_desempilhar(Pessoa** topo);
+void exibirPilha(Pessoa* topo);
 
 
 struct Pilha;
-
 struct Pilha* criarPilha();
 void empilhar(struct Pilha* pilha, enum Tela tela);
 enum Tela desempilhar(struct Pilha* pilha);

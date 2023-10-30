@@ -5,52 +5,75 @@
 #include "funcoes.h"
 
 
+// Estrutua de pessoas
+typedef struct Pessoa {
+    // Atributos principais
+    int id;
+    char nome[100];
+    char cargo[100];
+    double salario;
+    int idade;
+    char endereco[150];
+    char email[150];
+    char telefone[20];
+    char cpf[12];
+    char data[11];
 
-struct Pessoa
-{
-	int id;
-	char nome[50];
-	char cargo[50];
-	double salario;
-	int idade;
-	char endereco[100];
-	char email[100];
-	char telefone[20];
-	// demais atributos serão adicionados
+    // Aponta para o próximo funcionário na pilha
+    struct Pessoa* proximo;
+
+    // Define o status da pessoa na pilha (1 para ativo e 0 para inativo)
+    int status;
 };
 
-struct Pessoa* criarPessoa(int id, const char* nome, const char* cargo, double salario, int idade, const char* endereco, const char* email, const char* telefone)
+Pessoa* criarPessoa(int status, int id, const char* nome, const char* cargo, double salario, int idade, const char* endereco, const char* email, const char* telefone, const char* cpf, const char* data)
 {
-	struct Pessoa* pessoa = (struct Pessoa*)malloc(sizeof(struct Pessoa));
+    Pessoa* pessoa = (Pessoa*)malloc(sizeof(Pessoa));
 
-	if (pessoa != NULL)
-	{
-		pessoa->id = id;
-		strncpy(pessoa->nome, nome, sizeof(pessoa->nome));
-		strncpy(pessoa->cargo, cargo, sizeof(pessoa->cargo));
-		pessoa->salario = salario;
-		pessoa->idade = idade;
-		strncpy(pessoa->endereco, endereco, sizeof(pessoa->endereco));
-		strncpy(pessoa->email, email, sizeof(pessoa->email));
-		strncpy(pessoa->telefone, telefone, sizeof(pessoa->telefone));
-	}
-
-	return pessoa;
+    if (pessoa != NULL)
+    {
+        pessoa->status = status;
+        pessoa->id = id;
+        strncpy(pessoa->nome, nome, sizeof(pessoa->nome));
+        strncpy(pessoa->cargo, cargo, sizeof(pessoa->cargo));
+        pessoa->salario = salario;
+        pessoa->idade = idade;
+        strncpy(pessoa->endereco, endereco, sizeof(pessoa->endereco));
+        strncpy(pessoa->email, email, sizeof(pessoa->email));
+        strncpy(pessoa->telefone, telefone, sizeof(pessoa->telefone));
+        strncpy(pessoa->cpf, cpf, sizeof(pessoa->cpf));
+        strncpy(pessoa->data, data, sizeof(pessoa->data));
+    }
+    return pessoa;
 }
 
-/*
-    struct Pessoa* pessoa1 = criarPessoa(1, "João", "Analista", 5000.0, 30, "Rua A, 123", "joao@email.com", "123-456-7890");
-    struct Pessoa* pessoa2 = criarPessoa(2, "Maria", "Gerente", 7500.0, 35, "Avenida B, 456", "maria@email.com", "987-654-3210");
+void p_empilhar(Pessoa** topo, Pessoa* pessoa) {
+    pessoa->proximo = *topo;
+    *topo = pessoa;
+}
 
-    free(pessoa1);
-    free(pessoa2);
-*/
+void p_desempilhar(Pessoa** topo) {
+    if (*topo != NULL) {
+        Pessoa* temp = *topo;
+        *topo = (*topo)->proximo;
+        free(temp);
+    }
+}
+
+void exibirPilha(Pessoa* topo) {
+    Pessoa* atual = topo;
+    while (atual != NULL) {
+        printf("ID: %d\n", atual->id);
+        printf("Nome: %s\n", atual->nome);
+        printf("Cargo: %s\n", atual->cargo);
+        printf("Salário: %.2f\n", atual->salario);
+        printf("\n");
+        atual = atual->proximo;
+    }
+}
 
 
-
-
-
-
+// Estrutura da pilha de telas
 struct No
 {
 	enum Tela tela;
@@ -229,7 +252,6 @@ void tela_login(int opcao, struct Pilha* pilha)
 	switch(opcao)
 	{
 	case 1:
-		login();
 		empilhar(pilha, TELA_ADMINISTRADOR);
 		break;
 
@@ -303,7 +325,7 @@ void administrador(int opcao, struct Pilha* pilha)
 	printf("***             2. Acessar estoque                                          ***\n");
 	printf("***             3. Cadastrar Funcionário                                    ***\n");
 	printf("***             4. Editar dados dos funconários                             ***\n");
-	printf("***             5. Exibir relatorios                             			***\n");
+	printf("***             5. Exibir relatorios                                        ***\n");
 	printf("***             6. Cadastrar promoção                                       ***\n");
 	printf("***             0. Voltar                                                   ***\n");
 	printf("***                                                                         ***\n");

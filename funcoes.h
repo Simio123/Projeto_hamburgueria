@@ -3,7 +3,6 @@
 
 #include <stdbool.h>
 
-int login();
 
 void recebe_nome();
 void recebe_cpf();

@@ -5,9 +5,11 @@
 #include <ctype.h>
 #include "funcoes.h"
 
+
+// validador de nomes
 void recebe_nome()
 {
-	char nome[70];
+	char nome[100];
 
 	printf("Insira seu nome: ");
 	fgets(nome, sizeof(nome), stdin);
@@ -25,6 +27,7 @@ void recebe_nome()
 	else
 	{
 		printf("O nome é inválido.\n");
+		recebe_nome()
 	}
 }
 
@@ -50,6 +53,8 @@ bool valida_nome(const char *nome)
 	}
 }
 
+
+// Validador de cpfs
 void recebe_cpf()
 {
 	int i;
@@ -138,6 +143,7 @@ bool valida_cpf(const char *cpf)
 	return true;
 }
 
+// Validador de datas
 void recebe_data()
 {
 	int i;
@@ -166,7 +172,8 @@ void recebe_data()
 	}
 	else
 	{
-		printf("A data não é válida.\n");
+		printf("A data não é válida, insira novamente\n");
+		recebe_data()
 	}
 
 }
@@ -238,31 +245,5 @@ bool valida_data(const char *data)
 		}
 	}
 	return true;
-}
-
-int login()
-{
-	char usuario[50];
-	char senha[50];
-
-	printf("Digite o login: ");
-	scanf("%s", usuario);
-
-	printf("Digite a senha: ");
-	scanf("%s", senha);
-
-	// verificação do login e senha
-	if (strcmp(usuario, "sim") == 0 && strcmp(senha, "123") == 0)
-	{
-		printf("Login bem-sucedido!\n");
-		system("PAUSE");
-		return 1;
-	}
-	else
-	{
-		printf("Login ou senha incorretos.\n");
-		system("PAUSE");
-		return 0;
-	}
 }
 
