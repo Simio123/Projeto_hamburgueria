@@ -2,19 +2,37 @@
 <Layout>
 	<Files>
 		<File Name="main.c" Top="No" Tabpos="1" TopLine="1">
-			<Cursor Line="27" Column="1"/>
+			<Cursor Line="16" Column="19"/>
 		</File>
-		<File Name="telas.h" Top="No" Tabpos="2" TopLine="43">
-			<Cursor Line="39" Column="1"/>
+		<File Name="telas.h" Top="No" Tabpos="2" TopLine="1">
+			<Cursor Line="30" Column="33"/>
 		</File>
-		<File Name="telas.c" Top="Yes" Tabpos="3" TopLine="5">
+		<File Name="telas.c" Top="No" Tabpos="3" TopLine="1">
+			<Cursor Line="5" Column="1"/>
+		</File>
+		<File Name="validadores.c" Top="No" Tabpos="4" TopLine="3">
+			<Cursor Line="6" Column="25"/>
+		</File>
+		<File Name="validadores.h" Top="No" Tabpos="5" TopLine="1">
+			<Cursor Line="12" Column="34"/>
+		</File>
+		<File Name="pedidos.c" Top="No" Tabpos="6" TopLine="3">
+			<Cursor Line="17" Column="31"/>
+		</File>
+		<File Name="pedidos.h" Top="No" Tabpos="7" TopLine="1">
 			<Cursor Line="25" Column="1"/>
 		</File>
-		<File Name="funcoes.h" Top="No" Tabpos="4" TopLine="1">
-			<Cursor Line="1" Column="18"/>
+		<File Name="pessoas.c" Top="No" Tabpos="8" TopLine="1">
+			<Cursor Line="98" Column="1"/>
 		</File>
-		<File Name="funcoes.c" Top="No" Tabpos="5" TopLine="1">
-			<Cursor Line="176" Column="17"/>
+		<File Name="pessoas.h" Top="No" Tabpos="9" TopLine="1">
+			<Cursor Line="37" Column="1"/>
+		</File>
+		<File Name="produtos.c" Top="Yes" Tabpos="10" TopLine="1">
+			<Cursor Line="93" Column="1"/>
+		</File>
+		<File Name="produtos.h" Top="No" Tabpos="11" TopLine="1">
+			<Cursor Line="32" Column="1"/>
 		</File>
 	</Files>
 </Layout>

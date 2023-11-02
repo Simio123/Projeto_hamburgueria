@@ -14,7 +14,11 @@
 #include <string.h>
 #include <locale.h>
 #include "telas.h"
-#include "funcoes.h"
+#include "validadores.h"
+#include "pedidos.h"
+#include "pessoas.h"
+#include "produtos.h"
+
 
 int main() {
 	

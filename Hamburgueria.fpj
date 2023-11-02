@@ -32,7 +32,13 @@
 		<File Name="main.c"/>
 		<File Name="telas.h"/>
 		<File Name="telas.c"/>
-		<File Name="funcoes.h"/>
-		<File Name="funcoes.c"/>
+		<File Name="validadores.h"/>
+		<File Name="validadores.c"/>
+		<File Name="pedidos.h"/>
+		<File Name="pedidos.c"/>
+		<File Name="pessoas.c"/>
+		<File Name="pessoas.h"/>
+		<File Name="produtos.c"/>
+		<File Name="produtos.h"/>
 	</Files>
 </Project>
