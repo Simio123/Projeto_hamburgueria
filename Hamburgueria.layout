@@ -10,29 +10,29 @@
 		<File Name="telas.c" Top="No" Tabpos="3" TopLine="1">
 			<Cursor Line="5" Column="1"/>
 		</File>
-		<File Name="validadores.c" Top="No" Tabpos="4" TopLine="3">
+		<File Name="validadores.c" Top="Yes" Tabpos="4" TopLine="3">
 			<Cursor Line="6" Column="25"/>
 		</File>
 		<File Name="validadores.h" Top="No" Tabpos="5" TopLine="1">
 			<Cursor Line="12" Column="34"/>
 		</File>
-		<File Name="pedidos.c" Top="No" Tabpos="6" TopLine="3">
-			<Cursor Line="17" Column="31"/>
+		<File Name="pedidos.c" Top="No" Tabpos="6" TopLine="1">
+			<Cursor Line="3" Column="22"/>
 		</File>
 		<File Name="pedidos.h" Top="No" Tabpos="7" TopLine="1">
-			<Cursor Line="25" Column="1"/>
+			<Cursor Line="13" Column="3"/>
 		</File>
 		<File Name="pessoas.c" Top="No" Tabpos="8" TopLine="1">
-			<Cursor Line="98" Column="1"/>
+			<Cursor Line="6" Column="1"/>
 		</File>
 		<File Name="pessoas.h" Top="No" Tabpos="9" TopLine="1">
-			<Cursor Line="37" Column="1"/>
+			<Cursor Line="5" Column="1"/>
 		</File>
-		<File Name="produtos.c" Top="Yes" Tabpos="10" TopLine="1">
-			<Cursor Line="93" Column="1"/>
+		<File Name="produtos.c" Top="No" Tabpos="10" TopLine="1">
+			<Cursor Line="5" Column="1"/>
 		</File>
 		<File Name="produtos.h" Top="No" Tabpos="11" TopLine="1">
-			<Cursor Line="32" Column="1"/>
+			<Cursor Line="21" Column="1"/>
 		</File>
 	</Files>
 </Layout>

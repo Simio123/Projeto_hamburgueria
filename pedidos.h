@@ -12,13 +12,4 @@ struct Pedido {
     int status;
 };
 
-// Função para criar um novo pedido
-struct Pedido* criarPedido(int codigo, int quantidade, int tipo, const char* nome, float preco);
-
-// Função para liberar a memória de um pedido
-void liberarPedido(struct Pedido* pedido);
-
-// Função para atualizar o status de um pedido
-void atualizarStatus(struct Pedido* pedido, int novoStatus);
-
 #endif
