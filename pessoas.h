@@ -1,6 +1,9 @@
 #ifndef PESSOAS_H
 #define PESSOAS_H
 
+
+void adicionar_pessoa(int opcao, struct Pilha* pilha);
+
 // Estrutura de pessoas
 struct Pessoa {
     // Atributos principais

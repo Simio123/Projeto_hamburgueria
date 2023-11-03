@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "telas.h"
+#include "pessoas.h"
 
 // Estrutura da pilha de telas
 struct No
@@ -35,7 +36,6 @@ enum Tela desempilhar(struct Pilha* pilha)
 	if (pilha->topo == NULL)
 	{
 		printf("A pilha está vazia!\n");
-		exit(1);
 	}
 
 	struct No* temp = pilha->topo;
@@ -111,6 +111,10 @@ void executarTela(struct Pilha* pilha)
 			beijo(opcao, pilha);
 			break;
 
+		case ADICIONAR_PESSOA:
+			adicionar_pessoa(opcao, pilha);
+			break;
+
 		}
 	}
 }
@@ -141,6 +145,7 @@ void tela_inicial(int opcao, struct Pilha* pilha)
 	printf("*******************************************************************************\n");
 	printf("O que deseja fazer?\n");
 	scanf("%d", &opcao);
+	getchar();
 
 	switch(opcao)
 	{
@@ -178,6 +183,7 @@ void tela_login(int opcao, struct Pilha* pilha)
 	printf("*******************************************************************************\n");
 	printf("Como deseja entrar no sistema?\n");
 	scanf("%d", &opcao);
+	getchar();
 
 	switch(opcao)
 	{
@@ -214,6 +220,7 @@ void tela_info_projeto(int opcao, struct Pilha* pilha)
 	printf("*******************************************************************************\n");
 	printf("Insira 0 para voltar\n");
 	scanf("%d", &opcao);
+	getchar();
 
 	if (opcao == 0)
 	{
@@ -235,6 +242,7 @@ void tela_info_equipe(int opcao, struct Pilha* pilha)
 	printf("*******************************************************************************\n");
 	printf("Insira 0 para voltar\n");
 	scanf("%d", &opcao);
+	getchar();
 
 	if (opcao == 0)
 	{
@@ -260,8 +268,9 @@ void administrador(int opcao, struct Pilha* pilha)
 	printf("***             0. Voltar                                                   ***\n");
 	printf("***                                                                         ***\n");
 	printf("*******************************************************************************\n");
-	printf("Como deseja entrar no sistema?\n");
+	printf("O que deseja fazer?\n");
 	scanf("%d", &opcao);
+	getchar();
 
 	switch(opcao)
 	{
@@ -274,7 +283,7 @@ void administrador(int opcao, struct Pilha* pilha)
 		break;
 
 	case 3:
-		printf("Tela");
+		empilhar(pilha, ADICIONAR_PESSOA);
 		break;
 
 	case 4:
@@ -304,8 +313,9 @@ void funcionario(int opcao, struct Pilha * pilha)
 	printf("***             0. Voltar                                                   ***\n");
 	printf("***                                                                         ***\n");
 	printf("*******************************************************************************\n");
-	printf("Como deseja entrar no sistema?\n");
+	printf("O que deseja fazer?\n");
 	scanf("%d", &opcao);
+	getchar();
 
 	switch(opcao)
 	{
@@ -345,8 +355,9 @@ void cliente(int opcao, struct Pilha * pilha)
 	printf("***             0. Voltar                                                   ***\n");
 	printf("***                                                                         ***\n");
 	printf("*******************************************************************************\n");
-	printf("Como deseja entrar no sistema?\n");
+	printf("O que deseja fazer?\n");
 	scanf("%d", &opcao);
+	getchar();
 
 	switch(opcao)
 	{
@@ -391,8 +402,9 @@ void estoque(int opcao, struct Pilha * pilha)
 	printf("***             0. Voltar                                                   ***\n");
 	printf("***                                                                         ***\n");
 	printf("*******************************************************************************\n");
-	printf("Como deseja entrar no sistema?\n");
+	printf("O que deseja fazer?\n");
 	scanf("%d", &opcao);
+	getchar();
 
 	switch(opcao)
 	{
@@ -426,8 +438,9 @@ void pedidos(int opcao, struct Pilha * pilha)
 	printf("***             0. Voltar                                                   ***\n");
 	printf("***                                                                         ***\n");
 	printf("*******************************************************************************\n");
-	printf("Como deseja entrar no sistema?\n");
+	printf("O que deseja fazer?\n");
 	scanf("%d", &opcao);
+	getchar();
 
 	switch(opcao)
 	{
@@ -465,8 +478,9 @@ void relatorios(int opcao, struct Pilha * pilha)
 	printf("***             0. Voltar                                                   ***\n");
 	printf("***                                                                         ***\n");
 	printf("*******************************************************************************\n");
-	printf("Como deseja entrar no sistema?\n");
+	printf("O que deseja exibir?\n");
 	scanf("%d", &opcao);
+	getchar();
 
 	switch(opcao)
 	{
@@ -517,8 +531,9 @@ void delivery(int opcao, struct Pilha * pilha)
 	printf("***             0. Voltar                                                   ***\n");
 	printf("***                                                                         ***\n");
 	printf("*******************************************************************************\n");
-	printf("Como deseja entrar no sistema?\n");
+	printf("O que deseja fazer?\n");
 	scanf("%d", &opcao);
+	getchar();
 
 	switch(opcao)
 	{
@@ -558,8 +573,9 @@ void opcoes_de_pagamento(int opcao, struct Pilha * pilha)
 	printf("***             0. Voltar                                                   ***\n");
 	printf("***                                                                         ***\n");
 	printf("*******************************************************************************\n");
-	printf("Como deseja entrar no sistema?\n");
+	printf("Qual a forma de pagamento desejada?\n");
 	scanf("%d", &opcao);
+	getchar();
 
 	switch(opcao)
 	{

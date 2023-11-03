@@ -22,6 +22,7 @@ enum Tela {
 
     // Easter eggs
     BEIJO,
+    ADICIONAR_PESSOA,
 };
 
 struct Pilha;
