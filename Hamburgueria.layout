@@ -2,38 +2,33 @@
 <Layout>
 	<Files>
 		<File Name="main.c" Top="No" Tabpos="1" TopLine="1">
-			<Cursor Line="23" Column="13"/>
+			<Cursor Line="21" Column="27"/>
 		</File>
-		<File Name="telas.h" Top="No" Tabpos="2" TopLine="13">
-			<Cursor Line="28" Column="14"/>
+		<File Name="telas.h" Top="No" Tabpos="2" TopLine="24">
+			<Cursor Line="52" Column="70"/>
 		</File>
-		<File Name="pessoas.h" Top="No" Tabpos="3" TopLine="1">
-			<Cursor Line="11" Column="20"/>
+		<File Name="telas.c" Top="No" Tabpos="3" TopLine="702">
+			<Cursor Line="654" Column="50"/>
 		</File>
-		<File Name="telas.c" Top="No" Tabpos="4" TopLine="272">
-			<Cursor Line="298" Column="1"/>
-			<Selection Line="298" Column="22"/>
+		<File Name="pessoas.h" Top="No" Tabpos="4" TopLine="1">
+			<Cursor Line="9" Column="1"/>
+			<Selection Line="18" Column="16"/>
 		</File>
-		<File Name="pessoas.c" Top="Yes" Tabpos="5" TopLine="1">
-			<Cursor Line="22" Column="1"/>
+		<File Name="pessoas.c" Top="Yes" Tabpos="5" TopLine="32">
+			<Cursor Line="17" Column="1"/>
 		</File>
-		<File Name="validadores.c" Top="No" Tabpos="6" TopLine="1">
-			<Cursor Line="15" Column="1"/>
-		</File>
-		<File Name="validadores.h" Top="No" Tabpos="7" TopLine="1">
-			<Cursor Line="12" Column="34"/>
-		</File>
-		<File Name="pedidos.c" Top="No" Tabpos="8" TopLine="1">
-			<Cursor Line="3" Column="22"/>
-		</File>
-		<File Name="pedidos.h" Top="No" Tabpos="9" TopLine="1">
-			<Cursor Line="16" Column="1"/>
-		</File>
-		<File Name="produtos.c" Top="No" Tabpos="10" TopLine="1">
+		<File Name="validadores.h" Top="No" Tabpos="6" TopLine="1">
 			<Cursor Line="5" Column="1"/>
 		</File>
-		<File Name="produtos.h" Top="No" Tabpos="11" TopLine="1">
-			<Cursor Line="21" Column="1"/>
+		<File Name="validadores.c" Top="No" Tabpos="7" TopLine="62">
+			<Cursor Line="87" Column="35"/>
+		</File>
+		<File Name="inserir_dados.h" Top="No" Tabpos="8" TopLine="1">
+			<Cursor Line="8" Column="1"/>
+		</File>
+		<File Name="inserir_dados.c" Top="No" Tabpos="9" TopLine="17">
+			<Cursor Line="25" Column="1"/>
+			<Selection Line="43" Column="2"/>
 		</File>
 	</Files>
 </Layout>

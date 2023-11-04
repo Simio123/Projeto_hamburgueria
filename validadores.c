@@ -6,26 +6,35 @@
 #include "validadores.h"
 
 // validador de nomes
-void recebe_nome()
+bool recebe_nome()
 {
 	char nome[100];
 
-	printf("Insira seu nome: ");
+	printf("Insira o nome:\t");
 	fgets(nome, sizeof(nome), stdin);
 
-	int tamanho = strlen(nome);
-	if (tamanho > 0 && nome[tamanho - 1] == '\n')
+	// Remove a quebra de linha caso ela exista
+	size_t tamanho = strlen(nome);
+	if (nome[tamanho - 1] == '\n')
 	{
 		nome[tamanho - 1] = '\0';
 	}
 
+	if (nome[0] == '\0')
+	{
+		printf("O nome é inválido, por favor tente novamente\n");
+		return false;
+	}
+
 	if (valida_nome(nome))
 	{
-		printf("O nome é válido.\n");
+		printf("Nome cadastrado com sucesso\n");
+		return true;
 	}
 	else
 	{
-		printf("O nome é inválido.\n");
+		printf("O nome é inválido, por favor tente novamente\n");
+		return false;
 	}
 }
 
@@ -53,96 +62,86 @@ bool valida_nome(const char *nome)
 
 
 // Validador de cpfs
-void recebe_cpf()
+bool recebe_cpf()
 {
-	int i;
-	char cpf[12];
-	bool controle = true;
+    char cpf[12];
+    bool cpf_valido;
 
-	while(controle == true)
-	{
-		printf("Digite um CPF (somente números):\n");
-		fgets(cpf, sizeof(cpf), stdin);
+    do {
+        printf("Digite um CPF (somente números):\n");
+        fgets(cpf, sizeof(cpf), stdin);
+        getchar();
 
-		for (i = 0; cpf[i] != '\0'; i++)
-		{
-			if (!isdigit(cpf[i]))
-			{
-				printf("Insira apenas numeros\n");
-				controle = true;
-			}
-		}
-		controle = false;
-	}
+        cpf_valido = valida_cpf(cpf);
 
-	if (valida_cpf(cpf))
-	{
-		printf("CPF válido!\n");
-	}
-	else
-	{
-		printf("CPF inválido!\n");
-	}
+        if (cpf_valido) {
+            printf("CPF válido!\n");
+        } else {
+            printf("CPF inválido! Tente novamente.\n");
+        }
+    } while (!cpf_valido);
+
+    return true;
 }
 
-bool valida_cpf(const char *cpf)
-{
-	int i;
-	if (strlen(cpf) != 11)
-	{
-		return false;
-	}
-	else
-	{
-		for (i = 0; i < 11; i++)
-		{
-			if (!isdigit(cpf[i]))
-			{
-				return false;
-			}
-			else
-			{
-				int numeros[11];
-				for (i = 0; i < 11; i++)
-				{
-					numeros[i] = cpf[i] - '0';
-				}
+bool valida_cpf(const char *cpf) {
+    // Verifica o tamanho do CPF
+    int i;
+    if (strlen(cpf) != 11) {
+        return false;
+    }
 
-				int soma = 0;
-				for (i = 0; i < 9; i++)
-				{
-					soma += numeros[i] * (10 - i);
-				}
-				int resto = soma % 11;
-				int digito1 = (resto < 2) ? 0 : (11 - resto);
+    // Verifica se o CPF contém apenas dígitos
+    for (i = 0; i < 11; i++) {
+        if (!isdigit(cpf[i])) {
+            return false;
+        }
+    }
 
-				if (digito1 != numeros[9])
-				{
-					return false;
-				}
-				else
-				{
-					soma = 0;
-					for (i = 0; i < 10; i++)
-					{
-						soma += numeros[i] * (11 - i);
-					}
-					resto = soma % 11;
-					int digito2 = (resto < 2) ? 0 : (11 - resto);
+    // Converte o CPF para um array de inteiros
+    int numeros[11];
+    for (i = 0; i < 11; i++) {
+        numeros[i] = cpf[i] - '0';
+    }
 
-					if (digito2 != numeros[10])
-					{
-						return false;
-					}
-				}
-			}
-		}
-	}
-	return true;
+    // Calcula o primeiro dígito verificador
+    int soma = 0;
+    int peso = 10;
+    for (i = 0; i < 9; i++) {
+        soma += numeros[i] * peso;
+        peso--;
+    }
+    int resto = soma % 11;
+    int digito1 = (resto < 2) ? 0 : 11 - resto;
+
+    // Verifica o primeiro dígito verificador
+    if (digito1 != numeros[9]) {
+        return false;
+    }
+
+    // Calcula o segundo dígito verificador
+    soma = 0;
+    peso = 11;
+    for (i = 0; i < 10; i++) {
+        soma += numeros[i] * peso;
+        peso--;
+    }
+    resto = soma % 11;
+    int digito2 = (resto < 2) ? 0 : 11 - resto;
+
+    // Verifica o segundo dígito verificador
+    if (digito2 != numeros[10]) {
+        return false;
+    }
+
+    // Se todas as verificações passaram, o CPF é válido
+    return true;
 }
+
+
 
 // Validador de datas
-void recebe_data()
+bool recebe_data()
 {
 	int i;
 	char data[11];
@@ -167,11 +166,12 @@ void recebe_data()
 	if (valida_data(data))
 	{
 		printf("A data é válida.\n");
+		return true;
 	}
 	else
 	{
 		printf("A data não é válida, insira novamente\n");
-		recebe_data();
+		return false;
 	}
 
 }

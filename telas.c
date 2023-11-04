@@ -49,6 +49,7 @@ enum Tela desempilhar(struct Pilha* pilha)
 void executarTela(struct Pilha* pilha)
 {
 	int opcao = 1000;
+	int controle = 0;
 
 	while (pilha->topo != NULL)
 	{
@@ -57,70 +58,71 @@ void executarTela(struct Pilha* pilha)
 		switch (telaAtual)
 		{
 		case TELA_INICIAL:
-			tela_inicial(opcao, pilha);
+			tela_inicial(opcao, controle, pilha);
 			break;
 
 		case TELA_LOGIN:
-			tela_login(opcao, pilha);
+			tela_login(opcao, controle, pilha);
 			break;
 
 		case TELA_INFO_PROJETO:
-			tela_info_projeto(opcao, pilha);
+			tela_info_projeto(opcao, controle, pilha);
 			break;
 
 		case TELA_INFO_EQUIPE:
-			tela_info_equipe(opcao, pilha);
+			tela_info_equipe(opcao, controle, pilha);
 			break;
 
 			// Telas secundárias
 		case TELA_ADMINISTRADOR:
-			administrador(opcao, pilha);
+			administrador(opcao, controle, pilha);
 			break;
 
 		case TELA_FUNCIONARIO:
-			funcionario(opcao, pilha);
+			funcionario(opcao, controle, pilha);
 			break;
 
 		case TELA_CLIENTE:
-			cliente(opcao, pilha);
+			cliente(opcao, controle, pilha);
 			break;
 
 			// Telas terciarias
 		case TELA_ESTOQUE:
-			estoque(opcao, pilha);
+			estoque(opcao, controle, pilha);
 			break;
 
 		case TELA_PEDIDOS:
-			pedidos(opcao, pilha);
+			pedidos(opcao, controle, pilha);
 			break;
 
 		case TELA_RELATORIOS:
-			relatorios(opcao, pilha);
+			relatorios(opcao, controle, pilha);
 			break;
 
 		case TELA_DELIVERY:
-			delivery(opcao, pilha);
+			delivery(opcao, controle, pilha);
 			break;
 
 		case TELA_OPCOES_DE_PAGAMENTO:
-			opcoes_de_pagamento(opcao, pilha);
+			opcoes_de_pagamento(opcao, controle, pilha);
+			break;
+
+
+			// Funções associadas ao adm
+		case CADASTRO_FUNCIONARIO:
+			cadastro_funcionario(pilha);
 			break;
 
 			// Easter eggs
 		case BEIJO:
 			beijo(opcao, pilha);
 			break;
-
-		case ADICIONAR_PESSOA:
-			adicionar_pessoa(opcao, pilha);
-			break;
-
 		}
 	}
 }
 
 // Telas principais
-void tela_inicial(int opcao, struct Pilha* pilha)
+void tela_inicial(int opcao, int controle, struct Pilha* pilha)
 {
 	system("clear||cls");
 	printf("\n");
@@ -144,8 +146,11 @@ void tela_inicial(int opcao, struct Pilha* pilha)
 	printf("***                                                                         ***\n");
 	printf("*******************************************************************************\n");
 	printf("O que deseja fazer?\n");
-	scanf("%d", &opcao);
-	getchar();
+	while (scanf("%d", &opcao) != 1)
+	{
+		printf("Entrada inválida. Por favor, insira uma opção válida.\n");
+		while ((controle = getchar()) != '\n' && controle != EOF); // Limpar o buffer
+	}
 
 	switch(opcao)
 	{
@@ -166,10 +171,15 @@ void tela_inicial(int opcao, struct Pilha* pilha)
 		free(pilha);
 		exit(0);
 		break;
+
+	default:
+		printf("Opção inválida. Por favor, escolha uma opção válida.\n");
+		system("pause");
+		break;
 	}
 }
 
-void tela_login(int opcao, struct Pilha* pilha)
+void tela_login(int opcao, int controle, struct Pilha* pilha)
 {
 	system("clear||cls");
 	printf("*******************************************************************************\n");
@@ -182,8 +192,11 @@ void tela_login(int opcao, struct Pilha* pilha)
 	printf("***                                                                         ***\n");
 	printf("*******************************************************************************\n");
 	printf("Como deseja entrar no sistema?\n");
-	scanf("%d", &opcao);
-	getchar();
+	while (scanf("%d", &opcao) != 1)
+	{
+		printf("Entrada inválida. Por favor, insira uma opção válida.\n");
+		while ((controle = getchar()) != '\n' && controle != EOF); // Limpar o buffer
+	}
 
 	switch(opcao)
 	{
@@ -202,10 +215,15 @@ void tela_login(int opcao, struct Pilha* pilha)
 	case 0:
 		desempilhar(pilha);
 		break;
+
+	default:
+		printf("Opção inválida. Por favor, escolha uma opção válida.\n");
+		system("pause");
+		break;
 	}
 }
 
-void tela_info_projeto(int opcao, struct Pilha* pilha)
+void tela_info_projeto(int opcao, int controle, struct Pilha* pilha)
 {
 	system("clear||cls");
 	printf("*******************************************************************************\n");
@@ -219,8 +237,11 @@ void tela_info_projeto(int opcao, struct Pilha* pilha)
 	printf("***                                                                         ***\n");
 	printf("*******************************************************************************\n");
 	printf("Insira 0 para voltar\n");
-	scanf("%d", &opcao);
-	getchar();
+	while (scanf("%d", &opcao) != 1)
+	{
+		printf("Entrada inválida. Por favor, insira uma opção válida.\n");
+		while ((controle = getchar()) != '\n' && controle != EOF); // Limpar o buffer
+	}
 
 	if (opcao == 0)
 	{
@@ -228,7 +249,7 @@ void tela_info_projeto(int opcao, struct Pilha* pilha)
 	}
 }
 
-void tela_info_equipe(int opcao, struct Pilha* pilha)
+void tela_info_equipe(int opcao, int controle, struct Pilha* pilha)
 {
 	system("clear||cls");
 	printf("*******************************************************************************\n");
@@ -241,8 +262,11 @@ void tela_info_equipe(int opcao, struct Pilha* pilha)
 	printf("***                                                                         ***\n");
 	printf("*******************************************************************************\n");
 	printf("Insira 0 para voltar\n");
-	scanf("%d", &opcao);
-	getchar();
+	while (scanf("%d", &opcao) != 1)
+	{
+		printf("Entrada inválida. Por favor, insira uma opção válida.\n");
+		while ((controle = getchar()) != '\n' && controle != EOF); // Limpar o buffer
+	}
 
 	if (opcao == 0)
 	{
@@ -252,8 +276,7 @@ void tela_info_equipe(int opcao, struct Pilha* pilha)
 
 
 // Telas secundárias
-
-void administrador(int opcao, struct Pilha* pilha)
+void administrador(int opcao, int controle, struct Pilha* pilha)
 {
 	system("clear||cls");
 	printf("*******************************************************************************\n");
@@ -269,8 +292,11 @@ void administrador(int opcao, struct Pilha* pilha)
 	printf("***                                                                         ***\n");
 	printf("*******************************************************************************\n");
 	printf("O que deseja fazer?\n");
-	scanf("%d", &opcao);
-	getchar();
+	while (scanf("%d", &opcao) != 1)
+	{
+		printf("Entrada inválida. Por favor, insira uma opção válida.\n");
+		while ((controle = getchar()) != '\n' && controle != EOF); // Limpar o buffer
+	}
 
 	switch(opcao)
 	{
@@ -283,7 +309,7 @@ void administrador(int opcao, struct Pilha* pilha)
 		break;
 
 	case 3:
-		empilhar(pilha, ADICIONAR_PESSOA);
+		empilhar(pilha, CADASTRO_FUNCIONARIO);
 		break;
 
 	case 4:
@@ -297,10 +323,15 @@ void administrador(int opcao, struct Pilha* pilha)
 	case 0:
 		desempilhar(pilha);
 		break;
+
+	default:
+		printf("Opção inválida. Por favor, escolha uma opção válida.\n");
+		system("pause");
+		break;
 	}
 }
 
-void funcionario(int opcao, struct Pilha * pilha)
+void funcionario(int opcao, int controle, struct Pilha* pilha)
 {
 	system("clear||cls");
 	printf("*******************************************************************************\n");
@@ -314,8 +345,11 @@ void funcionario(int opcao, struct Pilha * pilha)
 	printf("***                                                                         ***\n");
 	printf("*******************************************************************************\n");
 	printf("O que deseja fazer?\n");
-	scanf("%d", &opcao);
-	getchar();
+	while (scanf("%d", &opcao) != 1)
+	{
+		printf("Entrada inválida. Por favor, insira uma opção válida.\n");
+		while ((controle = getchar()) != '\n' && controle != EOF); // Limpar o buffer
+	}
 
 	switch(opcao)
 	{
@@ -338,10 +372,15 @@ void funcionario(int opcao, struct Pilha * pilha)
 	case 0:
 		desempilhar(pilha);
 		break;
+
+	default:
+		printf("Opção inválida. Por favor, escolha uma opção válida.\n");
+		system("pause");
+		break;
 	}
 }
 
-void cliente(int opcao, struct Pilha * pilha)
+void cliente(int opcao, int controle, struct Pilha* pilha)
 {
 	system("clear||cls");
 	printf("*******************************************************************************\n");
@@ -356,8 +395,11 @@ void cliente(int opcao, struct Pilha * pilha)
 	printf("***                                                                         ***\n");
 	printf("*******************************************************************************\n");
 	printf("O que deseja fazer?\n");
-	scanf("%d", &opcao);
-	getchar();
+	while (scanf("%d", &opcao) != 1)
+	{
+		printf("Entrada inválida. Por favor, insira uma opção válida.\n");
+		while ((controle = getchar()) != '\n' && controle != EOF); // Limpar o buffer
+	}
 
 	switch(opcao)
 	{
@@ -384,13 +426,17 @@ void cliente(int opcao, struct Pilha * pilha)
 	case 0:
 		desempilhar(pilha);
 		break;
+
+	default:
+		printf("Opção inválida. Por favor, escolha uma opção válida.\n");
+		system("pause");
+		break;
 	}
 }
 
 
 // Telas terciarias
-
-void estoque(int opcao, struct Pilha * pilha)
+void estoque(int opcao, int controle, struct Pilha* pilha)
 {
 	system("clear||cls");
 	printf("*******************************************************************************\n");
@@ -403,8 +449,11 @@ void estoque(int opcao, struct Pilha * pilha)
 	printf("***                                                                         ***\n");
 	printf("*******************************************************************************\n");
 	printf("O que deseja fazer?\n");
-	scanf("%d", &opcao);
-	getchar();
+	while (scanf("%d", &opcao) != 1)
+	{
+		printf("Entrada inválida. Por favor, insira uma opção válida.\n");
+		while ((controle = getchar()) != '\n' && controle != EOF); // Limpar o buffer
+	}
 
 	switch(opcao)
 	{
@@ -423,10 +472,15 @@ void estoque(int opcao, struct Pilha * pilha)
 	case 0:
 		desempilhar(pilha);
 		break;
+
+	default:
+		printf("Opção inválida. Por favor, escolha uma opção válida.\n");
+		system("pause");
+		break;
 	}
 }
 
-void pedidos(int opcao, struct Pilha * pilha)
+void pedidos(int opcao, int controle, struct Pilha* pilha)
 {
 	system("clear||cls");
 	printf("*******************************************************************************\n");
@@ -439,8 +493,11 @@ void pedidos(int opcao, struct Pilha * pilha)
 	printf("***                                                                         ***\n");
 	printf("*******************************************************************************\n");
 	printf("O que deseja fazer?\n");
-	scanf("%d", &opcao);
-	getchar();
+	while (scanf("%d", &opcao) != 1)
+	{
+		printf("Entrada inválida. Por favor, insira uma opção válida.\n");
+		while ((controle = getchar()) != '\n' && controle != EOF); // Limpar o buffer
+	}
 
 	switch(opcao)
 	{
@@ -459,10 +516,15 @@ void pedidos(int opcao, struct Pilha * pilha)
 	case 0:
 		desempilhar(pilha);
 		break;
+
+	default:
+		printf("Opção inválida. Por favor, escolha uma opção válida.\n");
+		system("pause");
+		break;
 	}
 }
 
-void relatorios(int opcao, struct Pilha * pilha)
+void relatorios(int opcao, int controle, struct Pilha* pilha)
 {
 	system("clear||cls");
 	printf("*******************************************************************************\n");
@@ -479,8 +541,11 @@ void relatorios(int opcao, struct Pilha * pilha)
 	printf("***                                                                         ***\n");
 	printf("*******************************************************************************\n");
 	printf("O que deseja exibir?\n");
-	scanf("%d", &opcao);
-	getchar();
+	while (scanf("%d", &opcao) != 1)
+	{
+		printf("Entrada inválida. Por favor, insira uma opção válida.\n");
+		while ((controle = getchar()) != '\n' && controle != EOF); // Limpar o buffer
+	}
 
 	switch(opcao)
 	{
@@ -515,10 +580,15 @@ void relatorios(int opcao, struct Pilha * pilha)
 	case 0:
 		desempilhar(pilha);
 		break;
+
+	default:
+		printf("Opção inválida. Por favor, escolha uma opção válida.\n");
+		system("pause");
+		break;
 	}
 }
 
-void delivery(int opcao, struct Pilha * pilha)
+void delivery(int opcao, int controle, struct Pilha* pilha)
 {
 	system("clear||cls");
 	printf("*******************************************************************************\n");
@@ -532,8 +602,11 @@ void delivery(int opcao, struct Pilha * pilha)
 	printf("***                                                                         ***\n");
 	printf("*******************************************************************************\n");
 	printf("O que deseja fazer?\n");
-	scanf("%d", &opcao);
-	getchar();
+	while (scanf("%d", &opcao) != 1)
+	{
+		printf("Entrada inválida. Por favor, insira uma opção válida.\n");
+		while ((controle = getchar()) != '\n' && controle != EOF); // Limpar o buffer
+	}
 
 	switch(opcao)
 	{
@@ -556,10 +629,15 @@ void delivery(int opcao, struct Pilha * pilha)
 	case 0:
 		desempilhar(pilha);
 		break;
+
+	default:
+		printf("Opção inválida. Por favor, escolha uma opção válida.\n");
+		system("pause");
+		break;
 	}
 }
 
-void opcoes_de_pagamento(int opcao, struct Pilha * pilha)
+void opcoes_de_pagamento(int opcao, int controle, struct Pilha* pilha)
 {
 	system("clear||cls");
 	printf("*******************************************************************************\n");
@@ -574,8 +652,11 @@ void opcoes_de_pagamento(int opcao, struct Pilha * pilha)
 	printf("***                                                                         ***\n");
 	printf("*******************************************************************************\n");
 	printf("Qual a forma de pagamento desejada?\n");
-	scanf("%d", &opcao);
-	getchar();
+	while (scanf("%d", &opcao) != 1)
+	{
+		printf("Entrada inválida. Por favor, insira uma opção válida.\n");
+		while ((controle = getchar()) != '\n' && controle != EOF); // Limpar o buffer
+	}
 
 	switch(opcao)
 	{
@@ -601,6 +682,11 @@ void opcoes_de_pagamento(int opcao, struct Pilha * pilha)
 
 	case 0:
 		desempilhar(pilha);
+		break;
+
+	default:
+		printf("Opção inválida. Por favor, escolha uma opção válida.\n");
+		system("pause");
 		break;
 	}
 }
@@ -644,5 +730,6 @@ void beijo(int opcao, struct Pilha* pilha)
 	printf("**#################**#######*+++++++++++++++++++++++++++++++++++++*#################**#***#*********\n");
 	printf("+***################*#######+++++++++++++++++++++++++++++++++++++++*##############**##**************\n");
 	system("Pause");
+	getchar();
 	desempilhar(pilha);
 }

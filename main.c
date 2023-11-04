@@ -18,13 +18,13 @@
 #include "pedidos.h"
 #include "pessoas.h"
 #include "produtos.h"
+#include "inserir_dados.h"
 
+int main()
+{
+	struct Pilha* pilha = criarPilha();
+	empilhar(pilha, TELA_INICIAL);
+	executarTela(pilha);
 
-int main() {
-	
-    struct Pilha* pilha = criarPilha();
-    empilhar(pilha, TELA_INICIAL);
-    executarTela(pilha);
-
-    return 0;
+	return 0;
 }
