@@ -2,25 +2,25 @@
 <Layout>
 	<Files>
 		<File Name="main.c" Top="No" Tabpos="1" TopLine="1">
-			<Cursor Line="21" Column="27"/>
+			<Cursor Line="31" Column="1"/>
 		</File>
-		<File Name="telas.h" Top="No" Tabpos="2" TopLine="24">
+		<File Name="telas.h" Top="No" Tabpos="2" TopLine="1">
 			<Cursor Line="52" Column="70"/>
 		</File>
-		<File Name="telas.c" Top="No" Tabpos="3" TopLine="702">
-			<Cursor Line="654" Column="50"/>
+		<File Name="telas.c" Top="No" Tabpos="3" TopLine="133">
+			<Cursor Line="149" Column="34"/>
 		</File>
 		<File Name="pessoas.h" Top="No" Tabpos="4" TopLine="1">
 			<Cursor Line="9" Column="1"/>
 			<Selection Line="18" Column="16"/>
 		</File>
-		<File Name="pessoas.c" Top="Yes" Tabpos="5" TopLine="32">
+		<File Name="pessoas.c" Top="No" Tabpos="5" TopLine="32">
 			<Cursor Line="17" Column="1"/>
 		</File>
 		<File Name="validadores.h" Top="No" Tabpos="6" TopLine="1">
 			<Cursor Line="5" Column="1"/>
 		</File>
-		<File Name="validadores.c" Top="No" Tabpos="7" TopLine="62">
+		<File Name="validadores.c" Top="Yes" Tabpos="7" TopLine="5">
 			<Cursor Line="87" Column="35"/>
 		</File>
 		<File Name="inserir_dados.h" Top="No" Tabpos="8" TopLine="1">
