@@ -3,15 +3,14 @@
 #include <string.h>
 #include <stdbool.h>
 #include <ctype.h>
+
 #include "validadores.h"
+#include "user_input.h"
 
 // validador de nomes
 bool recebe_nome()
 {
-	char nome[100];
-
-	printf("Insira o nome:\t");
-	fgets(nome, sizeof(nome), stdin);
+	char *nome = get_user_input("Insira o nome:\t");
 
 	// Remove a quebra de linha caso ela exista
 	size_t tamanho = strlen(nome);
@@ -64,13 +63,10 @@ bool valida_nome(const char *nome)
 // Validador de cpfs
 bool recebe_cpf()
 {
-    char cpf[12];
     bool cpf_valido;
 
     do {
-        printf("Digite um CPF (somente números):\n");
-        fgets(cpf, sizeof(cpf), stdin);
-        getchar();
+        char *cpf = get_user_input("Digite um CPF (somente números): ");
 
         cpf_valido = valida_cpf(cpf);
 
@@ -144,13 +140,12 @@ bool valida_cpf(const char *cpf) {
 bool recebe_data()
 {
 	int i;
-	char data[11];
+    char *data = NULL;
 	bool controle = true;
 
 	while (controle == true)
 	{
-		printf("Digite a data no formato DD/MM/AAAA:\n");
-		fgets(data, sizeof(data), stdin);
+		data = get_user_input("Digite a data no formato DD/MM/AAAA: ");
 
 		for (i = 0; data[i] != '\0'; i++)
 		{

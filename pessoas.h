@@ -26,7 +26,6 @@ typedef struct Pessoa
 
 void legenda_funcionario(void);
 
-
 Pessoa* cadastro_funcionario(struct Pilha * pilha);
 
 

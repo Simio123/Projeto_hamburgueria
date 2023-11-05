@@ -2,7 +2,7 @@
 #define PRODUTOS_H
 
 // Estrutura de produtos
-struct Produto {
+typedef struct Produto {
     int codigo;
     int quantidade;
     float preco;
@@ -15,6 +15,6 @@ struct Produto {
 
     // Define o status do produto (1 para em estoque e 0 para em falta)
     int status;
-};
+}Produto;
 
 #endif

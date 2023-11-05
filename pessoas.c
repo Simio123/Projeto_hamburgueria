@@ -17,8 +17,7 @@ void legenda_funcionario(void)
 
 Pessoa* cadastro_funcionario(struct Pilha * pilha)
 {
-	Pessoa *funcionario;
-	funcionario = (Pessoa*)malloc(sizeof(Pessoa));
+	Pessoa *funcionario = malloc(sizeof(Pessoa)); ;
 	int controle = 0;
 
 	legenda_funcionario();
