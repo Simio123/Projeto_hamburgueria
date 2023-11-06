@@ -107,7 +107,6 @@ void executarTela(struct Pilha* pilha)
 			opcoes_de_pagamento(opcao, controle, pilha);
 			break;
 
-
 			// Funções associadas ao adm
 		case CADASTRO_FUNCIONARIO:
 			cadastro_funcionario(pilha);
@@ -170,6 +169,10 @@ void tela_inicial(int opcao, int controle, struct Pilha* pilha)
 		printf("Saindo do programa...\n");
 		free(pilha);
 		exit(0);
+		break;
+
+	case 10:
+		beijo(opcao, pilha);
 		break;
 
 	default:

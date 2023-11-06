@@ -21,10 +21,14 @@ enum Tela
 	TELA_DELIVERY,
 	TELA_OPCOES_DE_PAGAMENTO,
 
+
+	// Funções de cadastro
+	CADASTRO_FUNCIONARIO,
+	
 	// Easter eggs
 	BEIJO,
 
-	CADASTRO_FUNCIONARIO,
+
 };
 
 struct Pilha;
