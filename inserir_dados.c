@@ -6,7 +6,7 @@
 #include "inserir_dados.h"
 #include "user_input.h"
 
-bool recebe_idade()
+bool recebe_idade(int* idade_v)
 {
 	int controle = 0;
 
@@ -23,12 +23,13 @@ bool recebe_idade()
 		{
 			printf("Idade válida: %d\n", idade_int);
 			controle = 1;
+			*idade_v = idade_int;
 		}
 	}
 	return true;
 }
 
-bool recebe_salario()
+bool recebe_salario(double* salario_v)
 {
 	int controle = 0;
 
@@ -43,13 +44,14 @@ bool recebe_salario()
 		}
 		else
 		{
+			*salario_v = salario_double;
 			controle = 1;
 		}
 	}
 	return true;
 }
 
-bool recebe_id()
+bool recebe_id(const char* id_v)
 {
 	int controle = 0;
 
@@ -64,13 +66,14 @@ bool recebe_id()
 		}
 		else
 		{
+			strcpy((char*)id_v, id);
 			controle = 1;
 		}
 	}
 	return true;
 }
 
-bool recebe_cargo()
+bool recebe_cargo(const char* cargo_v)
 {
 	int controle = 0;
 	int i;
@@ -103,6 +106,7 @@ bool recebe_cargo()
 			{
 				printf("Cargo cadastrado com sucesso\n");
 				controle = 1;
+				strcpy((char*)cargo_v, cargo);
 			}
 			else
 			{
@@ -113,7 +117,7 @@ bool recebe_cargo()
 	return true;
 }
 
-bool recebe_endereco()
+bool recebe_endereco(const char* endereco_v)
 {
 	int controle = 0;
 
@@ -130,6 +134,7 @@ bool recebe_endereco()
 		{
 			printf("Endereço cadastrado com sucesso!");
 			controle = 1;
+			strcpy((char*)endereco_v, endereco);
 		}
 	}
 	return true;

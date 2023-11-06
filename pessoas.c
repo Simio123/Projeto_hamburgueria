@@ -19,74 +19,78 @@ Pessoa* cadastro_funcionario(struct Pilha * pilha)
 {
 	Pessoa *funcionario = malloc(sizeof(Pessoa));
 
-	int controle = 0, idade, status;
-	double salario;
-	char id[11], nome[100], cargo[100], endereco[150], email[150], telefone[20], cpf[12], data[11];
-
-	legenda_funcionario();
+	int controle = 0, idade_v, status_v = 1;
+	double salario_v;
+	char id_v[11], nome_v[100], cargo_v[100], endereco_v[150], email_v[150], telefone_v[20], cpf_v[12], data_v[11];
 
 	while (controle != 3)
 	{
-		recebe_telefone();
-		if (recebe_cpf())
+		legenda_funcionario();
+
+		if (recebe_cpf(cpf_v))
 		{
 			legenda_funcionario();
 
-			if (recebe_nome())
+			if (recebe_nome(nome_v))
 			{
 				legenda_funcionario();
 
-				if (recebe_data())
+				if (recebe_data(data_v))
 				{
 					legenda_funcionario();
 
-					if(recebe_idade())
+					if(recebe_idade(&idade_v))
 					{
 						legenda_funcionario();
 
-						if(recebe_salario())
+						if(recebe_salario(&salario_v))
 						{
 							legenda_funcionario();
 
-							if(recebe_id())
+							if(recebe_id(id_v))
 							{
 								legenda_funcionario();
 
-								if(recebe_cargo())
+								if(recebe_cargo(cargo_v))
 								{
 									legenda_funcionario();
 
-									if(recebe_email())
+									if(recebe_email(email_v))
 									{
 										legenda_funcionario();
 
-										if(recebe_telefone())
+										if(recebe_telefone(telefone_v))
 										{
 											legenda_funcionario();
 
-											if (funcionario != NULL)
+											if(recebe_endereco(endereco_v))
 											{
-												funcionario->idade = idade;
-												funcionario->salario = salario;
-												strncpy(funcionario->id, id, 11);
-												strncpy(funcionario->nome, nome, 100);
-												strncpy(funcionario->cargo, cargo, 100);
-												strncpy(funcionario->endereco, endereco, 150);
-												strncpy(funcionario->email, email, 150);
-												strncpy(funcionario->telefone, telefone, 20);
-												strncpy(funcionario->cpf, cpf, 12);
-												strncpy(funcionario->data, data, 11);
-												funcionario->status = status;
+												legenda_funcionario();
 
-												printf("Funcionário cadastrado com sucesso\n");
-												system("pause");
-												system("clear||cls");
-												controle = 3;
-												desempilhar(pilha);
-											}
-											else
-											{
-												printf("Falha na alocação de memória\n");
+												if (funcionario != NULL)
+												{
+													funcionario->status = status_v;
+													funcionario->idade = idade_v;
+													funcionario->salario = salario_v;
+													strncpy(funcionario->id, id_v, 11);
+													strncpy(funcionario->nome, nome_v, 100);
+													strncpy(funcionario->cargo, cargo_v, 100);
+													strncpy(funcionario->endereco, endereco_v, 150);
+													strncpy(funcionario->email, email_v, 150);
+													strncpy(funcionario->telefone, telefone_v, 20);
+													strncpy(funcionario->cpf, cpf_v, 12);
+													strncpy(funcionario->data, data_v, 11);
+
+													printf("Funcionário cadastrado com sucesso\n");
+													system("pause");
+													system("clear||cls");
+													controle = 3;
+													desempilhar(pilha);
+												}
+												else
+												{
+													printf("Falha na alocação de memória\n");
+												}
 											}
 
 										}

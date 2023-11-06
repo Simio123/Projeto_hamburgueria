@@ -3,13 +3,11 @@
 
 #include <stdbool.h>
 
-
-bool recebe_idade();
-bool recebe_salario();
-bool recebe_id();
-bool recebe_cargo();
-bool recebe_endereco();
-bool recebe_telefone();
+bool recebe_idade(int* idade_v);
+bool recebe_salario(double* idade_v);
+bool recebe_id(const char* id_v);
+bool recebe_cargo(const char* cargo_v);
+bool recebe_endereco(const char* endereco_v);
 
 
 #endif

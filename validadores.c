@@ -7,7 +7,7 @@
 #include "user_input.h"
 
 // validador de nomes
-bool recebe_nome()
+bool recebe_nome(const char* nome_v)
 {
 	int controle = 0;
 	while(controle == 0)
@@ -26,6 +26,7 @@ bool recebe_nome()
 		{
 			printf("Nome cadastrado com sucesso\n");
 			controle = 1;
+			strcpy((char*)nome_v, nome);
 		}
 		else
 		{
@@ -58,7 +59,7 @@ bool valida_nome(const char *nome)
 }
 
 // Validador de cpf
-bool recebe_cpf()
+bool recebe_cpf(const char* cpf_v)
 {
 	bool cpf_valido;
 	int c;
@@ -74,6 +75,7 @@ bool recebe_cpf()
 		if (cpf_valido)
 		{
 			printf("CPF válido!\n");
+			strcpy((char*)cpf_v, cpf);
 		}
 		else
 		{
@@ -149,7 +151,7 @@ bool valida_cpf(const char *cpf)
 }
 
 // Validador de datas
-bool recebe_data()
+bool recebe_data(const char* data_v)
 {
 	char *data = NULL;
 	int controle = 0;
@@ -176,6 +178,7 @@ bool recebe_data()
 			{
 				printf("A data é válida.\n");
 				controle = 1;
+				strcpy((char*)data_v, data);
 			}
 			else
 			{
@@ -256,7 +259,7 @@ bool valida_data(const char *data)
 }
 
 // Validação e email
-bool recebe_email()
+bool recebe_email(const char* email_v)
 {
 	int controle = 0;
 
@@ -273,6 +276,7 @@ bool recebe_email()
 		{
 			printf("Email cadastrado com sucesso!\n");
 			controle = 1;
+			strcpy((char*)email_v, email);
 		}
 	}
 
@@ -302,7 +306,7 @@ bool valida_email(const char *email)
 }
 
 // Validação de telefone
-bool recebe_telefone()
+bool recebe_telefone(const char* telefone_v)
 {
 	int controle = 0;
 
@@ -319,6 +323,7 @@ bool recebe_telefone()
 		{
 			printf("Número de telefone cadastrado com sucesso!\n");
 			controle = 1;
+			strcpy((char*)telefone_v, telefone);
 		}
 	}
 	return true;
