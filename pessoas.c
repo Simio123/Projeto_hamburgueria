@@ -22,43 +22,50 @@ Pessoa* cadastro_funcionario(struct Pilha * pilha)
 
 	legenda_funcionario();
 
-	do
+	while (controle != 3)
 	{
-		if (recebe_cpf()) // Se o CPF for válido, entre neste bloco
+		if (recebe_cpf())
 		{
 			legenda_funcionario();
 
-			if (recebe_nome()) // Se nome for válido, entre neste bloco
+			if (recebe_nome())
 			{
 				legenda_funcionario();
 
-				if (recebe_data()) // Se a data for valida, entre neste bloco
+				if (recebe_data())
 				{
 					legenda_funcionario();
 
-					printf("Funcionário cadastrado com sucesso\n");
-					system("pause");
-					system("clear||cls");
-					controle = 3;
-					desempilhar(pilha);
-				}
-				else
-				{
-					controle = 0; // A data não é válida, reiniciamos controle
+					if(recebe_idade())
+					{
+						legenda_funcionario();
+
+						if(recebe_salario())
+						{
+							legenda_funcionario();
+
+							if(recebe_id())
+							{
+								legenda_funcionario();
+
+								if(recebe_cargo())
+								{
+									legenda_funcionario();
+									printf("Funcionário cadastrado com sucesso\n");
+									system("pause");
+									system("clear||cls");
+									controle = 3;
+									desempilhar(pilha);
+								}
+							}
+						}
+					}
 				}
 			}
-			else
-			{
-				controle = 0; // O nome não é válido, reiniciamos controle
-			}
-		}
-		else
-		{
-			controle = 0; // O CPF não é válido, reiniciamos controle
 		}
 	}
-	while (controle != 3);
 	return funcionario;
 }
+
 
 
