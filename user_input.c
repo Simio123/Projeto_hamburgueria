@@ -2,8 +2,10 @@
 #include <stdlib.h>
 #include <string.h>
 
+// Recebe a entrada do usuário que suporta até meio milhão de caracteres
+// Boa sorte para estourar o buffer
 char *get_user_input(char *prompt) {
-    static char input_buf[48000];
+    static char input_buf[500000];
     printf(prompt);
     char *fp = fgets(input_buf, sizeof(input_buf), stdin);
     if (fp == NULL) {

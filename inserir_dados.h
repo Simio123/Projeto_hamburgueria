@@ -9,7 +9,6 @@ bool recebe_salario();
 bool recebe_id();
 bool recebe_cargo();
 bool recebe_endereco();
-bool recebe_email();
 bool recebe_telefone();
 
 

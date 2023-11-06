@@ -110,22 +110,27 @@ bool recebe_cargo()
 			}
 		}
 	}
-
 	return true;
 }
 
+bool recebe_endereco()
+{
+	int controle = 0;
 
-bool recebe_endereco() {}
-bool recebe_email() {}
-bool recebe_telefone() {}
+	while (controle == 0)
+	{
+		char *endereco = get_user_input("Insira o endereço:\t");
+		size_t tamanho = strlen(endereco);
 
-
-
-char id[11];
-char nome[100];
-char cargo[100];
-char endereco[150];
-char email[150];
-char telefone[20];
-char cpf[12];
-char data[11];
+		if (tamanho <= 0 || endereco[0] == '\0' || endereco[0] == ' ')
+		{
+			printf("Endereço inválido. O endereço não pode estar vazio ou conter apenas espaços em branco.\n");
+		}
+		else
+		{
+			printf("Endereço cadastrado com sucesso!");
+			controle = 1;
+		}
+	}
+	return true;
+}

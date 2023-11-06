@@ -62,9 +62,12 @@ bool valida_nome(const char *nome)
 bool recebe_cpf()
 {
 	bool cpf_valido;
+	int c;
 
 	do
 	{
+		while ((c = getchar()) != '\n' && c != EOF) {}
+
 		char *cpf = get_user_input("Insira o CPF(somente números): ");
 
 		cpf_valido = valida_cpf(cpf);
@@ -251,6 +254,94 @@ bool valida_data(const char *data)
 				}
 			}
 		}
+	}
+	return true;
+}
+
+// Validação e email
+bool recebe_email()
+{
+	int controle = 0;
+
+	while (controle == 0)
+	{
+		char *email = get_user_input("Insira o e-mail:\t");
+		size_t tamanho = strlen(email);
+
+		if (tamanho <= 0 || email[0] == '\0' || email[0] == ' ' || !valida_email(email))
+		{
+			printf("Email inválido. O email não pode estar vazio, conter apenas espaços em branco ou não estar em um formato válido.\n");
+		}
+		else
+		{
+			printf("Email cadastrado com sucesso!\n");
+			controle = 1;
+		}
+	}
+
+	return true;
+}
+
+bool valida_email(const char *email)
+{
+	int tamanho = strlen(email);
+	int contador_arroba = 0;
+	int contador_ponto = 0;
+	int i;
+
+	for (i = 0; i < tamanho; i++)
+	{
+		if (email[i] == '@')
+		{
+			contador_arroba++;
+		}
+		else if (email[i] == '.')
+		{
+			contador_ponto++;
+		}
+	}
+
+	return (contador_arroba == 1 && contador_ponto >= 1);
+}
+
+// Validação de telefone
+bool recebe_telefone()
+{
+	int controle = 0;
+
+	while (controle == 0)
+	{
+		char *telefone = get_user_input("Insira o número de telefone (no formato (xx)xxxxx-xxxx):\t");
+		size_t tamanho = strlen(telefone);
+
+		if (tamanho != 14 || !valida_telefone(telefone))
+		{
+			printf("Número de telefone inválido. Certifique-se de que esteja no formato (xx)xxxxx-xxxx.\n");
+		}
+		else
+		{
+			printf("Número de telefone cadastrado com sucesso!\n");
+			controle = 1;
+		}
+	}
+	return true;
+}
+
+bool valida_telefone(const char *telefone)
+{
+	int tamanho = strlen(telefone);
+
+	if (tamanho != 14 || telefone[0] != '(' || telefone[3] != ')' || telefone[9] != '-')
+	{
+		return false;
+	}
+	else if (!isdigit(telefone[1]) || !isdigit(telefone[2]) || !isdigit(telefone[4]) || !isdigit(telefone[5]) || !isdigit(telefone[6]) || !isdigit(telefone[7]) || !isdigit(telefone[8]))
+	{
+		return false;
+	}
+	else if(!isdigit(telefone[10]) || !isdigit(telefone[11]) || !isdigit(telefone[12]) || !isdigit(telefone[13]))
+	{
+		return false;
 	}
 	return true;
 }

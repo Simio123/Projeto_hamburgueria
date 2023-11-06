@@ -24,6 +24,7 @@ Pessoa* cadastro_funcionario(struct Pilha * pilha)
 
 	while (controle != 3)
 	{
+		recebe_telefone();
 		if (recebe_cpf())
 		{
 			legenda_funcionario();
@@ -51,11 +52,21 @@ Pessoa* cadastro_funcionario(struct Pilha * pilha)
 								if(recebe_cargo())
 								{
 									legenda_funcionario();
-									printf("Funcionário cadastrado com sucesso\n");
-									system("pause");
-									system("clear||cls");
-									controle = 3;
-									desempilhar(pilha);
+
+									if(recebe_email())
+									{
+										legenda_funcionario();
+
+										if(recebe_telefone())
+										{
+											legenda_funcionario();
+											printf("Funcionário cadastrado com sucesso\n");
+											system("pause");
+											system("clear||cls");
+											controle = 3;
+											desempilhar(pilha);
+										}
+									}
 								}
 							}
 						}
