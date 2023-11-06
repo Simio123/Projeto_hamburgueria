@@ -51,25 +51,47 @@ bool recebe_salario(double* salario_v)
 	return true;
 }
 
-bool recebe_id(const char* id_v)
+bool recebe_id(const char* id_v, int tipo)
 {
 	int controle = 0;
+	char str1[10];
+	char resultado[15];
+
+	switch (tipo)
+	{
+	case 0:
+		strcpy(str1, "FUN-");
+		break;
+	case 1:
+		strcpy(str1, "CLI-");
+		break;
+	case 2:
+		strcpy(str1, "PED-");
+		break;
+	default:
+		printf("Tipo inválido\n");
+		return false;
+	}
 
 	while (controle == 0)
 	{
-		char *id = get_user_input("Insira o ID (max de 11 digitos ou caracteres):\t");
+		char* id = get_user_input("Insira o ID (máximo de 11 dígitos ou caracteres):\t");
 		size_t tamanho = strlen(id);
 
 		if (tamanho <= 0 || tamanho > 11)
 		{
-			printf("ID invalido\n");
+			printf("ID inválido\n");
 		}
 		else
 		{
-			strcpy((char*)id_v, id);
+			strcpy(resultado, str1);
+			strcat(resultado, id);
+			strcpy((char*)id_v, resultado);
 			controle = 1;
+			free(id); // Liberar a memória alocada para id
 		}
 	}
+
 	return true;
 }
 
