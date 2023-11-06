@@ -17,8 +17,11 @@ void legenda_funcionario(void)
 
 Pessoa* cadastro_funcionario(struct Pilha * pilha)
 {
-	Pessoa *funcionario = malloc(sizeof(Pessoa)); ;
-	int controle = 0;
+	Pessoa *funcionario = malloc(sizeof(Pessoa));
+
+	int controle = 0, idade, status;
+	double salario;
+	char id[11], nome[100], cargo[100], endereco[150], email[150], telefone[20], cpf[12], data[11];
 
 	legenda_funcionario();
 
@@ -60,12 +63,34 @@ Pessoa* cadastro_funcionario(struct Pilha * pilha)
 										if(recebe_telefone())
 										{
 											legenda_funcionario();
-											printf("Funcionário cadastrado com sucesso\n");
-											system("pause");
-											system("clear||cls");
-											controle = 3;
-											desempilhar(pilha);
+
+											if (funcionario != NULL)
+											{
+												funcionario->idade = idade;
+												funcionario->salario = salario;
+												strncpy(funcionario->id, id, 11);
+												strncpy(funcionario->nome, nome, 100);
+												strncpy(funcionario->cargo, cargo, 100);
+												strncpy(funcionario->endereco, endereco, 150);
+												strncpy(funcionario->email, email, 150);
+												strncpy(funcionario->telefone, telefone, 20);
+												strncpy(funcionario->cpf, cpf, 12);
+												strncpy(funcionario->data, data, 11);
+												funcionario->status = status;
+
+												printf("Funcionário cadastrado com sucesso\n");
+												system("pause");
+												system("clear||cls");
+												controle = 3;
+												desempilhar(pilha);
+											}
+											else
+											{
+												printf("Falha na alocação de memória\n");
+											}
+
 										}
+
 									}
 								}
 							}
@@ -77,6 +102,7 @@ Pessoa* cadastro_funcionario(struct Pilha * pilha)
 	}
 	return funcionario;
 }
+
 
 
 

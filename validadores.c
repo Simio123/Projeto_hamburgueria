@@ -57,8 +57,7 @@ bool valida_nome(const char *nome)
 	}
 }
 
-
-// Validador de cpfs
+// Validador de cpf
 bool recebe_cpf()
 {
 	bool cpf_valido;
@@ -148,8 +147,6 @@ bool valida_cpf(const char *cpf)
 	// Se todas as verificações passaram, o CPF é válido
 	return true;
 }
-
-
 
 // Validador de datas
 bool recebe_data()
