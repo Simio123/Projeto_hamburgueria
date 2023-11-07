@@ -22,10 +22,10 @@ Pessoa* cadastro_funcionario(struct Pilha * pilha)
 	int controle = 0, idade_v, status_v = 1, tipo = 0;
 	double salario_v;
 	char id_v[11], nome_v[100], cargo_v[100], endereco_v[150], email_v[150], telefone_v[20], cpf_v[12], data_v[11];
-
 	while (controle != 3)
 	{
 		legenda_funcionario();
+		listagem_funcionarios();
 
 		if (recebe_cpf(cpf_v))
 		{
@@ -81,32 +81,7 @@ Pessoa* cadastro_funcionario(struct Pilha * pilha)
 													strncpy(funcionario->cpf, cpf_v, 12);
 													strncpy(funcionario->data, data_v, 11);
 
-
-
-
-													printf("funcionario->status: %d\n", funcionario->status);
-													printf("funcionario->idade: %d\n", funcionario->idade);
-													printf("funcionario->salario: %.2f\n", funcionario->salario);
-													printf("funcionario->id: %s\n", funcionario->id);
-													printf("funcionario->nome: %s\n", funcionario->nome);
-													printf("funcionario->cargo: %s\n", funcionario->cargo);
-													printf("funcionario->endereco: %s\n", funcionario->endereco);
-													printf("funcionario->email: %s\n", funcionario->email);
-													printf("funcionario->telefone: %s\n", funcionario->telefone);
-													printf("funcionario->cpf: %s\n", funcionario->cpf);
-													printf("funcionario->data: %s\n", funcionario->data);
-
-
-
-
-
-
-
-													printf("Funcionário cadastrado com sucesso\n");
-													system("pause");
-													system("clear||cls");
 													controle = 3;
-													desempilhar(pilha);
 												}
 												else
 												{
@@ -125,9 +100,67 @@ Pessoa* cadastro_funcionario(struct Pilha * pilha)
 			}
 		}
 	}
+
+	salva_funcionario(funcionario);
+	free(funcionario);
+	listagem_funcionarios();
+
+	printf("Funcionário cadastrado com sucesso\n");
+	system("pause");
+	system("clear||cls");
+	desempilhar(pilha);
+
 	return funcionario;
 }
 
 
+void salva_funcionario(Pessoa *funcionario)
+{
+	FILE* file = fopen("funcionarios.dat", "ab");
 
+	if (file == NULL)
+	{
+		printf("Erro ao abrir o arquivo para escrita.\n");
+		return;
+	}
+
+	fwrite(funcionario, sizeof(Pessoa), 1, file);
+	fclose(file);
+}
+
+void listagem_funcionarios(void)
+{
+	Pessoa funcionario;
+	system("clear||cls");
+	printf("*******************************************************************************\n");
+	printf("***              = = = = = Listagem de funcionários = = = = =               ***\n");
+	printf("*******************************************************************************\n");
+
+	FILE* file = fopen("funcionarios.dat", "rb");
+
+	if (file == NULL)
+	{
+		printf("Erro ao abrir o arquivo para leitura.\n");
+		return;
+	}
+
+	while (fread(&funcionario, sizeof(Pessoa), 1, file) == 1)
+	{
+		if (funcionario.status == 1)
+		{
+			printf("Status: %d\n", funcionario.status);
+			printf("Idade: %d\n", funcionario.idade);
+			printf("Salario: %.2f\n", funcionario.salario);
+			printf("Id: %s\n", funcionario.id);
+			printf("Nome: %s\n", funcionario.nome);
+			printf("Cargo: %s\n", funcionario.cargo);
+			printf("Endereco: %s\n", funcionario.endereco);
+			printf("Email: %s\n", funcionario.email);
+			printf("Telefone: %s\n", funcionario.telefone);
+			printf("Funcionario->cpf: %s\n", funcionario.cpf);
+			printf("Funcionario->data: %s\n", funcionario.data);
+		}
+	}
+	fclose(file);
+}
 

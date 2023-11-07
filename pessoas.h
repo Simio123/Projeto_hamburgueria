@@ -28,26 +28,6 @@ void legenda_funcionario(void);
 
 Pessoa* cadastro_funcionario(struct Pilha * pilha);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+void salva_funcionario(Pessoa *funcionario);
+void listagem_funcionarios(void);
 #endif

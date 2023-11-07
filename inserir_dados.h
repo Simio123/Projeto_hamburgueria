@@ -9,5 +9,5 @@ bool recebe_id(const char* id_v, int tipo);
 bool recebe_cargo(const char* cargo_v);
 bool recebe_endereco(const char* endereco_v);
 
-
+bool recebe_preco(double* preco_v);
 #endif

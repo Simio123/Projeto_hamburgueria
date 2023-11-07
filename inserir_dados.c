@@ -161,3 +161,34 @@ bool recebe_endereco(const char* endereco_v)
 	}
 	return true;
 }
+
+
+
+
+bool recebe_preco(double* preco_v)
+{
+	int controle = 0;
+
+	while (controle == 0)
+	{
+		char *preco = get_user_input("Insira o preco:\t");
+		double preco_double = atof(preco);
+
+		if (preco_double <= 0)
+		{
+			printf("Preco invalido\n");
+		}
+		else
+		{
+			*preco_v = preco_double;
+			controle = 1;
+		}
+	}
+	return true;
+}
+
+
+
+
+
+
