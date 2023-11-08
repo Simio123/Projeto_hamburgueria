@@ -16,25 +16,25 @@
 		<File Name="produtos.c" Top="No" Tabpos="5" TopLine="1">
 			<Cursor Line="1" Column="19"/>
 		</File>
-		<File Name="telas.c" Top="Yes" Tabpos="6" TopLine="46">
-			<Cursor Line="68" Column="26"/>
+		<File Name="telas.h" Top="No" Tabpos="6" TopLine="15">
+			<Cursor Line="29" Column="1"/>
+			<Selection Line="29" Column="27"/>
 		</File>
-		<File Name="pessoas.h" Top="No" Tabpos="7" TopLine="12">
-			<Cursor Line="35" Column="54"/>
-			<Selection Line="35" Column="1"/>
+		<File Name="telas.c" Top="No" Tabpos="7" TopLine="317">
+			<Cursor Line="336" Column="45"/>
 		</File>
-		<File Name="telas.h" Top="No" Tabpos="8" TopLine="9">
-			<Cursor Line="29" Column="11"/>
+		<File Name="pessoas.h" Top="No" Tabpos="8" TopLine="8">
+			<Cursor Line="37" Column="49"/>
 		</File>
-		<File Name="pessoas.c" Top="No" Tabpos="9" TopLine="201">
-			<Cursor Line="152" Column="10"/>
+		<File Name="pessoas.c" Top="Yes" Tabpos="9" TopLine="136">
+			<Cursor Line="167" Column="21"/>
 		</File>
 		<File Name="inserir_dados.h" Top="No" Tabpos="10" TopLine="1">
 			<Cursor Line="12" Column="36"/>
 		</File>
 		<File Name="inserir_dados.c" Top="No" Tabpos="11" TopLine="1">
-			<Cursor Line="16" Column="1"/>
-			<Selection Line="16" Column="35"/>
+			<Cursor Line="9" Column="1"/>
+			<Selection Line="9" Column="32"/>
 		</File>
 		<File Name="validadores.h" Top="No" Tabpos="12" TopLine="1">
 			<Cursor Line="16" Column="44"/>

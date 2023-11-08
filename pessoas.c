@@ -169,7 +169,10 @@ void listagem_funcionarios(struct Pilha * pilha)
 
 void editar_dados_funcionarios(struct Pilha * pilha)
 {
-	//int int_opc = 100;
+	int int_opc = 1000, idade_v, tipo = 0;
+	double salario_v;
+	char id_v[11], nome_v[100], cargo_v[100], endereco_v[150], email_v[150], telefone_v[20], cpf_v[12], data_v[11];
+
 	Pessoa funcionario;
 
 	system("clear||cls");
@@ -178,46 +181,102 @@ void editar_dados_funcionarios(struct Pilha * pilha)
 	printf("*******************************************************************************\n");
 
 	listagem_funcionarios(pilha);
+
 	if(procurar_funcionario(&funcionario))
 	{
-		strncpy(funcionario.nome, "lulu" , 100);
-		atualizar_funcionario(&funcionario);
-		
-		/*	do
+		do
+		{
+			printf("1- Idade\n");
+			printf("2- Salario\n");
+			printf("3- Id\n");
+			printf("4- Nome\n");
+			printf("5- Cargo\n");
+			printf("6- Endereco\n");
+			printf("7- Email\n");
+			printf("8- Telefone\n");
+			printf("9- Cpf\n");
+			printf("10- Data de nascimento\n");
+			printf("0- sair\n");
+
+			char *opc = get_user_input("Qual dado deseja editar?\t");
+			int int_opc = atoi(opc);
+
+			switch(int_opc)
 			{
-				printf("1- Status\n");
-				printf("2- Idade\n");
-				printf("3- Salario\n");
-				printf("4- Id\n");
-				printf("5- Nome\n");
-				printf("6- Cargo\n");
-				printf("7- Endereco\n");
-				printf("8- Email\n");
-				printf("9- Telefone\n");
-				printf("10- Cpf\n");
-				printf("11- Data de nascimento\n");
+			case 1:
+				printf("insira uma nova idade\t");
+				recebe_idade(&idade_v);
+				funcionario.idade = idade_v;
+				break;
 
-				char *opc = get_user_input("Qual dado deseja editar?\t");
-				int int_opc = atoi(opc);
+			case 2:
+				printf("insira um novo salario\t");
+				recebe_salario(&salario_v);
+				funcionario.idade = idade_v;
+				break;
 
-				switch(int_opc)
-				{
+			case 3:
+				printf("insira um novo ID\t");
+				recebe_id(id_v, tipo);
+				strncpy(funcionario.nome, id_v , 11);
+				break;
 
-				case 1:
-					printf("insira um novo status\t");
-					break;
+			case 4:
+				printf("insira uma novo nome\t");
+				recebe_nome(nome_v);
+				strncpy(funcionario.nome, nome_v, 100);
+				break;
 
-				case 2:
-					printf("insira uma nova idade\t");
-					break;
-				}
+			case 5:
+				printf("insira uma novo cargo\t");
+				recebe_cargo(cargo_v);
+				strncpy(funcionario.nome, cargo_v, 100);
+				break;
+
+			case 6:
+				printf("insira um novo endereço\t");
+				recebe_endereco(endereco_v);
+				strncpy(funcionario.nome, endereco_v, 150);
+				break;
+
+			case 7:
+				printf("insira um novo email\t");
+				recebe_email(email_v);
+				strncpy(funcionario.nome, email_v, 150);
+				break;
+
+			case 8:
+				printf("insira um novo telefone\t");
+				recebe_telefone(telefone_v);
+				strncpy(funcionario.nome, telefone_v, 20);
+				break;
+
+			case 9:
+				printf("insira um novo cpf\t");
+				recebe_cpf(cpf_v);
+				strncpy(funcionario.nome, cpf_v, 12);
+				break;
+
+			case 10:
+				printf("insira uma nova data de nascimento\t");
+				recebe_data(data_v);
+				strncpy(funcionario.nome, data_v, 11);
+				break;
+
+			case 0:
+				desempilhar(pilha);
+				break;
 			}
-			while(int_opc != 0);
-			*/
+
+		}
+		while(int_opc != 0);
+		atualizar_funcionario(&funcionario);
+		desempilhar(pilha);
 	}
+	desempilhar(pilha);
 }
 
-void atualizar_funcionario(Pessoa* funcionario)
+void atualizar_funcionario(Pessoa * funcionario)
 {
 	Pessoa tmp;
 
@@ -243,7 +302,7 @@ void atualizar_funcionario(Pessoa* funcionario)
 	fclose(file);
 }
 
-bool procurar_funcionario(Pessoa *funcionario)
+bool procurar_funcionario(Pessoa * funcionario)
 {
 	char *cpf_busca = get_user_input("Insira o CPF(somente números): ");
 
