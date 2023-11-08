@@ -112,6 +112,18 @@ void executarTela(struct Pilha* pilha)
 			cadastro_funcionario(pilha);
 			break;
 
+		case LISTAGEM_FUNCIONARIOS:
+			listagem_funcionarios(pilha);
+			break;
+
+		case DESABILITA_FUNCIONARIO:
+			desabilita_funcionario(pilha);
+			break;
+
+		case EDITA_DADOS_FUNCIONARIOS:
+			editar_dados_funcionarios(pilha);
+			break;
+
 			// Easter eggs
 		case BEIJO:
 			beijo(opcao, pilha);
@@ -288,9 +300,10 @@ void administrador(int opcao, int controle, struct Pilha* pilha)
 	printf("***             1. Demitir funcionário                                      ***\n");
 	printf("***             2. Acessar estoque                                          ***\n");
 	printf("***             3. Cadastrar Funcionário                                    ***\n");
-	printf("***             4. Editar dados dos funconários                             ***\n");
-	printf("***             5. Exibir relatorios                                        ***\n");
-	printf("***             6. Cadastrar promoção                                       ***\n");
+	printf("***             4. Exibir funcionários                                      ***\n");
+	printf("***             5. Editar dados dos funcionários                            ***\n");
+	printf("***             6. Exibir relatorios                                        ***\n");
+	printf("***             7. Cadastrar promoção                                       ***\n");
 	printf("***             0. Voltar                                                   ***\n");
 	printf("***                                                                         ***\n");
 	printf("*******************************************************************************\n");
@@ -304,7 +317,7 @@ void administrador(int opcao, int controle, struct Pilha* pilha)
 	switch(opcao)
 	{
 	case 1:
-		printf("função demissão");
+		empilhar(pilha, DESABILITA_FUNCIONARIO);
 		break;
 
 	case 2:
@@ -316,10 +329,14 @@ void administrador(int opcao, int controle, struct Pilha* pilha)
 		break;
 
 	case 4:
-		printf("Tela");
+		empilhar(pilha, LISTAGEM_FUNCIONARIOS);
 		break;
 
 	case 5:
+		empilhar(pilha, EDITA_DADOS_FUNCIONARIOS);
+		break;
+
+	case 6:
 		printf("Tela");
 		break;
 

@@ -26,7 +26,7 @@ Pessoa* cadastro_funcionario(struct Pilha * pilha)
 	while (controle != 3)
 	{
 		legenda_funcionario();
-		listagem_funcionarios();
+		listagem_funcionarios(pilha);
 
 		if (recebe_cpf(cpf_v))
 		{
@@ -104,7 +104,7 @@ Pessoa* cadastro_funcionario(struct Pilha * pilha)
 
 	salva_funcionario(funcionario);
 	free(funcionario);
-	listagem_funcionarios();
+	listagem_funcionarios(pilha);
 
 	printf("Funcionário cadastrado com sucesso\n");
 	system("pause");
@@ -128,7 +128,7 @@ void salva_funcionario(Pessoa *funcionario)
 	fclose(file);
 }
 
-void listagem_funcionarios(void)
+void listagem_funcionarios(struct Pilha * pilha)
 {
 	Pessoa funcionario;
 	system("clear||cls");
@@ -162,10 +162,12 @@ void listagem_funcionarios(void)
 			printf("\n");
 		}
 	}
+	system("pause");
 	fclose(file);
+	desempilhar(pilha);
 }
 
-void editar_dados_funcionarios(void)
+void editar_dados_funcionarios(struct Pilha * pilha)
 {
 	//int int_opc = 100;
 	Pessoa funcionario;
@@ -175,11 +177,12 @@ void editar_dados_funcionarios(void)
 	printf("***               = = = = = Edição de funcionários = = = = =                ***\n");
 	printf("*******************************************************************************\n");
 
-	listagem_funcionarios();
+	listagem_funcionarios(pilha);
 	if(procurar_funcionario(&funcionario))
 	{
 		strncpy(funcionario.nome, "lulu" , 100);
 		atualizar_funcionario(&funcionario);
+		
 		/*	do
 			{
 				printf("1- Status\n");
@@ -271,7 +274,7 @@ bool procurar_funcionario(Pessoa *funcionario)
 }
 
 // Exclusao
-void desabilita_funcionario(void)
+void desabilita_funcionario(struct Pilha * pilha)
 {
 	char cpf_v[12];
 	int controle = 0;
@@ -281,6 +284,8 @@ void desabilita_funcionario(void)
 	printf("*******************************************************************************\n");
 	printf("***              = = = = = Exclusão de funcionários = = = = =               ***\n");
 	printf("*******************************************************************************\n");
+
+	listagem_funcionarios(pilha);
 
 	recebe_cpf(cpf_v);
 
@@ -314,6 +319,7 @@ void desabilita_funcionario(void)
 		printf("\n");
 		printf("Funcionário desabilitado com sucesso.\n");
 	}
+	system("pause");
 	fclose(file);
 }
 

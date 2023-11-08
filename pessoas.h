@@ -25,14 +25,17 @@ typedef struct Pessoa
 	int status;
 } Pessoa;
 
+
+// Funções de funcionário
 void legenda_funcionario(void);
 Pessoa* cadastro_funcionario(struct Pilha * pilha);
 void salva_funcionario(Pessoa *funcionario);
-void listagem_funcionarios(void);
-
+void listagem_funcionarios(struct Pilha * pilha);
 void atualizar_funcionario(Pessoa* funcionario);
-void editar_dados_funcionarios(void);
+void editar_dados_funcionarios(struct Pilha * pilha);
 bool procurar_funcionario(Pessoa *funcionario);
-void desabilita_funcionario(void);
+void desabilita_funcionario(struct Pilha * pilha);
+
+// Funções de clientes
 
 #endif

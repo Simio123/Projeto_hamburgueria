@@ -4,29 +4,30 @@
 		<File Name="main.c" Top="No" Tabpos="1" TopLine="1">
 			<Cursor Line="24" Column="2"/>
 		</File>
-		<File Name="telas.h" Top="No" Tabpos="2" TopLine="1">
-			<Cursor Line="26" Column="23"/>
-		</File>
-		<File Name="telas.c" Top="No" Tabpos="3" TopLine="186">
-			<Cursor Line="159" Column="1"/>
-		</File>
-		<File Name="pedidos.h" Top="No" Tabpos="4" TopLine="1">
+		<File Name="pedidos.h" Top="No" Tabpos="2" TopLine="1">
 			<Cursor Line="1" Column="1"/>
 		</File>
-		<File Name="pedidos.c" Top="No" Tabpos="5" TopLine="1">
+		<File Name="pedidos.c" Top="No" Tabpos="3" TopLine="1">
 			<Cursor Line="1" Column="1"/>
 		</File>
-		<File Name="produtos.h" Top="No" Tabpos="6" TopLine="1">
+		<File Name="produtos.h" Top="No" Tabpos="4" TopLine="1">
 			<Cursor Line="21" Column="1"/>
 		</File>
-		<File Name="produtos.c" Top="No" Tabpos="7" TopLine="1">
+		<File Name="produtos.c" Top="No" Tabpos="5" TopLine="1">
 			<Cursor Line="1" Column="19"/>
 		</File>
-		<File Name="pessoas.h" Top="No" Tabpos="8" TopLine="5">
-			<Cursor Line="28" Column="6"/>
+		<File Name="telas.c" Top="Yes" Tabpos="6" TopLine="46">
+			<Cursor Line="68" Column="26"/>
 		</File>
-		<File Name="pessoas.c" Top="Yes" Tabpos="9" TopLine="289">
-			<Cursor Line="314" Column="16"/>
+		<File Name="pessoas.h" Top="No" Tabpos="7" TopLine="12">
+			<Cursor Line="35" Column="54"/>
+			<Selection Line="35" Column="1"/>
+		</File>
+		<File Name="telas.h" Top="No" Tabpos="8" TopLine="9">
+			<Cursor Line="29" Column="11"/>
+		</File>
+		<File Name="pessoas.c" Top="No" Tabpos="9" TopLine="201">
+			<Cursor Line="152" Column="10"/>
 		</File>
 		<File Name="inserir_dados.h" Top="No" Tabpos="10" TopLine="1">
 			<Cursor Line="12" Column="36"/>
