@@ -324,6 +324,3 @@ void desabilita_funcionario(void)
 
 
 
-
-
-
