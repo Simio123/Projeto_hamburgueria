@@ -2,10 +2,10 @@
 <Layout>
 	<Files>
 		<File Name="main.c" Top="No" Tabpos="1" TopLine="1">
-			<Cursor Line="31" Column="1"/>
+			<Cursor Line="24" Column="2"/>
 		</File>
 		<File Name="telas.h" Top="No" Tabpos="2" TopLine="1">
-			<Cursor Line="52" Column="60"/>
+			<Cursor Line="26" Column="23"/>
 		</File>
 		<File Name="telas.c" Top="No" Tabpos="3" TopLine="186">
 			<Cursor Line="159" Column="1"/>
@@ -17,30 +17,29 @@
 			<Cursor Line="1" Column="1"/>
 		</File>
 		<File Name="produtos.h" Top="No" Tabpos="6" TopLine="1">
-			<Cursor Line="5" Column="1"/>
-			<Selection Line="19" Column="11"/>
+			<Cursor Line="21" Column="1"/>
 		</File>
-		<File Name="produtos.c" Top="Yes" Tabpos="7" TopLine="1">
-			<Cursor Line="45" Column="3"/>
+		<File Name="produtos.c" Top="No" Tabpos="7" TopLine="1">
+			<Cursor Line="1" Column="19"/>
 		</File>
-		<File Name="pessoas.c" Top="No" Tabpos="8" TopLine="8">
-			<Cursor Line="18" Column="29"/>
+		<File Name="pessoas.h" Top="No" Tabpos="8" TopLine="5">
+			<Cursor Line="28" Column="6"/>
 		</File>
-		<File Name="pessoas.h" Top="No" Tabpos="9" TopLine="1">
-			<Cursor Line="29" Column="1"/>
-			<Selection Line="29" Column="52"/>
+		<File Name="pessoas.c" Top="Yes" Tabpos="9" TopLine="252">
+			<Cursor Line="271" Column="2"/>
 		</File>
 		<File Name="inserir_dados.h" Top="No" Tabpos="10" TopLine="1">
 			<Cursor Line="12" Column="36"/>
 		</File>
-		<File Name="inserir_dados.c" Top="No" Tabpos="11" TopLine="154">
-			<Cursor Line="179" Column="17"/>
+		<File Name="inserir_dados.c" Top="No" Tabpos="11" TopLine="1">
+			<Cursor Line="16" Column="1"/>
+			<Selection Line="16" Column="35"/>
 		</File>
 		<File Name="validadores.h" Top="No" Tabpos="12" TopLine="1">
 			<Cursor Line="7" Column="17"/>
 		</File>
-		<File Name="validadores.c" Top="No" Tabpos="13" TopLine="59">
-			<Cursor Line="62" Column="1"/>
+		<File Name="validadores.c" Top="No" Tabpos="13" TopLine="57">
+			<Cursor Line="15" Column="51"/>
 		</File>
 		<File Name="user_input.h" Top="No" Tabpos="14" TopLine="1">
 			<Cursor Line="1" Column="21"/>

@@ -6,6 +6,7 @@
 #include "validadores.h"
 #include "pessoas.h"
 #include "inserir_dados.h"
+#include "user_input.h"
 
 void legenda_funcionario(void)
 {
@@ -72,7 +73,7 @@ Pessoa* cadastro_funcionario(struct Pilha * pilha)
 													funcionario->status = status_v;
 													funcionario->idade = idade_v;
 													funcionario->salario = salario_v;
-													strncpy(funcionario->id, id_v, 15);
+													strncpy(funcionario->id, id_v, 11);
 													strncpy(funcionario->nome, nome_v, 100);
 													strncpy(funcionario->cargo, cargo_v, 100);
 													strncpy(funcionario->endereco, endereco_v, 150);
@@ -112,7 +113,6 @@ Pessoa* cadastro_funcionario(struct Pilha * pilha)
 
 	return funcionario;
 }
-
 
 void salva_funcionario(Pessoa *funcionario)
 {
@@ -157,10 +157,173 @@ void listagem_funcionarios(void)
 			printf("Endereco: %s\n", funcionario.endereco);
 			printf("Email: %s\n", funcionario.email);
 			printf("Telefone: %s\n", funcionario.telefone);
-			printf("Funcionario->cpf: %s\n", funcionario.cpf);
-			printf("Funcionario->data: %s\n", funcionario.data);
+			printf("Cpf: %s\n", funcionario.cpf);
+			printf("Data de nascimento: %s\n", funcionario.data);
+			printf("\n");
 		}
 	}
 	fclose(file);
 }
+
+void editar_dados_funcionarios(void)
+{
+	//int int_opc = 100;
+	Pessoa funcionario;
+
+	system("clear||cls");
+	printf("*******************************************************************************\n");
+	printf("***               = = = = = Edição de funcionários = = = = =                ***\n");
+	printf("*******************************************************************************\n");
+
+	listagem_funcionarios();
+	if(procurar_funcionario(&funcionario))
+	{
+		strncpy(funcionario.nome, "lulu" , 100);
+		atualizar_funcionario(&funcionario);
+		/*	do
+			{
+				printf("1- Status\n");
+				printf("2- Idade\n");
+				printf("3- Salario\n");
+				printf("4- Id\n");
+				printf("5- Nome\n");
+				printf("6- Cargo\n");
+				printf("7- Endereco\n");
+				printf("8- Email\n");
+				printf("9- Telefone\n");
+				printf("10- Cpf\n");
+				printf("11- Data de nascimento\n");
+
+				char *opc = get_user_input("Qual dado deseja editar?\t");
+				int int_opc = atoi(opc);
+
+				switch(int_opc)
+				{
+
+				case 1:
+					printf("insira um novo status\t");
+					break;
+
+				case 2:
+					printf("insira uma nova idade\t");
+					break;
+				}
+			}
+			while(int_opc != 0);
+			*/
+	}
+}
+
+void atualizar_funcionario(Pessoa* funcionario)
+{
+	Pessoa tmp;
+
+	FILE* file = fopen("funcionarios.dat", "r+");
+
+	if (file == NULL)
+	{
+		printf("Erro ao abrir o arquivo para leitura.\n");
+		return;
+	}
+
+	while (fread(&tmp, sizeof(Pessoa), 1, file) == 1)
+	{
+		if (tmp.status == 1 && !strcmp(funcionario->cpf, tmp.cpf))
+		{
+			fseek(file, -sizeof(Pessoa), SEEK_CUR);
+			fwrite(funcionario, sizeof(Pessoa), 1, file);
+
+			fclose(file);
+			return;
+		}
+	}
+	fclose(file);
+}
+
+bool procurar_funcionario(Pessoa *funcionario)
+{
+	char *cpf_busca = get_user_input("Insira o CPF(somente números): ");
+
+	FILE* file = fopen("funcionarios.dat", "rb");
+
+	if (file == NULL)
+	{
+		printf("Erro ao abrir o arquivo para leitura.\n");
+		return false;
+	}
+
+	while (fread(funcionario, sizeof(Pessoa), 1, file) == 1)
+	{
+		if (funcionario->status == 1 && !strcmp(cpf_busca, funcionario->cpf))
+		{
+
+			//printf("Nome: %s\n", funcionario->nome);
+			//printf("\n");
+
+			printf("Funcionário encontrado");
+			//system("pause");
+			fclose(file);
+			return true;
+		}
+	}
+	fclose(file);
+	return false;
+}
+
+// Exclusao
+void desabilita_funcionario(void)
+{
+	char cpf_v[12];
+	int controle = 0;
+	Pessoa funcionario;
+
+	system("clear||cls");
+	printf("*******************************************************************************\n");
+	printf("***              = = = = = Exclusão de funcionários = = = = =               ***\n");
+	printf("*******************************************************************************\n");
+
+	recebe_cpf(cpf_v);
+
+	FILE* file = fopen("funcionarios.dat", "rb+");
+
+	if (file == NULL)
+	{
+		printf("Erro ao abrir o arquivo\n");
+		return;
+	}
+
+	while (fread(&funcionario, sizeof(Pessoa), 1, file) == 1)
+	{
+		if (strcmp(funcionario.cpf, cpf_v) == 0)
+		{
+			funcionario.status = 0;
+			fseek(file, -sizeof(Pessoa), SEEK_CUR);
+			fwrite(&funcionario, sizeof(Pessoa), 1, file);
+			controle = 1;
+			break;
+		}
+	}
+
+	if (!controle)
+	{
+		printf("\n");
+		printf("Funcionário não encontrado.\n");
+	}
+	else
+	{
+		printf("\n");
+		printf("Funcionário desabilitado com sucesso.\n");
+	}
+	fclose(file);
+}
+
+
+
+
+
+
+
+
+
+
 

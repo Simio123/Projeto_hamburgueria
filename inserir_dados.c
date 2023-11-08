@@ -88,7 +88,6 @@ bool recebe_id(const char* id_v, int tipo)
 			strcat(resultado, id);
 			strcpy((char*)id_v, resultado);
 			controle = 1;
-			free(id); // Liberar a memória alocada para id
 		}
 	}
 

@@ -19,6 +19,4 @@ typedef struct Produto
 } Produto;
 
 
-void legenda_produtos(void);
-Produto* cadastro_produtos(struct Pilha * pilha);
 #endif

@@ -59,7 +59,7 @@ bool valida_nome(const char *nome)
 }
 
 // Validador de cpf
-bool recebe_cpf(const char* cpf_v)
+bool recebe_cpf(char* cpf_v)
 {
 	bool cpf_valido;
 	int c;
@@ -75,7 +75,7 @@ bool recebe_cpf(const char* cpf_v)
 		if (cpf_valido)
 		{
 			printf("CPF válido!\n");
-			strcpy((char*)cpf_v, cpf);
+			strcpy(cpf_v, cpf);
 		}
 		else
 		{

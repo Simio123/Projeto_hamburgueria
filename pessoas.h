@@ -1,6 +1,7 @@
 #ifndef PESSOAS_H
 #define PESSOAS_H
 
+#include <stdbool.h>
 
 // Estrutura de pessoas
 typedef struct Pessoa
@@ -25,9 +26,13 @@ typedef struct Pessoa
 } Pessoa;
 
 void legenda_funcionario(void);
-
 Pessoa* cadastro_funcionario(struct Pilha * pilha);
-
 void salva_funcionario(Pessoa *funcionario);
 void listagem_funcionarios(void);
+
+void atualizar_funcionario(Pessoa* funcionario);
+void editar_dados_funcionarios(void);
+bool procurar_funcionario(Pessoa *funcionario);
+void desabilita_funcionario(void);
+
 #endif

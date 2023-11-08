@@ -4,7 +4,7 @@
 #include <stdbool.h>
 
 bool recebe_nome(const char* nome_v);
-bool recebe_cpf(const char* cpf_v);
+bool recebe_cpf(char* cpf_v);
 bool recebe_data(const char* data_v);
 bool recebe_email(const char* email_v);
 bool recebe_telefone(const char* telefone_v);
