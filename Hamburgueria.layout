@@ -20,26 +20,25 @@
 			<Cursor Line="29" Column="1"/>
 			<Selection Line="29" Column="27"/>
 		</File>
-		<File Name="telas.c" Top="No" Tabpos="7" TopLine="317">
-			<Cursor Line="336" Column="45"/>
+		<File Name="telas.c" Top="No" Tabpos="7" TopLine="274">
+			<Cursor Line="284" Column="3"/>
 		</File>
 		<File Name="pessoas.h" Top="No" Tabpos="8" TopLine="8">
 			<Cursor Line="37" Column="49"/>
 		</File>
-		<File Name="pessoas.c" Top="Yes" Tabpos="9" TopLine="136">
-			<Cursor Line="167" Column="21"/>
+		<File Name="pessoas.c" Top="Yes" Tabpos="9" TopLine="357">
+			<Cursor Line="186" Column="4"/>
 		</File>
 		<File Name="inserir_dados.h" Top="No" Tabpos="10" TopLine="1">
 			<Cursor Line="12" Column="36"/>
 		</File>
-		<File Name="inserir_dados.c" Top="No" Tabpos="11" TopLine="1">
-			<Cursor Line="9" Column="1"/>
-			<Selection Line="9" Column="32"/>
+		<File Name="inserir_dados.c" Top="No" Tabpos="11" TopLine="4">
+			<Cursor Line="24" Column="25"/>
 		</File>
 		<File Name="validadores.h" Top="No" Tabpos="12" TopLine="1">
 			<Cursor Line="16" Column="44"/>
 		</File>
-		<File Name="validadores.c" Top="No" Tabpos="13" TopLine="57">
+		<File Name="validadores.c" Top="No" Tabpos="13" TopLine="317">
 			<Cursor Line="80" Column="7"/>
 		</File>
 		<File Name="user_input.h" Top="No" Tabpos="14" TopLine="1">

@@ -21,7 +21,7 @@ bool recebe_idade(int* idade_v)
 		}
 		else
 		{
-			printf("Idade válida: %d\n", idade_int);
+			printf("Idade válida");
 			controle = 1;
 			*idade_v = idade_int;
 		}
@@ -160,9 +160,6 @@ bool recebe_endereco(const char* endereco_v)
 	}
 	return true;
 }
-
-
-
 
 bool recebe_preco(double* preco_v)
 {
