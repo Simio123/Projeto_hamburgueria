@@ -1,9 +1,0 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <stdbool.h>
-#include "telas.h"
-#include "validadores.h"
-#include "pessoas.h"
-#include "inserir_dados.h"
-#include "produtos.h"
