@@ -17,7 +17,6 @@
 #include "validadores.h"
 #include "pedidos.h"
 #include "pessoas.h"
-#include "produtos.h"
 #include "inserir_dados.h"
 
 int main()

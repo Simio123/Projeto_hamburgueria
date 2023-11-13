@@ -3,6 +3,7 @@
 #include <string.h>
 #include "telas.h"
 #include "pessoas.h"
+#include "pedidos.h"
 
 // Estrutura da pilha de telas
 struct No
@@ -123,6 +124,26 @@ void executarTela(struct Pilha* pilha)
 		case EDITA_DADOS_FUNCIONARIOS:
 			editar_dados_funcionarios(pilha);
 			break;
+
+		case CADASTRO_PRODUTO:
+			cadastro_produto(pilha);
+			break;
+
+		case LISTAGEM_PRODUTOS:
+			listagem_produtos(pilha);
+			break;
+
+		case DESABILITA_PRODUTO:
+			desabilita_produto(pilha);
+			break;
+
+		case EDITA_DADOS_PRODUTOS:
+			editar_dados_produtos(pilha);
+			break;
+		
+		
+
+		// pedidos
 
 			// Easter eggs
 		case BEIJO:
@@ -374,7 +395,7 @@ void funcionario(int opcao, int controle, struct Pilha* pilha)
 	switch(opcao)
 	{
 	case 1:
-		printf("Tela");
+		empilhar(pilha, EDITA_DADOS_FUNCIONARIOS);
 		break;
 
 	case 2:
@@ -464,7 +485,9 @@ void estoque(int opcao, int controle, struct Pilha* pilha)
 	printf("***                                                                         ***\n");
 	printf("***             1. Buscar produto                                           ***\n");
 	printf("***             2. Editar estoque                                           ***\n");
-	printf("***             3. Zerar estoque                                            ***\n");
+	printf("***             3. Cadastrar produto                                        ***\n");
+	printf("***             4. Zerar estoque                                            ***\n");
+	printf("***             5. Mostrar estoque                                          ***\n");
 	printf("***             0. Voltar                                                   ***\n");
 	printf("***                                                                         ***\n");
 	printf("*******************************************************************************\n");
@@ -482,11 +505,19 @@ void estoque(int opcao, int controle, struct Pilha* pilha)
 		break;
 
 	case 2:
-		printf("Tela");
+		empilhar(pilha, EDITA_DADOS_PRODUTOS);
 		break;
 
 	case 3:
+		empilhar(pilha, CADASTRO_PRODUTO);
+		break;
+
+	case 4:
 		printf("Tela");
+		break;
+
+	case 5:
+		empilhar(pilha, LISTAGEM_PRODUTOS);
 		break;
 
 	case 0:

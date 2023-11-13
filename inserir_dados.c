@@ -68,6 +68,9 @@ bool recebe_id(const char* id_v, int tipo)
 	case 2:
 		strcpy(str1, "PED-");
 		break;
+	case 3:
+		strcpy(str1, "PRO-");
+		break;
 	default:
 		printf("Tipo inválido\n");
 		return false;
@@ -184,7 +187,68 @@ bool recebe_preco(double* preco_v)
 }
 
 
+bool recebe_tipo(const char* tipo_v)
+{
+	int controle = 0;
+	int i;
 
+	while (controle == 0)
+	{
+		char *tipo = get_user_input("Insira tipo do produto(bebida, aperitivo, etc):\t");
+		size_t tamanho = strlen(tipo);
 
+		if (tamanho <= 0)
+		{
+			printf("Tipo inválido\n");
+		}
+		else
+		{
+			int tipo_valido = 1; // Suponha que o cargo é válido
 
+			for (i = 0; tipo[i] != '\0'; i++)
+			{
+				char caractere = tipo[i];
 
+				if (!isalpha(caractere) && caractere != ' ')
+				{
+					tipo_valido = 0;
+					break;
+				}
+			}
+
+			if (tipo_valido)
+			{
+				printf("Tipo cadastrado com sucesso\n");
+				controle = 1;
+				strcpy((char*)tipo_v, tipo);
+			}
+			else
+			{
+				printf("O tipo é inválido, por favor tente novamente\n");
+			}
+		}
+	}
+	return true;
+}
+
+bool recebe_quantidade(int* quantidade_v)
+{
+	int controle = 0;
+
+	while (controle == 0)
+	{
+		char *quantidade_str = get_user_input("Insira a quantidade:\t");
+		int quantidade_int = atoi(quantidade_str);
+
+		if (quantidade_int <= 0)
+		{
+			printf("Quantidade inválida\n");
+		}
+		else
+		{
+			controle = 1;
+			*quantidade_v = quantidade_int;
+		}
+	}
+	return true;
+}

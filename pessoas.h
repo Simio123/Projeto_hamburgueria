@@ -25,7 +25,6 @@ typedef struct Pessoa
 	int status;
 } Pessoa;
 
-
 // Funções de funcionário
 void legenda_funcionario(void);
 Pessoa* cadastro_funcionario(struct Pilha * pilha);
@@ -36,6 +35,35 @@ void editar_dados_funcionarios(struct Pilha * pilha);
 bool procurar_funcionario(Pessoa *funcionario);
 void desabilita_funcionario(struct Pilha * pilha);
 
-// Funções de clientes
+
+
+
+
+
+typedef struct Estoque
+{
+	// Atributos principais
+	int quantidade;
+	double preco;
+	char id[11];
+	char nome[100];
+	char tipo[50];
+	char validade[11];
+
+	// Aponta para o próximo funcionário na lista encadeada
+	struct Estoque* proximo;
+
+	// Define o status da pessoa (1 para ativo e 0 para inativo)
+	int status;
+} Estoque;
+
+void legenda_produto(void);
+Estoque* cadastro_produto(struct Pilha* pilha);
+void salva_produto(Estoque *produto);
+void listagem_produtos(struct Pilha * pilha);
+void atualizar_produto(Estoque* produto);
+void editar_dados_produtos(struct Pilha * pilha);
+bool procurar_produto(Estoque *produto);
+void desabilita_produto(struct Pilha * pilha);
 
 #endif

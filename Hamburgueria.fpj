@@ -38,8 +38,6 @@
 		<File Name="pedidos.c"/>
 		<File Name="pessoas.c"/>
 		<File Name="pessoas.h"/>
-		<File Name="produtos.c"/>
-		<File Name="produtos.h"/>
 		<File Name="inserir_dados.c"/>
 		<File Name="inserir_dados.h"/>
 		<File Name="user_input.h"/>
