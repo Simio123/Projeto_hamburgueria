@@ -4,9 +4,11 @@
 #include <stdbool.h>
 
 // Estrutura de pessoas
+// ######################################################################################
+// ######################################################################################
+// ######################################################################################
 typedef struct Pessoa
 {
-	// Atributos principais
 	int idade;
 	double salario;
 	char id[11];
@@ -18,31 +20,28 @@ typedef struct Pessoa
 	char cpf[12];
 	char data[11];
 
-	// Aponta para o próximo funcionário na lista encadeada
 	struct Pessoa* proximo;
 
-	// Define o status da pessoa (1 para ativo e 0 para inativo)
 	int status;
 } Pessoa;
 
-// Funções de funcionário
 void legenda_funcionario(void);
 Pessoa* cadastro_funcionario(struct Pilha * pilha);
 void salva_funcionario(Pessoa *funcionario);
 void listagem_funcionarios(struct Pilha * pilha);
+void listagem_funcionarios_i(struct Pilha * pilha);
 void atualizar_funcionario(Pessoa* funcionario);
 void editar_dados_funcionarios(struct Pilha * pilha);
 bool procurar_funcionario(Pessoa *funcionario);
 void desabilita_funcionario(struct Pilha * pilha);
 
 
-
-
-
-
+// Estrutura de estoque
+// ######################################################################################
+// ######################################################################################
+// ######################################################################################
 typedef struct Estoque
 {
-	// Atributos principais
 	int quantidade;
 	double preco;
 	char id[11];
@@ -50,10 +49,8 @@ typedef struct Estoque
 	char tipo[50];
 	char validade[11];
 
-	// Aponta para o próximo funcionário na lista encadeada
 	struct Estoque* proximo;
 
-	// Define o status da pessoa (1 para ativo e 0 para inativo)
 	int status;
 } Estoque;
 
@@ -65,5 +62,35 @@ void atualizar_produto(Estoque* produto);
 void editar_dados_produtos(struct Pilha * pilha);
 bool procurar_produto(Estoque *produto);
 void desabilita_produto(struct Pilha * pilha);
+
+
+// Estrutura de pedidos
+// ######################################################################################
+// ######################################################################################
+// ######################################################################################
+typedef struct Pedido
+{
+	char id[11];
+	int quantidade;
+	int tipo;
+	char nome[100];
+	double preco;
+
+	struct Pedido* proximo;
+
+	int status;
+} Pedido;
+
+void legenda_pedido(void);
+Pedido* cadastro_pedido(struct Pilha* pilha);
+void salva_pedido(Pedido *pedido);
+void listagem_pedidos(struct Pilha * pilha);
+void atualizar_pedido(Estoque* produto);
+void editar_pedido(struct Pilha * pilha);
+bool procurar_pedido(Pedido *pedido);
+void finaliza_pedido(struct Pilha * pilha);
+
+
+
 
 #endif

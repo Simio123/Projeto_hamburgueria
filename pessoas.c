@@ -8,6 +8,12 @@
 #include "inserir_dados.h"
 #include "user_input.h"
 
+
+
+// ######################################################################################
+// ######################################################################################
+// ######################################################################################
+
 void legenda_funcionario(void)
 {
 	system("clear||cls");
@@ -148,7 +154,46 @@ void listagem_funcionarios(struct Pilha * pilha)
 	{
 		if (funcionario.status == 1)
 		{
-			printf("Status: %d\n", funcionario.status);
+			printf("Status: %d(Ativo)\n", funcionario.status);
+			printf("Idade: %d\n", funcionario.idade);
+			printf("Salario: %.2f\n", funcionario.salario);
+			printf("Id: %s\n", funcionario.id);
+			printf("Nome: %s\n", funcionario.nome);
+			printf("Cargo: %s\n", funcionario.cargo);
+			printf("Endereco: %s\n", funcionario.endereco);
+			printf("Email: %s\n", funcionario.email);
+			printf("Telefone: %s\n", funcionario.telefone);
+			printf("Cpf: %s\n", funcionario.cpf);
+			printf("Data de nascimento: %s\n", funcionario.data);
+			printf("\n");
+		}
+	}
+	fclose(file);
+	system("pause");
+	desempilhar(pilha);
+}
+
+void listagem_funcionarios_i(struct Pilha * pilha)
+{
+	Pessoa funcionario;
+	system("clear||cls");
+	printf("*******************************************************************************\n");
+	printf("***              = = = = = Listagem de funcionários = = = = =               ***\n");
+	printf("*******************************************************************************\n");
+
+	FILE* file = fopen("funcionarios.dat", "rb");
+
+	if (file == NULL)
+	{
+		printf("Erro ao abrir o arquivo para leitura.\n");
+		return;
+	}
+
+	while (fread(&funcionario, sizeof(Pessoa), 1, file) == 1)
+	{
+		if (funcionario.status == 0)
+		{
+			printf("Status: %d(Inativo)\n", funcionario.status);
 			printf("Idade: %d\n", funcionario.idade);
 			printf("Salario: %.2f\n", funcionario.salario);
 			printf("Id: %s\n", funcionario.id);
@@ -383,8 +428,9 @@ void desabilita_funcionario(struct Pilha * pilha)
 	fclose(file);
 }
 
-
-////////////////////////////////////////////////////////////////////////////////////////////////
+// ######################################################################################
+// ######################################################################################
+// ######################################################################################
 
 
 void legenda_produto(void)
@@ -713,3 +759,19 @@ void desabilita_produto(struct Pilha * pilha)
 	system("pause");
 	fclose(file);
 }
+
+
+
+// ######################################################################################
+// ######################################################################################
+// ######################################################################################
+
+void legenda_pedido(void)
+{
+	system("clear||cls");
+	printf("*******************************************************************************\n");
+	printf("***             = = = = = Menu de cadastro de pedidos  = = = = =            ***\n");
+	printf("*******************************************************************************\n");
+}
+
+

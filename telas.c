@@ -3,7 +3,6 @@
 #include <string.h>
 #include "telas.h"
 #include "pessoas.h"
-#include "pedidos.h"
 
 // Estrutura da pilha de telas
 struct No
@@ -117,6 +116,10 @@ void executarTela(struct Pilha* pilha)
 			listagem_funcionarios(pilha);
 			break;
 
+		case LISTAGEM_FUNCIONARIOS_I:
+			listagem_funcionarios_i(pilha);
+			break;
+
 		case DESABILITA_FUNCIONARIO:
 			desabilita_funcionario(pilha);
 			break;
@@ -140,10 +143,10 @@ void executarTela(struct Pilha* pilha)
 		case EDITA_DADOS_PRODUTOS:
 			editar_dados_produtos(pilha);
 			break;
-		
-		
 
-		// pedidos
+
+
+			// pedidos
 
 			// Easter eggs
 		case BEIJO:
@@ -321,10 +324,11 @@ void administrador(int opcao, int controle, struct Pilha* pilha)
 	printf("***             1. Demitir funcionário                                      ***\n");
 	printf("***             2. Acessar estoque                                          ***\n");
 	printf("***             3. Cadastrar Funcionário                                    ***\n");
-	printf("***             4. Exibir funcionários                                      ***\n");
-	printf("***             5. Editar dados dos funcionários                            ***\n");
-	printf("***             6. Exibir relatorios                                        ***\n");
-	printf("***             7. Cadastrar promoção                                       ***\n");
+	printf("***             4. Exibir funcionários ativos                               ***\n");
+	printf("***             5. Exibir funcionários inativos                             ***\n");
+	printf("***             6. Editar dados dos funcionários                            ***\n");
+	printf("***             7. Exibir relatorios                                        ***\n");
+	printf("***             8. Cadastrar promoção                                       ***\n");
 	printf("***             0. Voltar                                                   ***\n");
 	printf("***                                                                         ***\n");
 	printf("*******************************************************************************\n");
@@ -354,10 +358,18 @@ void administrador(int opcao, int controle, struct Pilha* pilha)
 		break;
 
 	case 5:
-		empilhar(pilha, EDITA_DADOS_FUNCIONARIOS);
+		empilhar(pilha, LISTAGEM_FUNCIONARIOS_I);
 		break;
 
 	case 6:
+		empilhar(pilha, EDITA_DADOS_FUNCIONARIOS);
+		break;
+
+	case 7:
+		printf("Tela");
+		break;
+
+	case 8:
 		printf("Tela");
 		break;
 

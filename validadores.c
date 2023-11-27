@@ -7,7 +7,7 @@
 #include "user_input.h"
 
 // validador de nomes
-bool recebe_nome(const char* nome_v)
+bool recebe_nome(char* nome_v)
 {
 	int controle = 0;
 	while(controle == 0)
@@ -36,7 +36,7 @@ bool recebe_nome(const char* nome_v)
 	return true;
 }
 
-bool valida_nome(const char *nome)
+bool valida_nome(char *nome)
 {
 	int i;
 	if (nome[0] == '\0')
@@ -87,7 +87,7 @@ bool recebe_cpf(char* cpf_v)
 	return true;
 }
 
-bool valida_cpf(const char *cpf)
+bool valida_cpf(char *cpf)
 {
 	// Verifica o tamanho do CPF
 	int i;
@@ -151,7 +151,7 @@ bool valida_cpf(const char *cpf)
 }
 
 // Validador de datas
-bool recebe_data(const char* data_v)
+bool recebe_data(char* data_v)
 {
 	char *data = NULL;
 	int controle = 0;
@@ -189,7 +189,7 @@ bool recebe_data(const char* data_v)
 	return true;
 }
 
-bool valida_data(const char *data)
+bool valida_data(char *data)
 {
 	int dia, mes, ano;
 	char *token;
@@ -259,7 +259,7 @@ bool valida_data(const char *data)
 }
 
 // Validação e email
-bool recebe_email(const char* email_v)
+bool recebe_email(char* email_v)
 {
 	int controle = 0;
 
@@ -283,7 +283,7 @@ bool recebe_email(const char* email_v)
 	return true;
 }
 
-bool valida_email(const char *email)
+bool valida_email(char *email)
 {
 	int tamanho = strlen(email);
 	int contador_arroba = 0;
@@ -306,7 +306,7 @@ bool valida_email(const char *email)
 }
 
 // Validação de telefone
-bool recebe_telefone(const char* telefone_v)
+bool recebe_telefone(char* telefone_v)
 {
 	int controle = 0;
 
@@ -329,7 +329,7 @@ bool recebe_telefone(const char* telefone_v)
 	return true;
 }
 
-bool valida_telefone(const char *telefone)
+bool valida_telefone(char *telefone)
 {
 	int tamanho = strlen(telefone);
 

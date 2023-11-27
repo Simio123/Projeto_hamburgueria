@@ -8,10 +8,11 @@
 
 bool recebe_idade(int* idade_v)
 {
-	int controle = 0;
+	int controle = 0, limpa;
 
 	while (controle == 0)
 	{
+		while ((limpa = getchar()) != '\n' && limpa != EOF); // Limpar o buffer
 		char *idade_str = get_user_input("Insira a idade:\t");
 		int idade_int = atoi(idade_str);
 
@@ -31,10 +32,11 @@ bool recebe_idade(int* idade_v)
 
 bool recebe_salario(double* salario_v)
 {
-	int controle = 0;
+	int controle = 0, limpa;
 
 	while (controle == 0)
 	{
+		while ((limpa = getchar()) != '\n' && limpa != EOF); // Limpar o buffer
 		char *salario = get_user_input("Insira o salario:\t");
 		double salario_double = atof(salario);
 
@@ -51,9 +53,9 @@ bool recebe_salario(double* salario_v)
 	return true;
 }
 
-bool recebe_id(const char* id_v, int tipo)
+bool recebe_id(char* id_v, int tipo)
 {
-	int controle = 0;
+	int controle = 0, limpa;
 	char str1[10];
 	char resultado[15];
 
@@ -78,6 +80,7 @@ bool recebe_id(const char* id_v, int tipo)
 
 	while (controle == 0)
 	{
+		while ((limpa = getchar()) != '\n' && limpa != EOF); // Limpar o buffer
 		char* id = get_user_input("Insira o ID (máximo de 11 dígitos ou caracteres):\t");
 		size_t tamanho = strlen(id);
 
@@ -97,13 +100,13 @@ bool recebe_id(const char* id_v, int tipo)
 	return true;
 }
 
-bool recebe_cargo(const char* cargo_v)
+bool recebe_cargo(char* cargo_v)
 {
-	int controle = 0;
-	int i;
+	int controle = 0, i, limpa;
 
 	while (controle == 0)
 	{
+		while ((limpa = getchar()) != '\n' && limpa != EOF); // Limpar o buffer
 		char *cargo = get_user_input("Insira o cargo:\t");
 		size_t tamanho = strlen(cargo);
 
@@ -141,12 +144,13 @@ bool recebe_cargo(const char* cargo_v)
 	return true;
 }
 
-bool recebe_endereco(const char* endereco_v)
+bool recebe_endereco(char* endereco_v)
 {
-	int controle = 0;
+	int controle = 0, limpa;
 
 	while (controle == 0)
 	{
+		while ((limpa = getchar()) != '\n' && limpa != EOF); // Limpar o buffer
 		char *endereco = get_user_input("Insira o endereço:\t");
 		size_t tamanho = strlen(endereco);
 
@@ -166,10 +170,11 @@ bool recebe_endereco(const char* endereco_v)
 
 bool recebe_preco(double* preco_v)
 {
-	int controle = 0;
+	int controle = 0, limpa;
 
 	while (controle == 0)
 	{
+		while ((limpa = getchar()) != '\n' && limpa != EOF); // Limpar o buffer
 		char *preco = get_user_input("Insira o preco:\t");
 		double preco_double = atof(preco);
 
@@ -187,13 +192,13 @@ bool recebe_preco(double* preco_v)
 }
 
 
-bool recebe_tipo(const char* tipo_v)
+bool recebe_tipo(char* tipo_v)
 {
-	int controle = 0;
-	int i;
+	int controle = 0, i, limpa;
 
 	while (controle == 0)
 	{
+		while ((limpa = getchar()) != '\n' && limpa != EOF); // Limpar o buffer
 		char *tipo = get_user_input("Insira tipo do produto(bebida, aperitivo, etc):\t");
 		size_t tamanho = strlen(tipo);
 
@@ -233,10 +238,11 @@ bool recebe_tipo(const char* tipo_v)
 
 bool recebe_quantidade(int* quantidade_v)
 {
-	int controle = 0;
+	int controle = 0, limpa;
 
 	while (controle == 0)
 	{
+		while ((limpa = getchar()) != '\n' && limpa != EOF); // Limpar o buffer
 		char *quantidade_str = get_user_input("Insira a quantidade:\t");
 		int quantidade_int = atoi(quantidade_str);
 

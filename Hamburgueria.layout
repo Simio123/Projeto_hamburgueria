@@ -18,7 +18,7 @@
 			<Cursor Line="19" Column="1"/>
 			<Selection Line="21" Column="47"/>
 		</File>
-		<File Name="pedidos.h" Top="No" Tabpos="6" TopLine="1">
+		<File Name="pedidos.h" Top="Yes" Tabpos="6" TopLine="1">
 			<Cursor Line="27" Column="4"/>
 		</File>
 		<File Name="pedidos.c" Top="No" Tabpos="7" TopLine="1">
@@ -27,7 +27,7 @@
 		<File Name="inserir_dados.h" Top="No" Tabpos="8" TopLine="1">
 			<Cursor Line="16" Column="1"/>
 		</File>
-		<File Name="inserir_dados.c" Top="Yes" Tabpos="9" TopLine="221">
+		<File Name="inserir_dados.c" Top="No" Tabpos="9" TopLine="221">
 			<Cursor Line="255" Column="1"/>
 		</File>
 		<File Name="validadores.h" Top="No" Tabpos="10" TopLine="1">

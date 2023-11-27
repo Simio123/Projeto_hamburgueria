@@ -34,8 +34,6 @@
 		<File Name="telas.c"/>
 		<File Name="validadores.h"/>
 		<File Name="validadores.c"/>
-		<File Name="pedidos.h"/>
-		<File Name="pedidos.c"/>
 		<File Name="pessoas.c"/>
 		<File Name="pessoas.h"/>
 		<File Name="inserir_dados.c"/>

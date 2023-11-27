@@ -15,7 +15,6 @@
 #include <locale.h>
 #include "telas.h"
 #include "validadores.h"
-#include "pedidos.h"
 #include "pessoas.h"
 #include "inserir_dados.h"
 
