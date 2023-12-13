@@ -15,3 +15,9 @@ char *get_user_input(char *prompt) {
     input_buf[strlen(input_buf) - 1] = '\0';
     return input_buf;
 }
+
+
+void limpar_buffer() {
+    int c;
+    while ((c = getchar()) != '\n' && c != EOF);
+}

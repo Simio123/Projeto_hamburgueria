@@ -12,9 +12,7 @@ bool recebe_nome(char* nome_v)
 	int controle = 0;
 	while(controle == 0)
 	{
-		char *nome = get_user_input("Insira o nome:\t");
-
-		// Remove a quebra de linha caso ela exista
+		char *nome = get_user_input("");
 		size_t tamanho = strlen(nome);
 
 		if (nome[tamanho - 1] == '\n')
@@ -24,13 +22,12 @@ bool recebe_nome(char* nome_v)
 
 		if (valida_nome(nome))
 		{
-			printf("Nome cadastrado com sucesso\n");
 			controle = 1;
 			strcpy((char*)nome_v, nome);
 		}
 		else
 		{
-			printf("O nome é inválido, por favor tente novamente\n");
+			printf("Entrada invalida, por favor tente novamente\n");
 		}
 	}
 	return true;
@@ -62,24 +59,20 @@ bool valida_nome(char *nome)
 bool recebe_cpf(char* cpf_v)
 {
 	bool cpf_valido;
-	int c;
-
+	
 	do
 	{
-		while ((c = getchar()) != '\n' && c != EOF) {}
-
-		char *cpf = get_user_input("Insira o CPF(somente números): ");
+		char *cpf = get_user_input("");
 
 		cpf_valido = valida_cpf(cpf);
 
 		if (cpf_valido)
 		{
-			printf("CPF válido!\n");
 			strcpy(cpf_v, cpf);
 		}
 		else
 		{
-			printf("CPF inválido!\n");
+			printf("Entrada invalida, por favor tente novamente\n");
 		}
 	}
 	while (!cpf_valido);
@@ -157,7 +150,7 @@ bool recebe_data(char* data_v)
 	int controle = 0;
 	while (controle == 0)
 	{
-		data = get_user_input("Digite a data no formato DD/MM/AAAA: ");
+		data = get_user_input("");
 
 		int i;
 		bool formato_valido = true;
@@ -166,7 +159,7 @@ bool recebe_data(char* data_v)
 		{
 			if (!isdigit(data[i]) && data[i] != '/')
 			{
-				printf("A data não é válida\n");
+				printf("Entrada invalida, por favor tente novamente\n");
 				formato_valido = false;
 				break;
 			}
@@ -176,13 +169,12 @@ bool recebe_data(char* data_v)
 		{
 			if (valida_data(data))
 			{
-				printf("A data é válida.\n");
 				controle = 1;
 				strcpy((char*)data_v, data);
 			}
 			else
 			{
-				printf("A data não é válida, insira novamente\n");
+				printf("Entrada invalida, por favor tente novamente\n");
 			}
 		}
 	}
@@ -229,7 +221,7 @@ bool valida_data(char *data)
 				{
 					ano = atoi(token);
 
-					if (ano < 0 || ano > 2023 || mes < 1 || mes > 12 || dia < 1 || dia > 31)
+					if (ano < 0 || ano > 2300 || mes < 1 || mes > 12 || dia < 1 || dia > 31)
 					{
 						return false;
 					}
@@ -265,7 +257,7 @@ bool recebe_email(char* email_v)
 
 	while (controle == 0)
 	{
-		char *email = get_user_input("Insira o e-mail:\t");
+		char *email = get_user_input("");
 		size_t tamanho = strlen(email);
 
 		if (tamanho <= 0 || email[0] == '\0' || email[0] == ' ' || !valida_email(email))
@@ -274,7 +266,6 @@ bool recebe_email(char* email_v)
 		}
 		else
 		{
-			printf("Email cadastrado com sucesso!\n");
 			controle = 1;
 			strcpy((char*)email_v, email);
 		}
@@ -312,7 +303,7 @@ bool recebe_telefone(char* telefone_v)
 
 	while (controle == 0)
 	{
-		char *telefone = get_user_input("Insira o número de telefone (no formato (xx)xxxxx-xxxx):\t");
+		char *telefone = get_user_input("");
 		size_t tamanho = strlen(telefone);
 
 		if (tamanho != 14 || !valida_telefone(telefone))
@@ -321,7 +312,6 @@ bool recebe_telefone(char* telefone_v)
 		}
 		else
 		{
-			printf("Número de telefone cadastrado com sucesso!\n");
 			controle = 1;
 			strcpy((char*)telefone_v, telefone);
 		}
@@ -347,4 +337,3 @@ bool valida_telefone(char *telefone)
 	}
 	return true;
 }
-

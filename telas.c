@@ -3,6 +3,7 @@
 #include <string.h>
 #include "telas.h"
 #include "pessoas.h"
+#include "produtos.h"
 
 // Estrutura da pilha de telas
 struct No
@@ -107,7 +108,7 @@ void executarTela(struct Pilha* pilha)
 			opcoes_de_pagamento(opcao, controle, pilha);
 			break;
 
-			// Funções associadas ao adm
+			// Funções associadas ao funcionario
 		case CADASTRO_FUNCIONARIO:
 			cadastro_funcionario(pilha);
 			break;
@@ -120,20 +121,37 @@ void executarTela(struct Pilha* pilha)
 			listagem_funcionarios_i(pilha);
 			break;
 
+		case LISTAGEM_TODOS_FUNCIONARIOS:
+			listagem_todos_funcionarios(pilha);
+			break;
+
 		case DESABILITA_FUNCIONARIO:
 			desabilita_funcionario(pilha);
+			break;
+
+		case READMITE_FUNCIONARIO:
+			readimite_funcionario(pilha);
 			break;
 
 		case EDITA_DADOS_FUNCIONARIOS:
 			editar_dados_funcionarios(pilha);
 			break;
 
+			// funcoes relacionadas ao estoque
 		case CADASTRO_PRODUTO:
 			cadastro_produto(pilha);
 			break;
 
 		case LISTAGEM_PRODUTOS:
 			listagem_produtos(pilha);
+			break;
+
+		case LISTAGEM_PRODUTOS_I:
+			listagem_produtos_i(pilha);
+			break;
+
+		case LISTAGEM_TODOS_PRODUTOS:
+			listagem_todos_produtos(pilha);
 			break;
 
 		case DESABILITA_PRODUTO:
@@ -144,7 +162,9 @@ void executarTela(struct Pilha* pilha)
 			editar_dados_produtos(pilha);
 			break;
 
-
+		case REPOE_PRODUTO:
+			repoe_produto(pilha);
+			break;
 
 			// pedidos
 
@@ -163,20 +183,20 @@ void tela_inicial(int opcao, int controle, struct Pilha* pilha)
 	printf("\n");
 	printf("*******************************************************************************\n");
 	printf("***             Universidade Federal do Rio Grande do Norte                 ***\n");
-	printf("***             Centro de Ensino Superior do Seridó                         ***\n");
-	printf("***             Departamento de Computação e Tecnologia                     ***\n");
-	printf("***             Disciplina: Programação                                     ***\n");
+	printf("***             Centro de Ensino Superior do Serido                         ***\n");
+	printf("***             Departamento de Computacao e Tecnologia                     ***\n");
+	printf("***             Disciplina: Programacao                                     ***\n");
 	printf("***             Professor: Flavius Gorgonio                                 ***\n");
-	printf("***             Projeto: Sistema de Gestão de Hamburgueria                  ***\n");
+	printf("***             Projeto: Sistema de Gestao de Hamburgueria                  ***\n");
 	printf("***             Aluno: Emerson da Silva Santos                              ***\n");
 	printf("***             Linguagem: C                                                ***\n");
 	printf("*******************************************************************************\n");
 	printf("*******************************************************************************\n");
-	printf("***   = = = = =  Bem vindo ao Sistema de Gestão de Hamburgueria = = = = =   ***\n");
+	printf("***   = = = = =  Bem vindo ao Sistema de Gestao de Hamburgueria = = = = =   ***\n");
 	printf("***                                                                         ***\n");
 	printf("***             1. Login                                                    ***\n");
-	printf("***             2. Consultar informações sobre o projeto                    ***\n");
-	printf("***             3. Consultar informações sobre Equipe responsavel           ***\n");
+	printf("***             2. Consultar informacoes sobre o projeto                    ***\n");
+	printf("***             3. Consultar informacoes sobre a equipe responsavel         ***\n");
 	printf("***             0. Sair                                                     ***\n");
 	printf("***                                                                         ***\n");
 	printf("*******************************************************************************\n");
@@ -184,7 +204,7 @@ void tela_inicial(int opcao, int controle, struct Pilha* pilha)
 	while (scanf("%d", &opcao) != 1)
 	{
 		printf("Entrada inválida. Por favor, insira uma opção válida.\n");
-		while ((controle = getchar()) != '\n' && controle != EOF); // Limpar o buffer
+		while ((controle = getchar()) != '\n' && controle != EOF);
 	}
 
 	switch(opcao)
@@ -212,7 +232,7 @@ void tela_inicial(int opcao, int controle, struct Pilha* pilha)
 		break;
 
 	default:
-		printf("Opção inválida. Por favor, escolha uma opção válida.\n");
+		printf("Opcao invalida. Por favor, escolha uma opcao valida.\n");
 		system("pause");
 		break;
 	}
@@ -225,7 +245,7 @@ void tela_login(int opcao, int controle, struct Pilha* pilha)
 	printf("***             = = = = = Menu de login = = = = =                           ***\n");
 	printf("***                                                                         ***\n");
 	printf("***             1. Administrador                                            ***\n");
-	printf("***             2. Funcionário                                              ***\n");
+	printf("***             2. Funcionario                                              ***\n");
 	printf("***             3. Cliente                                                  ***\n");
 	printf("***             0. Voltar                                                   ***\n");
 	printf("***                                                                         ***\n");
@@ -233,8 +253,8 @@ void tela_login(int opcao, int controle, struct Pilha* pilha)
 	printf("Como deseja entrar no sistema?\n");
 	while (scanf("%d", &opcao) != 1)
 	{
-		printf("Entrada inválida. Por favor, insira uma opção válida.\n");
-		while ((controle = getchar()) != '\n' && controle != EOF); // Limpar o buffer
+		printf("Entrada invalida. Por favor, insira uma opcao valida.\n");
+		while ((controle = getchar()) != '\n' && controle != EOF);
 	}
 
 	switch(opcao)
@@ -256,7 +276,7 @@ void tela_login(int opcao, int controle, struct Pilha* pilha)
 		break;
 
 	default:
-		printf("Opção inválida. Por favor, escolha uma opção válida.\n");
+		printf("Opcao invalida. Por favor, escolha uma opcao valida.\n");
 		system("pause");
 		break;
 	}
@@ -269,16 +289,16 @@ void tela_info_projeto(int opcao, int controle, struct Pilha* pilha)
 	printf("***             = = = = = informações sobre o projeto = = = = =             ***\n");
 	printf("***                                                                         ***\n");
 	printf("***             O Programa gerencia o funcionamento de uma hamburgueria     ***\n");
-	printf("***       fins didáticos de ilustração. O programa contém os principais     ***\n");
-	printf("***       e funcionalidades que serão exigidos na avaliação dos projetos    ***\n");
+	printf("***       para fins didaticos de ilustração. O programa contem os principais***\n");
+	printf("***       e funcionalidades que serao exigidos na avaliacao dos projetos    ***\n");
 	printf("***       desenvolvidos pelos alunos ao longo da disciplina. Serve como u   ***\n");
-	printf("***       de consulta e referência para o desenvolvidos dos demais proje    ***\n");
+	printf("***       de consulta e referência para o desenvolvidos dos demais projetos ***\n");
 	printf("***                                                                         ***\n");
 	printf("*******************************************************************************\n");
 	printf("Insira 0 para voltar\n");
 	while (scanf("%d", &opcao) != 1)
 	{
-		printf("Entrada inválida. Por favor, insira uma opção válida.\n");
+		printf("Entrada invalida. Por favor, insira uma opcao valida.\n");
 		while ((controle = getchar()) != '\n' && controle != EOF); // Limpar o buffer
 	}
 
@@ -292,7 +312,7 @@ void tela_info_equipe(int opcao, int controle, struct Pilha* pilha)
 {
 	system("clear||cls");
 	printf("*******************************************************************************\n");
-	printf("***             = = = = = informações sobre Equipe responsavel = = = = =    ***\n");
+	printf("***             = = = = = informacoes sobre Equipe responsavel = = = = =    ***\n");
 	printf("***                                                                         ***\n");
 	printf("***             Este projeto exemplo foi desenvolvido por:                  ***\n");
 	printf("***             Emerson da Silva santos                                     ***\n");
@@ -303,9 +323,10 @@ void tela_info_equipe(int opcao, int controle, struct Pilha* pilha)
 	printf("Insira 0 para voltar\n");
 	while (scanf("%d", &opcao) != 1)
 	{
-		printf("Entrada inválida. Por favor, insira uma opção válida.\n");
+		printf("Entrada invalida. Por favor, insira uma opcao valida.\n");
 		while ((controle = getchar()) != '\n' && controle != EOF); // Limpar o buffer
 	}
+	empilhar(pilha, EDITA_DADOS_FUNCIONARIOS);
 
 	if (opcao == 0)
 	{
@@ -321,21 +342,21 @@ void administrador(int opcao, int controle, struct Pilha* pilha)
 	printf("*******************************************************************************\n");
 	printf("***             = = = = = Menu de administrador = = = = =                   ***\n");
 	printf("***                                                                         ***\n");
-	printf("***             1. Demitir funcionário                                      ***\n");
+	printf("***             1. Demitir funcionario                                      ***\n");
 	printf("***             2. Acessar estoque                                          ***\n");
-	printf("***             3. Cadastrar Funcionário                                    ***\n");
-	printf("***             4. Exibir funcionários ativos                               ***\n");
-	printf("***             5. Exibir funcionários inativos                             ***\n");
-	printf("***             6. Editar dados dos funcionários                            ***\n");
-	printf("***             7. Exibir relatorios                                        ***\n");
-	printf("***             8. Cadastrar promoção                                       ***\n");
+	printf("***             3. Cadastrar Funcionario                                    ***\n");
+	printf("***             4. Exibir funcionarios ativos                               ***\n");
+	printf("***             5. Exibir funcionarios inativos                             ***\n");
+	printf("***             6. Editar dados dos funcionarios                            ***\n");
+	printf("***             7. Recontratar funcionario                                  ***\n");
+	printf("***             8. Exibir todos os funcionarios                             ***\n");
 	printf("***             0. Voltar                                                   ***\n");
 	printf("***                                                                         ***\n");
 	printf("*******************************************************************************\n");
 	printf("O que deseja fazer?\n");
 	while (scanf("%d", &opcao) != 1)
 	{
-		printf("Entrada inválida. Por favor, insira uma opção válida.\n");
+		printf("Entrada invalida. Por favor, insira uma opcao valida.\n");
 		while ((controle = getchar()) != '\n' && controle != EOF); // Limpar o buffer
 	}
 
@@ -366,11 +387,11 @@ void administrador(int opcao, int controle, struct Pilha* pilha)
 		break;
 
 	case 7:
-		printf("Tela");
+		empilhar(pilha, READMITE_FUNCIONARIO);
 		break;
 
 	case 8:
-		printf("Tela");
+		empilhar(pilha, LISTAGEM_TODOS_FUNCIONARIOS);
 		break;
 
 	case 0:
@@ -378,7 +399,7 @@ void administrador(int opcao, int controle, struct Pilha* pilha)
 		break;
 
 	default:
-		printf("Opção inválida. Por favor, escolha uma opção válida.\n");
+		printf("Opcao invalida. Por favor, escolha uma opcao valida.\n");
 		system("pause");
 		break;
 	}
@@ -391,16 +412,15 @@ void funcionario(int opcao, int controle, struct Pilha* pilha)
 	printf("***             = = = = = Menu de funcionario = = = = =                     ***\n");
 	printf("***                                                                         ***\n");
 	printf("***             1. Editar dados pessoais                                    ***\n");
-	printf("***             2. Pedir demissão                                           ***\n");
-	printf("***             3. Acessar estoque                                          ***\n");
-	printf("***             4. Verificar pedidos                                        ***\n");
+	printf("***             2. Acessar estoque                                          ***\n");
+	printf("***             3. Verificar pedidos                                        ***\n");
 	printf("***             0. Voltar                                                   ***\n");
 	printf("***                                                                         ***\n");
 	printf("*******************************************************************************\n");
 	printf("O que deseja fazer?\n");
 	while (scanf("%d", &opcao) != 1)
 	{
-		printf("Entrada inválida. Por favor, insira uma opção válida.\n");
+		printf("Entrada invalida. Por favor, insira uma opcao valida.\n");
 		while ((controle = getchar()) != '\n' && controle != EOF); // Limpar o buffer
 	}
 
@@ -411,14 +431,10 @@ void funcionario(int opcao, int controle, struct Pilha* pilha)
 		break;
 
 	case 2:
-		printf("Tela");
-		break;
-
-	case 3:
 		empilhar(pilha, TELA_ESTOQUE);
 		break;
 
-	case 4:
+	case 3:
 		empilhar(pilha, TELA_PEDIDOS);
 		break;
 
@@ -427,7 +443,7 @@ void funcionario(int opcao, int controle, struct Pilha* pilha)
 		break;
 
 	default:
-		printf("Opção inválida. Por favor, escolha uma opção válida.\n");
+		printf("Opcao invalida. Por favor, escolha uma opcao valida.\n");
 		system("pause");
 		break;
 	}
@@ -441,16 +457,14 @@ void cliente(int opcao, int controle, struct Pilha* pilha)
 	printf("***                                                                         ***\n");
 	printf("***             1. Realizar pedido                                          ***\n");
 	printf("***             2. Reservar mesa                                            ***\n");
-	printf("***             3. Registrar reclamação                                     ***\n");
-	printf("***             4. Registrar sugestão                                       ***\n");
-	printf("***             5. Avaliar comida e atendimento                             ***\n");
+	printf("***             3. Visualizar cardapio                                      ***\n");
 	printf("***             0. Voltar                                                   ***\n");
 	printf("***                                                                         ***\n");
 	printf("*******************************************************************************\n");
 	printf("O que deseja fazer?\n");
 	while (scanf("%d", &opcao) != 1)
 	{
-		printf("Entrada inválida. Por favor, insira uma opção válida.\n");
+		printf("Entrada invalida. Por favor, insira uma opcao valida.\n");
 		while ((controle = getchar()) != '\n' && controle != EOF); // Limpar o buffer
 	}
 
@@ -468,25 +482,16 @@ void cliente(int opcao, int controle, struct Pilha* pilha)
 		printf("Tela");
 		break;
 
-	case 4:
-		printf("Tela");
-		break;
-
-	case 5:
-		printf("Tela");
-		break;
-
 	case 0:
 		desempilhar(pilha);
 		break;
 
 	default:
-		printf("Opção inválida. Por favor, escolha uma opção válida.\n");
+		printf("Opcao inválida. Por favor, escolha uma opção válida.\n");
 		system("pause");
 		break;
 	}
 }
-
 
 // Telas terciarias
 void estoque(int opcao, int controle, struct Pilha* pilha)
@@ -495,41 +500,51 @@ void estoque(int opcao, int controle, struct Pilha* pilha)
 	printf("*******************************************************************************\n");
 	printf("***             = = = = = Menu Estoque = = = = =                            ***\n");
 	printf("***                                                                         ***\n");
-	printf("***             1. Buscar produto                                           ***\n");
-	printf("***             2. Editar estoque                                           ***\n");
-	printf("***             3. Cadastrar produto                                        ***\n");
-	printf("***             4. Zerar estoque                                            ***\n");
-	printf("***             5. Mostrar estoque                                          ***\n");
+	printf("***             1. Editar estoque                                           ***\n");
+	printf("***             2. Cadastrar produto                                        ***\n");
+	printf("***             3. Retirar produto do estoque                               ***\n");
+	printf("***             4. Repor produto no estoque                                 ***\n");
+	printf("***             5. Mostrar produtos em estoque                              ***\n");
+	printf("***             6. Mostrar produtos fora de estoque                         ***\n");
+	printf("***             7. Mostrar estoque completo                                 ***\n");
 	printf("***             0. Voltar                                                   ***\n");
 	printf("***                                                                         ***\n");
 	printf("*******************************************************************************\n");
 	printf("O que deseja fazer?\n");
 	while (scanf("%d", &opcao) != 1)
 	{
-		printf("Entrada inválida. Por favor, insira uma opção válida.\n");
+		printf("Entrada invalida. Por favor, insira uma opcao valida.\n");
 		while ((controle = getchar()) != '\n' && controle != EOF); // Limpar o buffer
 	}
 
 	switch(opcao)
 	{
 	case 1:
-		printf("Tela");
-		break;
-
-	case 2:
 		empilhar(pilha, EDITA_DADOS_PRODUTOS);
 		break;
 
-	case 3:
+	case 2:
 		empilhar(pilha, CADASTRO_PRODUTO);
 		break;
 
+	case 3:
+		empilhar(pilha, DESABILITA_PRODUTO);
+		break;
+
 	case 4:
-		printf("Tela");
+		empilhar(pilha, REPOE_PRODUTO);
 		break;
 
 	case 5:
 		empilhar(pilha, LISTAGEM_PRODUTOS);
+		break;
+
+	case 6:
+		empilhar(pilha, LISTAGEM_PRODUTOS_I);
+		break;
+
+	case 7:
+		empilhar(pilha, LISTAGEM_TODOS_PRODUTOS);
 		break;
 
 	case 0:
@@ -537,7 +552,7 @@ void estoque(int opcao, int controle, struct Pilha* pilha)
 		break;
 
 	default:
-		printf("Opção inválida. Por favor, escolha uma opção válida.\n");
+		printf("Opcao invalida. Por favor, escolha uma opcao valida.\n");
 		system("pause");
 		break;
 	}
@@ -549,16 +564,15 @@ void pedidos(int opcao, int controle, struct Pilha* pilha)
 	printf("*******************************************************************************\n");
 	printf("***             = = = = = Menu Pedidos = = = = =                            ***\n");
 	printf("***                                                                         ***\n");
-	printf("***             1. Registrar pedidos                                        ***\n");
-	printf("***             2. Finalizar pedidos                                        ***\n");
-	printf("***             3. Visualizar pedidos                                       ***\n");
+	printf("***             1. Finalizar pedidos                                        ***\n");
+	printf("***             2. Visualizar pedidos                                       ***\n");
 	printf("***             0. Voltar                                                   ***\n");
 	printf("***                                                                         ***\n");
 	printf("*******************************************************************************\n");
 	printf("O que deseja fazer?\n");
 	while (scanf("%d", &opcao) != 1)
 	{
-		printf("Entrada inválida. Por favor, insira uma opção válida.\n");
+		printf("Entrada invalida. Por favor, insira uma opcao valida.\n");
 		while ((controle = getchar()) != '\n' && controle != EOF); // Limpar o buffer
 	}
 
@@ -572,16 +586,12 @@ void pedidos(int opcao, int controle, struct Pilha* pilha)
 		printf("Tela");
 		break;
 
-	case 3:
-		printf("Tela");
-		break;
-
 	case 0:
 		desempilhar(pilha);
 		break;
 
 	default:
-		printf("Opção inválida. Por favor, escolha uma opção válida.\n");
+		printf("Opcao invalida. Por favor, escolha uma opcao valida.\n");
 		system("pause");
 		break;
 	}
@@ -606,7 +616,7 @@ void relatorios(int opcao, int controle, struct Pilha* pilha)
 	printf("O que deseja exibir?\n");
 	while (scanf("%d", &opcao) != 1)
 	{
-		printf("Entrada inválida. Por favor, insira uma opção válida.\n");
+		printf("Entrada invalida. Por favor, insira uma opcao valida.\n");
 		while ((controle = getchar()) != '\n' && controle != EOF); // Limpar o buffer
 	}
 
@@ -645,7 +655,7 @@ void relatorios(int opcao, int controle, struct Pilha* pilha)
 		break;
 
 	default:
-		printf("Opção inválida. Por favor, escolha uma opção válida.\n");
+		printf("Opcao invalida. Por favor, escolha uma opção valida.\n");
 		system("pause");
 		break;
 	}
@@ -657,17 +667,16 @@ void delivery(int opcao, int controle, struct Pilha* pilha)
 	printf("*******************************************************************************\n");
 	printf("***             = = = = = Menu delivery = = = = =                           ***\n");
 	printf("***                                                                         ***\n");
-	printf("***             1. Registrar pedido                                         ***\n");
-	printf("***             2. Finalizar pedido                                         ***\n");
-	printf("***             3. Rastrear pedido                                       	***\n");
-	printf("***             4. Visualizar pedidos                                       ***\n");
+	printf("***             1. Finalizar pedido                                         ***\n");
+	printf("***             2. Rastrear pedido                                       	***\n");
+	printf("***             3. Visualizar pedidos                                       ***\n");
 	printf("***             0. Voltar                                                   ***\n");
 	printf("***                                                                         ***\n");
 	printf("*******************************************************************************\n");
 	printf("O que deseja fazer?\n");
 	while (scanf("%d", &opcao) != 1)
 	{
-		printf("Entrada inválida. Por favor, insira uma opção válida.\n");
+		printf("Entrada invalida. Por favor, insira uma opcao valida.\n");
 		while ((controle = getchar()) != '\n' && controle != EOF); // Limpar o buffer
 	}
 
@@ -685,16 +694,12 @@ void delivery(int opcao, int controle, struct Pilha* pilha)
 		printf("Tela");
 		break;
 
-	case 4:
-		printf("Tela");
-		break;
-
 	case 0:
 		desempilhar(pilha);
 		break;
 
 	default:
-		printf("Opção inválida. Por favor, escolha uma opção válida.\n");
+		printf("Opcao invalida. Por favor, escolha uma opcao valida.\n");
 		system("pause");
 		break;
 	}
@@ -707,8 +712,8 @@ void opcoes_de_pagamento(int opcao, int controle, struct Pilha* pilha)
 	printf("***             = = = = = Menu pagamento = = = = =                          ***\n");
 	printf("***                                                                         ***\n");
 	printf("***             1. Dinheiro                                                 ***\n");
-	printf("***             2. Cartão de credito                                        ***\n");
-	printf("***             3. Cartão de debito                                       	***\n");
+	printf("***             2. Cartao de credito                                        ***\n");
+	printf("***             3. Cartao de debito                                       	***\n");
 	printf("***             4. Transferencia bancaria                                   ***\n");
 	printf("***             5. Pix                                                      ***\n");
 	printf("***             0. Voltar                                                   ***\n");
@@ -717,7 +722,7 @@ void opcoes_de_pagamento(int opcao, int controle, struct Pilha* pilha)
 	printf("Qual a forma de pagamento desejada?\n");
 	while (scanf("%d", &opcao) != 1)
 	{
-		printf("Entrada inválida. Por favor, insira uma opção válida.\n");
+		printf("Entrada invalida. Por favor, insira uma opcao valida.\n");
 		while ((controle = getchar()) != '\n' && controle != EOF); // Limpar o buffer
 	}
 
@@ -748,17 +753,16 @@ void opcoes_de_pagamento(int opcao, int controle, struct Pilha* pilha)
 		break;
 
 	default:
-		printf("Opção inválida. Por favor, escolha uma opção válida.\n");
+		printf("Opcao invalida. Por favor, escolha uma opcao valida.\n");
 		system("pause");
 		break;
 	}
 }
 
-
 // easter eggs
-
 void beijo(int opcao, struct Pilha* pilha)
 {
+	system("clear||cls");
 	printf("+******##############################***++++++++++++++++++++++++++++++++++++++++++++++*+************\n");
 	printf("+*****##################################***++++******++++++++++++++++++++++++++++++++++++++*********\n");
 	printf("++**######################################**+++++++++++++++++++++++++++++++++++++++++++++*+*********\n");
@@ -793,6 +797,4 @@ void beijo(int opcao, struct Pilha* pilha)
 	printf("**#################**#######*+++++++++++++++++++++++++++++++++++++*#################**#***#*********\n");
 	printf("+***################*#######+++++++++++++++++++++++++++++++++++++++*##############**##**************\n");
 	system("Pause");
-	getchar();
-	desempilhar(pilha);
 }

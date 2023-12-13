@@ -40,5 +40,9 @@
 		<File Name="inserir_dados.h"/>
 		<File Name="user_input.h"/>
 		<File Name="user_input.c"/>
+		<File Name="produtos.h"/>
+		<File Name="produtos.c"/>
+		<File Name="pedidos.h"/>
+		<File Name="pedidos.c"/>
 	</Files>
 </Project>

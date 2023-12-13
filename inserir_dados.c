@@ -6,38 +6,13 @@
 #include "inserir_dados.h"
 #include "user_input.h"
 
-bool recebe_idade(int* idade_v)
-{
-	int controle = 0, limpa;
-
-	while (controle == 0)
-	{
-		while ((limpa = getchar()) != '\n' && limpa != EOF); // Limpar o buffer
-		char *idade_str = get_user_input("Insira a idade:\t");
-		int idade_int = atoi(idade_str);
-
-		if (idade_int <= 0 || idade_int > 150)
-		{
-			printf("Idade inválida\n");
-		}
-		else
-		{
-			printf("Idade válida");
-			controle = 1;
-			*idade_v = idade_int;
-		}
-	}
-	return true;
-}
-
 bool recebe_salario(double* salario_v)
 {
-	int controle = 0, limpa;
+	int controle = 0;
 
 	while (controle == 0)
 	{
-		while ((limpa = getchar()) != '\n' && limpa != EOF); // Limpar o buffer
-		char *salario = get_user_input("Insira o salario:\t");
+		char *salario = get_user_input("");
 		double salario_double = atof(salario);
 
 		if (salario_double <= 0)
@@ -55,7 +30,7 @@ bool recebe_salario(double* salario_v)
 
 bool recebe_id(char* id_v, int tipo)
 {
-	int controle = 0, limpa;
+	int controle = 0;
 	char str1[10];
 	char resultado[15];
 
@@ -80,8 +55,7 @@ bool recebe_id(char* id_v, int tipo)
 
 	while (controle == 0)
 	{
-		while ((limpa = getchar()) != '\n' && limpa != EOF); // Limpar o buffer
-		char* id = get_user_input("Insira o ID (máximo de 11 dígitos ou caracteres):\t");
+		char* id = get_user_input("");
 		size_t tamanho = strlen(id);
 
 		if (tamanho <= 0 || tamanho > 11)
@@ -102,21 +76,20 @@ bool recebe_id(char* id_v, int tipo)
 
 bool recebe_cargo(char* cargo_v)
 {
-	int controle = 0, i, limpa;
+	int controle = 0, i;
 
 	while (controle == 0)
 	{
-		while ((limpa = getchar()) != '\n' && limpa != EOF); // Limpar o buffer
-		char *cargo = get_user_input("Insira o cargo:\t");
+		char *cargo = get_user_input("");
 		size_t tamanho = strlen(cargo);
 
-		if (tamanho <= 0)
+		if (tamanho <= 1)
 		{
 			printf("Cargo inválido\n");
 		}
 		else
 		{
-			int cargo_valido = 1; // Suponha que o cargo é válido
+			int cargo_valido = 1;
 
 			for (i = 0; cargo[i] != '\0'; i++)
 			{
@@ -146,12 +119,11 @@ bool recebe_cargo(char* cargo_v)
 
 bool recebe_endereco(char* endereco_v)
 {
-	int controle = 0, limpa;
+	int controle = 0;
 
 	while (controle == 0)
 	{
-		while ((limpa = getchar()) != '\n' && limpa != EOF); // Limpar o buffer
-		char *endereco = get_user_input("Insira o endereço:\t");
+		char *endereco = get_user_input("");
 		size_t tamanho = strlen(endereco);
 
 		if (tamanho <= 0 || endereco[0] == '\0' || endereco[0] == ' ')
@@ -170,12 +142,11 @@ bool recebe_endereco(char* endereco_v)
 
 bool recebe_preco(double* preco_v)
 {
-	int controle = 0, limpa;
+	int controle = 0;
 
 	while (controle == 0)
 	{
-		while ((limpa = getchar()) != '\n' && limpa != EOF); // Limpar o buffer
-		char *preco = get_user_input("Insira o preco:\t");
+		char *preco = get_user_input("");
 		double preco_double = atof(preco);
 
 		if (preco_double <= 0)
@@ -191,15 +162,13 @@ bool recebe_preco(double* preco_v)
 	return true;
 }
 
-
 bool recebe_tipo(char* tipo_v)
 {
-	int controle = 0, i, limpa;
+	int controle = 0, i;
 
 	while (controle == 0)
 	{
-		while ((limpa = getchar()) != '\n' && limpa != EOF); // Limpar o buffer
-		char *tipo = get_user_input("Insira tipo do produto(bebida, aperitivo, etc):\t");
+		char *tipo = get_user_input("");
 		size_t tamanho = strlen(tipo);
 
 		if (tamanho <= 0)
@@ -208,7 +177,7 @@ bool recebe_tipo(char* tipo_v)
 		}
 		else
 		{
-			int tipo_valido = 1; // Suponha que o cargo é válido
+			int tipo_valido = 1;
 
 			for (i = 0; tipo[i] != '\0'; i++)
 			{
@@ -238,12 +207,11 @@ bool recebe_tipo(char* tipo_v)
 
 bool recebe_quantidade(int* quantidade_v)
 {
-	int controle = 0, limpa;
+	int controle = 0;
 
 	while (controle == 0)
 	{
-		while ((limpa = getchar()) != '\n' && limpa != EOF); // Limpar o buffer
-		char *quantidade_str = get_user_input("Insira a quantidade:\t");
+		char *quantidade_str = get_user_input("");
 		int quantidade_int = atoi(quantidade_str);
 
 		if (quantidade_int <= 0)
