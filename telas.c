@@ -1,9 +1,17 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <stdbool.h>
 #include "telas.h"
-#include "pessoas.h"
+#include "validadores.h"
 #include "produtos.h"
+#include "pedidos.h"
+#include "pessoas.h"
+#include "inserir_dados.h"
+#include "user_input.h"
+
+Estoque *produto;
+Pedidos *pedido;
 
 // Estrutura da pilha de telas
 struct No
@@ -96,18 +104,6 @@ void executarTela(struct Pilha* pilha)
 			pedidos(opcao, controle, pilha);
 			break;
 
-		case TELA_RELATORIOS:
-			relatorios(opcao, controle, pilha);
-			break;
-
-		case TELA_DELIVERY:
-			delivery(opcao, controle, pilha);
-			break;
-
-		case TELA_OPCOES_DE_PAGAMENTO:
-			opcoes_de_pagamento(opcao, controle, pilha);
-			break;
-
 			// Funções associadas ao funcionario
 		case CADASTRO_FUNCIONARIO:
 			cadastro_funcionario(pilha);
@@ -167,6 +163,25 @@ void executarTela(struct Pilha* pilha)
 			break;
 
 			// pedidos
+		case CARDAPIO:
+			cardapio(pilha);
+			break;
+
+		case CADASTRO_PEDIDO:
+			cadastro_pedido(produto, pilha);
+			break;
+
+		case EXIBE_PEDIDOS:
+			exibe_pedidos(pilha);
+			break;
+
+		case EXIBE_PEDIDOS_F:
+			exibe_pedidos_f(pilha);
+			break;
+
+		case FINALIZA_PEDIDO:
+			finaliza_pedido(pilha);
+			break;
 
 			// Easter eggs
 		case BEIJO:
@@ -179,7 +194,7 @@ void executarTela(struct Pilha* pilha)
 // Telas principais
 void tela_inicial(int opcao, int controle, struct Pilha* pilha)
 {
-	system("clear||cls");
+	limpartela();
 	printf("\n");
 	printf("*******************************************************************************\n");
 	printf("***             Universidade Federal do Rio Grande do Norte                 ***\n");
@@ -233,14 +248,14 @@ void tela_inicial(int opcao, int controle, struct Pilha* pilha)
 
 	default:
 		printf("Opcao invalida. Por favor, escolha uma opcao valida.\n");
-		system("pause");
+		pausarsistema();
 		break;
 	}
 }
 
 void tela_login(int opcao, int controle, struct Pilha* pilha)
 {
-	system("clear||cls");
+	limpartela();
 	printf("*******************************************************************************\n");
 	printf("***             = = = = = Menu de login = = = = =                           ***\n");
 	printf("***                                                                         ***\n");
@@ -277,14 +292,14 @@ void tela_login(int opcao, int controle, struct Pilha* pilha)
 
 	default:
 		printf("Opcao invalida. Por favor, escolha uma opcao valida.\n");
-		system("pause");
+		pausarsistema();
 		break;
 	}
 }
 
 void tela_info_projeto(int opcao, int controle, struct Pilha* pilha)
 {
-	system("clear||cls");
+	limpartela();
 	printf("*******************************************************************************\n");
 	printf("***             = = = = = informações sobre o projeto = = = = =             ***\n");
 	printf("***                                                                         ***\n");
@@ -310,7 +325,7 @@ void tela_info_projeto(int opcao, int controle, struct Pilha* pilha)
 
 void tela_info_equipe(int opcao, int controle, struct Pilha* pilha)
 {
-	system("clear||cls");
+	limpartela();
 	printf("*******************************************************************************\n");
 	printf("***             = = = = = informacoes sobre Equipe responsavel = = = = =    ***\n");
 	printf("***                                                                         ***\n");
@@ -338,7 +353,7 @@ void tela_info_equipe(int opcao, int controle, struct Pilha* pilha)
 // Telas secundárias
 void administrador(int opcao, int controle, struct Pilha* pilha)
 {
-	system("clear||cls");
+	limpartela();
 	printf("*******************************************************************************\n");
 	printf("***             = = = = = Menu de administrador = = = = =                   ***\n");
 	printf("***                                                                         ***\n");
@@ -400,14 +415,14 @@ void administrador(int opcao, int controle, struct Pilha* pilha)
 
 	default:
 		printf("Opcao invalida. Por favor, escolha uma opcao valida.\n");
-		system("pause");
+		pausarsistema();
 		break;
 	}
 }
 
 void funcionario(int opcao, int controle, struct Pilha* pilha)
 {
-	system("clear||cls");
+	limpartela();
 	printf("*******************************************************************************\n");
 	printf("***             = = = = = Menu de funcionario = = = = =                     ***\n");
 	printf("***                                                                         ***\n");
@@ -444,20 +459,19 @@ void funcionario(int opcao, int controle, struct Pilha* pilha)
 
 	default:
 		printf("Opcao invalida. Por favor, escolha uma opcao valida.\n");
-		system("pause");
+		pausarsistema();
 		break;
 	}
 }
 
 void cliente(int opcao, int controle, struct Pilha* pilha)
 {
-	system("clear||cls");
+	limpartela();
 	printf("*******************************************************************************\n");
 	printf("***             = = = = = Menu de cliente = = = = =                         ***\n");
 	printf("***                                                                         ***\n");
 	printf("***             1. Realizar pedido                                          ***\n");
-	printf("***             2. Reservar mesa                                            ***\n");
-	printf("***             3. Visualizar cardapio                                      ***\n");
+	printf("***             2. Visualizar cardapio                                      ***\n");
 	printf("***             0. Voltar                                                   ***\n");
 	printf("***                                                                         ***\n");
 	printf("*******************************************************************************\n");
@@ -471,15 +485,11 @@ void cliente(int opcao, int controle, struct Pilha* pilha)
 	switch(opcao)
 	{
 	case 1:
-		printf("Tela");
+		empilhar(pilha, CADASTRO_PEDIDO);
 		break;
 
 	case 2:
-		printf("Tela");
-		break;
-
-	case 3:
-		printf("Tela");
+		empilhar(pilha, CARDAPIO);
 		break;
 
 	case 0:
@@ -488,7 +498,7 @@ void cliente(int opcao, int controle, struct Pilha* pilha)
 
 	default:
 		printf("Opcao inválida. Por favor, escolha uma opção válida.\n");
-		system("pause");
+		pausarsistema();
 		break;
 	}
 }
@@ -496,7 +506,7 @@ void cliente(int opcao, int controle, struct Pilha* pilha)
 // Telas terciarias
 void estoque(int opcao, int controle, struct Pilha* pilha)
 {
-	system("clear||cls");
+	limpartela();
 	printf("*******************************************************************************\n");
 	printf("***             = = = = = Menu Estoque = = = = =                            ***\n");
 	printf("***                                                                         ***\n");
@@ -553,19 +563,20 @@ void estoque(int opcao, int controle, struct Pilha* pilha)
 
 	default:
 		printf("Opcao invalida. Por favor, escolha uma opcao valida.\n");
-		system("pause");
+		pausarsistema();
 		break;
 	}
 }
 
 void pedidos(int opcao, int controle, struct Pilha* pilha)
 {
-	system("clear||cls");
+	limpartela();
 	printf("*******************************************************************************\n");
 	printf("***             = = = = = Menu Pedidos = = = = =                            ***\n");
 	printf("***                                                                         ***\n");
 	printf("***             1. Finalizar pedidos                                        ***\n");
-	printf("***             2. Visualizar pedidos                                       ***\n");
+	printf("***             2. Visualizar pedidos em aberto                             ***\n");
+	printf("***             3. Visualizar pedidos finalizados                           ***\n");
 	printf("***             0. Voltar                                                   ***\n");
 	printf("***                                                                         ***\n");
 	printf("*******************************************************************************\n");
@@ -579,11 +590,15 @@ void pedidos(int opcao, int controle, struct Pilha* pilha)
 	switch(opcao)
 	{
 	case 1:
-		printf("Tela");
+		empilhar(pilha,	FINALIZA_PEDIDO);
 		break;
 
 	case 2:
-		printf("Tela");
+		empilhar(pilha, EXIBE_PEDIDOS);
+		break;
+
+	case 3:
+		empilhar(pilha, EXIBE_PEDIDOS_F);
 		break;
 
 	case 0:
@@ -592,169 +607,7 @@ void pedidos(int opcao, int controle, struct Pilha* pilha)
 
 	default:
 		printf("Opcao invalida. Por favor, escolha uma opcao valida.\n");
-		system("pause");
-		break;
-	}
-}
-
-void relatorios(int opcao, int controle, struct Pilha* pilha)
-{
-	system("clear||cls");
-	printf("*******************************************************************************\n");
-	printf("***             = = = = = Menu relatorios = = = = =                         ***\n");
-	printf("***                                                                         ***\n");
-	printf("***             1. Vendas semanais                                          ***\n");
-	printf("***             2. Despesas semanais                                        ***\n");
-	printf("***             3. Lucro semanal                                        	***\n");
-	printf("***             4. Vendas por item                                          ***\n");
-	printf("***             5. Atendimentos por dia                                     ***\n");
-	printf("***             6. Vendas por horario                                    	***\n");
-	printf("***             7. Lucro semanal                                        	***\n");
-	printf("***             0. Voltar                                                   ***\n");
-	printf("***                                                                         ***\n");
-	printf("*******************************************************************************\n");
-	printf("O que deseja exibir?\n");
-	while (scanf("%d", &opcao) != 1)
-	{
-		printf("Entrada invalida. Por favor, insira uma opcao valida.\n");
-		while ((controle = getchar()) != '\n' && controle != EOF); // Limpar o buffer
-	}
-
-	switch(opcao)
-	{
-	case 1:
-		printf("Tela");
-		break;
-
-	case 2:
-		printf("Tela");
-		break;
-
-	case 3:
-		printf("Tela");
-		break;
-
-	case 4:
-		printf("Tela");
-		break;
-
-	case 5:
-		printf("Tela");
-		break;
-
-	case 6:
-		printf("Tela");
-		break;
-
-	case 7:
-		printf("Tela");
-		break;
-
-	case 0:
-		desempilhar(pilha);
-		break;
-
-	default:
-		printf("Opcao invalida. Por favor, escolha uma opção valida.\n");
-		system("pause");
-		break;
-	}
-}
-
-void delivery(int opcao, int controle, struct Pilha* pilha)
-{
-	system("clear||cls");
-	printf("*******************************************************************************\n");
-	printf("***             = = = = = Menu delivery = = = = =                           ***\n");
-	printf("***                                                                         ***\n");
-	printf("***             1. Finalizar pedido                                         ***\n");
-	printf("***             2. Rastrear pedido                                       	***\n");
-	printf("***             3. Visualizar pedidos                                       ***\n");
-	printf("***             0. Voltar                                                   ***\n");
-	printf("***                                                                         ***\n");
-	printf("*******************************************************************************\n");
-	printf("O que deseja fazer?\n");
-	while (scanf("%d", &opcao) != 1)
-	{
-		printf("Entrada invalida. Por favor, insira uma opcao valida.\n");
-		while ((controle = getchar()) != '\n' && controle != EOF); // Limpar o buffer
-	}
-
-	switch(opcao)
-	{
-	case 1:
-		printf("Tela");
-		break;
-
-	case 2:
-		printf("Tela");
-		break;
-
-	case 3:
-		printf("Tela");
-		break;
-
-	case 0:
-		desempilhar(pilha);
-		break;
-
-	default:
-		printf("Opcao invalida. Por favor, escolha uma opcao valida.\n");
-		system("pause");
-		break;
-	}
-}
-
-void opcoes_de_pagamento(int opcao, int controle, struct Pilha* pilha)
-{
-	system("clear||cls");
-	printf("*******************************************************************************\n");
-	printf("***             = = = = = Menu pagamento = = = = =                          ***\n");
-	printf("***                                                                         ***\n");
-	printf("***             1. Dinheiro                                                 ***\n");
-	printf("***             2. Cartao de credito                                        ***\n");
-	printf("***             3. Cartao de debito                                       	***\n");
-	printf("***             4. Transferencia bancaria                                   ***\n");
-	printf("***             5. Pix                                                      ***\n");
-	printf("***             0. Voltar                                                   ***\n");
-	printf("***                                                                         ***\n");
-	printf("*******************************************************************************\n");
-	printf("Qual a forma de pagamento desejada?\n");
-	while (scanf("%d", &opcao) != 1)
-	{
-		printf("Entrada invalida. Por favor, insira uma opcao valida.\n");
-		while ((controle = getchar()) != '\n' && controle != EOF); // Limpar o buffer
-	}
-
-	switch(opcao)
-	{
-	case 1:
-		printf("Tela");
-		break;
-
-	case 2:
-		printf("Tela");
-		break;
-
-	case 3:
-		printf("Tela");
-		break;
-
-	case 4:
-		printf("Tela");
-		break;
-
-	case 5:
-		printf("Tela");
-		break;
-
-	case 0:
-		desempilhar(pilha);
-		break;
-
-	default:
-		printf("Opcao invalida. Por favor, escolha uma opcao valida.\n");
-		system("pause");
+		pausarsistema();
 		break;
 	}
 }
@@ -762,7 +615,7 @@ void opcoes_de_pagamento(int opcao, int controle, struct Pilha* pilha)
 // easter eggs
 void beijo(int opcao, struct Pilha* pilha)
 {
-	system("clear||cls");
+	limpartela();
 	printf("+******##############################***++++++++++++++++++++++++++++++++++++++++++++++*+************\n");
 	printf("+*****##################################***++++******++++++++++++++++++++++++++++++++++++++*********\n");
 	printf("++**######################################**+++++++++++++++++++++++++++++++++++++++++++++*+*********\n");
@@ -796,5 +649,5 @@ void beijo(int opcao, struct Pilha* pilha)
 	printf("*############*******#**#####*+++++++++++++++++++++++**************#####################****##*******\n");
 	printf("**#################**#######*+++++++++++++++++++++++++++++++++++++*#################**#***#*********\n");
 	printf("+***################*#######+++++++++++++++++++++++++++++++++++++++*##############**##**************\n");
-	system("Pause");
+	pausarsistema();
 }

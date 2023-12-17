@@ -3,5 +3,7 @@
 
 char *get_user_input(char *prompt);
 void limpar_buffer();
+void limpartela();
+void pausarsistema();
 
 #endif

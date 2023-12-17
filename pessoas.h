@@ -31,4 +31,7 @@ bool procurar_funcionario(Pessoa * funcionario, struct Pilha * pilha);
 void desabilita_funcionario(struct Pilha * pilha);
 void readimite_funcionario(struct Pilha * pilha);
 
+bool funcionario_com_id_existente(char* id);
+bool funcionario_com_cpf_existente(char* cpf);
+
 #endif

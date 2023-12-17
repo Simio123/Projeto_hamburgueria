@@ -11,7 +11,7 @@
 
 void legenda_produto(void)
 {
-	system("clear||cls");
+	limpartela();
 	printf("*******************************************************************************\n");
 	printf("***             = = = = = Menu de cadastro de produtos  = = = = =           ***\n");
 	printf("*******************************************************************************\n");
@@ -23,7 +23,7 @@ Estoque* cadastro_produto(struct Pilha* pilha)
 	while ((controle_n = getchar()) != '\n' && controle_n != EOF);
 	Estoque *produto = malloc(sizeof(Estoque));
 
-	int controle = 0, quantidade_v, status_v = 1, tipo = 3;
+	int controle = 0, quantidade_v, status_v = 1, tipo = 3, controle2 = 0;
 	double preco_v;
 	char id_v[11], nome_v[100], tipo_v[50], data_v[11];
 
@@ -37,9 +37,23 @@ Estoque* cadastro_produto(struct Pilha* pilha)
 		printf("Insira o tipo do produto(bebida, entrada, aperitivo):");
 		recebe_tipo(tipo_v);
 
-		legenda_produto();
-		printf("Insira oid do produto:");
-		recebe_id(id_v, tipo);
+		do
+		{
+			legenda_produto();
+			printf("Insira o id do produto:");
+			recebe_id(id_v, tipo);
+
+			if (produto_com_id_existente(id_v))
+			{
+				printf("ID já cadastrado. Insira um ID diferente.\n");
+				pausarsistema();
+			}
+			else
+			{
+				controle2 = 1;
+			}
+		}
+		while(controle2 != 1);
 
 		legenda_produto();
 		printf("Insira a quantidade disponivel do produto:");
@@ -74,8 +88,8 @@ Estoque* cadastro_produto(struct Pilha* pilha)
 	salva_produto(produto);
 
 	printf("Produto cadastrado com sucesso\n");
-	system("pause");
-	system("clear||cls");
+	pausarsistema();
+	limpartela();
 	desempilhar(pilha);
 
 	return produto;
@@ -102,7 +116,7 @@ void salva_produto(Estoque * produto)
 void listagem_produtos(struct Pilha * pilha)
 {
 	Estoque produto;
-	system("clear||cls");
+	limpartela();
 	printf("*******************************************************************************\n");
 	printf("***                = = = = = Listagem de produtos = = = = =                 ***\n");
 	printf("*******************************************************************************\n");
@@ -113,7 +127,7 @@ void listagem_produtos(struct Pilha * pilha)
 	{
 		printf("Erro ao abrir o arquivo para leitura ou nao existem produtos cadastrados\n");
 		fclose(file);
-		system("pause");
+		pausarsistema();
 		desempilhar(pilha);
 	}
 	else
@@ -131,7 +145,7 @@ void listagem_produtos(struct Pilha * pilha)
 			}
 		}
 		fclose(file);
-		system("pause");
+		pausarsistema();
 		desempilhar(pilha);
 	}
 }
@@ -139,7 +153,7 @@ void listagem_produtos(struct Pilha * pilha)
 void listagem_produtos_i(struct Pilha * pilha)
 {
 	Estoque produto;
-	system("clear||cls");
+	limpartela();
 	printf("*******************************************************************************\n");
 	printf("***                = = = = = Listagem de produtos = = = = =                 ***\n");
 	printf("*******************************************************************************\n");
@@ -150,7 +164,7 @@ void listagem_produtos_i(struct Pilha * pilha)
 	{
 		printf("Erro ao abrir o arquivo para leitura ou nao existem produtos cadastrados\n");
 		fclose(file);
-		system("pause");
+		pausarsistema();
 		desempilhar(pilha);
 	}
 	else
@@ -168,49 +182,71 @@ void listagem_produtos_i(struct Pilha * pilha)
 			}
 		}
 		fclose(file);
-		system("pause");
+		pausarsistema();
 		desempilhar(pilha);
 	}
 }
 
-void listagem_todos_produtos(struct Pilha * pilha)
+
+int compararPorTipo(const void *a, const void *b)
+{
+	return strcmp(((Estoque*)a)->tipo, ((Estoque*)b)->tipo);
+}
+
+void listagem_todos_produtos(struct Pilha *pilha)
 {
 	Estoque produto;
-	system("clear||cls");
+	int i;
+	limpartela();
 	printf("*******************************************************************************\n");
-	printf("***                = = = = = Listagem de produtos = = = = =                 ***\n");
+	printf("***                = = = = = Listagem de produtos por tipo = = = = =         ***\n");
 	printf("*******************************************************************************\n");
 
-	FILE* file = fopen("produtos.dat", "rb");
+	FILE *file = fopen("produtos.dat", "rb");
 
 	if (file == NULL)
 	{
-		printf("Erro ao abrir o arquivo para leitura ou nao existem produtos cadastrados\n");
+		printf("Erro ao abrir o arquivo para leitura ou não existem produtos cadastrados\n");
 		fclose(file);
-		system("pause");
+		pausarsistema();
 		desempilhar(pilha);
 	}
 	else
 	{
-		printf("|************|************************|*****************|*****************|******************|************|****************|\n");
-		printf("|Status      |Nome                    |Data de validade |Tipo             |Quantidade        |Preco       |Id              |\n");
+		Estoque *produtos_por_tipo = NULL;
+		int num_produtos = 0;
 
 		while (fread(&produto, sizeof(Estoque), 1, file) == 1)
 		{
-			if (produto.status == 1)
+
+			produtos_por_tipo = realloc(produtos_por_tipo, (num_produtos + 1) * sizeof(Estoque));
+			produtos_por_tipo[num_produtos] = produto;
+			num_produtos++;
+		}
+
+		qsort(produtos_por_tipo, num_produtos, sizeof(Estoque), compararPorTipo);
+
+		printf("|************|************************|*****************|*****************|******************|************|****************|\n");
+		printf("|Status      |Nome                    |Data de validade |Tipo             |Quantidade        |Preco       |Id              |\n");
+
+		for (i = 0; i < num_produtos; i++)
+		{
+			if (produtos_por_tipo[i].status == 1)
 			{
 				printf("|************|************************|*****************|*****************|******************|************|****************|\n");
-				printf("|Em estoque  |%-24s|%-17s|%-17s|%-18d|%-12.2f|%-16s|\n", produto.nome, produto.validade, produto.tipo, produto.quantidade, produto.preco, produto.id);
+				printf("|Em estoque  |%-24s|%-17s|%-17s|%-18d|%-12.2f|%-16s|\n", produtos_por_tipo[i].nome, produtos_por_tipo[i].validade, produtos_por_tipo[i].tipo, produtos_por_tipo[i].quantidade, produtos_por_tipo[i].preco, produtos_por_tipo[i].id);
 			}
 			else
 			{
 				printf("|************|************************|*****************|*****************|******************|************|****************|\n");
-				printf("|Sem estoque |%-24s|%-17s|%-17s|%-18d|%-12.2f|%-16s|\n", produto.nome, produto.validade, produto.tipo, produto.quantidade, produto.preco, produto.id);
-
+				printf("|Sem estoque |%-24s|%-17s|%-17s|%-18d|%-12.2f|%-16s|\n", produtos_por_tipo[i].nome, produtos_por_tipo[i].validade, produtos_por_tipo[i].tipo, produtos_por_tipo[i].quantidade, produtos_por_tipo[i].preco, produtos_por_tipo[i].id);
 			}
 		}
+
+		free(produtos_por_tipo);
+
 		fclose(file);
-		system("pause");
+		pausarsistema();
 		desempilhar(pilha);
 	}
 }
@@ -223,7 +259,7 @@ void editar_dados_produtos(struct Pilha * pilha)
 
 	Estoque produto;
 
-	system("clear||cls");
+	limpartela();
 	printf("*******************************************************************************\n");
 	printf("***                 = = = = = Edição de produtos = = = = =                  ***\n");
 	printf("*******************************************************************************\n");
@@ -232,7 +268,7 @@ void editar_dados_produtos(struct Pilha * pilha)
 	{
 		do
 		{
-			system("clear||cls");
+			limpartela();
 			printf("*******************************************************************************\n");
 			printf("***                 = = = = = Edição de produtos = = = = =                  ***\n");
 			printf("*******************************************************************************\n");
@@ -248,7 +284,7 @@ void editar_dados_produtos(struct Pilha * pilha)
 
 			char *opc = get_user_input("O que deseja fazer?\t");
 			opc_v = atoi(opc);
-			system("clear||cls");
+			limpartela();
 
 			switch(opc_v)
 			{
@@ -289,23 +325,24 @@ void editar_dados_produtos(struct Pilha * pilha)
 				break;
 
 			case 0:
+				opc_v = 1000;
 				desempilhar(pilha);
-				system("pause");
+				pausarsistema();
 				break;
 
 			default:
 				printf("Opção inválida.\n");
 			}
 			printf("Alteração realizada\n");
-			system("pause");
+			pausarsistema();
 		}
-		while(opc_v != 0);
+		while(opc_v != 1000);
 		atualizar_produto(&produto);
 	}
 	else
 	{
 		printf("Produto não encontrado\n");
-		system("pause");
+		pausarsistema();
 		desempilhar(pilha);
 	}
 }
@@ -349,7 +386,7 @@ bool procurar_produto(Estoque * produto, struct Pilha * pilha)
 		printf("Erro ao abrir o arquivo para leitura.\n");
 		return false;
 		fclose(file);
-		system("pause");
+		pausarsistema();
 		desempilhar(pilha);
 	}
 	else
@@ -360,7 +397,7 @@ bool procurar_produto(Estoque * produto, struct Pilha * pilha)
 			{
 				fclose(file);
 				printf("Produto encontrado\n");
-				system("pause");
+				pausarsistema();
 				return true;
 				desempilhar(pilha);
 			}
@@ -375,7 +412,7 @@ void desabilita_produto(struct Pilha * pilha)
 	int controle = 0;
 	Estoque produto;
 
-	system("clear||cls");
+	limpartela();
 	printf("*******************************************************************************\n");
 	printf("***                = = = = = Exclusão de produtos = = = = =                 ***\n");
 	printf("*******************************************************************************\n");
@@ -394,9 +431,11 @@ void desabilita_produto(struct Pilha * pilha)
 
 	while (fread(&produto, sizeof(Estoque), 1, file) == 1)
 	{
-		if (strcmp(produto.nome, nome_v) == 0)
+		if (strcmp(produto.nome, nome_v) == 0 && produto.status == 1)
 		{
 			produto.status = 0;
+			produto.quantidade = 0;
+			strncpy(produto.validade, "XX/XX/XXXX", 11);
 			fseek(file, -sizeof(Estoque), SEEK_CUR);
 			fwrite(&produto, sizeof(Estoque), 1, file);
 			controle = 1;
@@ -414,18 +453,18 @@ void desabilita_produto(struct Pilha * pilha)
 		printf("\n");
 		printf("Produto retirado do estoque com sucesso.\n");
 	}
-	system("pause");
+	pausarsistema();
 	fclose(file);
 	desempilhar(pilha);
 }
 
 void repoe_produto(struct Pilha * pilha)
 {
-	char nome_v[100];
-	int controle = 0;
+	char nome_v[100], data_v[11];
+	int controle = 0, quantidade_v;
 	Estoque produto;
 
-	system("clear || cls");
+	limpartela();
 	printf("*******************************************************************************\n");
 	printf("***                = = = = = reposicao de estoque = = = = =                 ***\n");
 	printf("*******************************************************************************\n");
@@ -444,9 +483,18 @@ void repoe_produto(struct Pilha * pilha)
 
 	while (fread(&produto, sizeof(Estoque), 1, file) == 1)
 	{
-		if (strcmp(produto.nome, nome_v) == 0)
+		if (strcmp(produto.nome, nome_v) == 0 && produto.status == 0)
 		{
 			produto.status = 1;
+
+			printf("Insira a nova data de validade do produto\t");
+			recebe_data(data_v);
+			strncpy(produto.validade, data_v, 11);
+
+			printf("Insira a nova quantidade do produto\t");
+			recebe_quantidade(&quantidade_v);
+			produto.quantidade = quantidade_v;
+
 			fseek(file, -sizeof(Estoque), SEEK_CUR);
 			fwrite(&produto, sizeof(Estoque), 1, file);
 			controle = 1;
@@ -457,14 +505,75 @@ void repoe_produto(struct Pilha * pilha)
 	if (!controle)
 	{
 		printf("\n");
-		printf("Funcionário não encontrado.\n");
+		printf("Produtoo não encontrado.\n");
 	}
 	else
 	{
 		printf("\n");
-		printf("Funcionário readmitido com sucesso.\n");
+		printf("Produto recolocado no estoque com sucesso.\n");
 	}
-	system("pause");
+	pausarsistema();
 	fclose(file);
 	desempilhar(pilha);
+}
+
+void cardapio(struct Pilha * pilha)
+{
+	Estoque produto;
+
+	limpartela();
+	printf("*******************************************************************************\n");
+	printf("***                      = = = = = Cardapio = = = = =                       ***\n");
+	printf("*******************************************************************************\n");
+
+	FILE* file = fopen("produtos.dat", "rb");
+
+	if (file == NULL)
+	{
+		printf("Erro ao abrir o arquivo para leitura ou o cardapio está vazio\n");
+		fclose(file);
+		pausarsistema();
+		desempilhar(pilha);
+	}
+	else
+	{
+		printf("|************************|*****************|******************|************|****************|\n");
+		printf("|Nome                    |Tipo             |Quantidade        |Preco       |Id              |\n");
+
+		while (fread(&produto, sizeof(Estoque), 1, file) == 1)
+		{
+			if (produto.status == 1)
+			{
+				printf("|************************|*****************|******************|************|****************|\n");
+				printf("|%-24s|%-17s|%-18d|%-12.2f|%-16s|\n", produto.nome, produto.tipo, produto.quantidade, produto.preco, produto.id);
+			}
+		}
+		fclose(file);
+		pausarsistema();
+		desempilhar(pilha);
+	}
+}
+
+bool produto_com_id_existente(char* id)
+{
+	FILE* file = fopen("produtos.dat", "rb");
+
+	if (file == NULL)
+	{
+		printf("Erro ao abrir o arquivo para leitura.\n");
+		return false;
+	}
+
+	Estoque produto_atual;
+
+	while (fread(&produto_atual, sizeof(Estoque), 1, file) == 1)
+	{
+		if (strcmp(produto_atual.id, id) == 0)
+		{
+			fclose(file);
+			return true;
+		}
+	}
+	fclose(file);
+	return false;
 }

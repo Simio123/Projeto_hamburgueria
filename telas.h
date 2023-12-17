@@ -17,9 +17,6 @@ enum Tela
 	// Telas terciarias
 	TELA_ESTOQUE,
 	TELA_PEDIDOS,
-	TELA_RELATORIOS,
-	TELA_DELIVERY,
-	TELA_OPCOES_DE_PAGAMENTO,
 
 	// Funções de funcionario
 	CADASTRO_FUNCIONARIO,
@@ -40,6 +37,11 @@ enum Tela
 	EDITA_DADOS_PRODUTOS,
 
 	// funções de pedido
+	CARDAPIO,
+	CADASTRO_PEDIDO,
+	EXIBE_PEDIDOS,
+	EXIBE_PEDIDOS_F,
+	FINALIZA_PEDIDO,
 
 	// Easter eggs
 	BEIJO,

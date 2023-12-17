@@ -28,5 +28,8 @@ void editar_dados_produtos(struct Pilha * pilha);
 bool procurar_produto(Estoque * produto, struct Pilha * pilha);
 void desabilita_produto(struct Pilha * pilha);
 void repoe_produto(struct Pilha * pilha);
+void cardapio(struct Pilha * pilha);
+
+bool produto_com_id_existente(char* id);
 
 #endif

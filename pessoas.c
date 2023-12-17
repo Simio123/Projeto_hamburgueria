@@ -11,7 +11,7 @@
 
 void legenda_funcionario(void)
 {
-	system("clear||cls");
+	limpartela();
 	printf("*******************************************************************************\n");
 	printf("***           = = = = = Menu de cadastro de funcionário = = = = =           ***\n");
 	printf("*******************************************************************************\n");
@@ -19,18 +19,32 @@ void legenda_funcionario(void)
 
 Pessoa* cadastro_funcionario(struct Pilha * pilha)
 {
+	limpar_buffer();
 	Pessoa *funcionario = malloc(sizeof(Pessoa));
 
-	int controle = 0, status_v = 1, tipo = 0;
+	int controle = 0, status_v = 1, tipo = 0, controle2 = 0, controle1 = 0;
 	double salario_v;
 	char id_v[17], nome_v[100], cargo_v[100], email_v[150], telefone_v[20], cpf_v[12], data_v[11];
 
 	while (controle != 3)
 	{
-		legenda_funcionario();
-		printf("Insira o cpf do funcionario(apenas numeros):");
-		limpar_buffer();
-		recebe_cpf(cpf_v);
+		do
+		{
+			legenda_funcionario();
+			printf("Insira o cpf do funcionario(apenas numeros):");
+			recebe_cpf(cpf_v);
+
+			if (funcionario_com_cpf_existente(cpf_v))
+			{
+				printf("CPF já cadastrado. Insira um CPF diferente.\n");
+				pausarsistema();
+			}
+			else
+			{
+				controle1 = 1;
+			}
+		}
+		while(controle1 != 1);
 
 		legenda_funcionario();
 		printf("Insira o nome do funcionario(apenas letras):");
@@ -48,9 +62,23 @@ Pessoa* cadastro_funcionario(struct Pilha * pilha)
 		printf("Insira o salario do funcionario(apenas numeros):");
 		recebe_salario(&salario_v);
 
-		legenda_funcionario();
-		printf("Insira o id do funcionario:");
-		recebe_id(id_v, tipo);
+		do
+		{
+			legenda_funcionario();
+			printf("Insira o id do funcionario:");
+			recebe_id(id_v, tipo);
+
+			if (funcionario_com_id_existente(id_v))
+			{
+				printf("ID já cadastrado. Insira um ID diferente.\n");
+				pausarsistema();
+			}
+			else
+			{
+				controle2 = 1;
+			}
+		}
+		while(controle2 != 1);
 
 		legenda_funcionario();
 		printf("Insira o email do funcionario:");
@@ -82,8 +110,8 @@ Pessoa* cadastro_funcionario(struct Pilha * pilha)
 	salva_funcionario(funcionario);
 
 	printf("Funcionário cadastrado com sucesso\n");
-	system("pause");
-	system("clear||cls");
+	pausarsistema();
+	limpartela();
 	desempilhar(pilha);
 
 	return funcionario;
@@ -110,7 +138,7 @@ void salva_funcionario(Pessoa * funcionario)
 void listagem_funcionarios(struct Pilha * pilha)
 {
 	Pessoa funcionario;
-	system("clear||cls");
+	limpartela();
 	printf("*******************************************************************************\n");
 	printf("***              = = = = = Listagem de funcionários = = = = =               ***\n");
 	printf("*******************************************************************************\n");
@@ -121,7 +149,7 @@ void listagem_funcionarios(struct Pilha * pilha)
 	{
 		printf("Erro ao abrir o arquivo para leitura ou nao existem funcionarios cadastrados\n");
 		fclose(file);
-		system("pause");
+		pausarsistema();
 		desempilhar(pilha);
 	}
 	else
@@ -138,7 +166,7 @@ void listagem_funcionarios(struct Pilha * pilha)
 			}
 		}
 		fclose(file);
-		system("pause");
+		pausarsistema();
 		desempilhar(pilha);
 	}
 }
@@ -146,7 +174,7 @@ void listagem_funcionarios(struct Pilha * pilha)
 void listagem_funcionarios_i(struct Pilha * pilha)
 {
 	Pessoa funcionario;
-	system("clear || cls");
+	limpartela();
 	printf("*******************************************************************************\n");
 	printf("***              = = = = = Listagem de funcionários = = = = =               ***\n");
 	printf("*******************************************************************************\n");
@@ -157,7 +185,7 @@ void listagem_funcionarios_i(struct Pilha * pilha)
 	{
 		printf("Erro ao abrir o arquivo para leitura ou nao existem funcionarios cadastrados\n");
 		fclose(file);
-		system("pause");
+		pausarsistema();
 		desempilhar(pilha);
 	}
 	else
@@ -176,65 +204,94 @@ void listagem_funcionarios_i(struct Pilha * pilha)
 			}
 		}
 		fclose(file);
-		system("pause");
+		pausarsistema();
 		desempilhar(pilha);
 	}
 }
 
-void listagem_todos_funcionarios(struct Pilha * pilha)
+void listagem_todos_funcionarios(struct Pilha *pilha)
 {
+	int i, j;
 	Pessoa funcionario;
-	system("clear || cls");
+	limpartela();
 	printf("*******************************************************************************\n");
-	printf("***              = = = = = Listagem de funcionários = = = = =               ***\n");
+	printf("***    = = = = = Listagem de funcionarios por ordem alfabetica = = = = =    ***\n");
 	printf("*******************************************************************************\n");
 
-	FILE* file = fopen("funcionarios.dat", "rb");
+	FILE *file = fopen("funcionarios.dat", "rb");
 
 	if (file == NULL)
 	{
 		printf("Erro ao abrir o arquivo para leitura ou nao existem funcionarios cadastrados\n");
 		fclose(file);
-		system("pause");
+		pausarsistema();
 		desempilhar(pilha);
 	}
-
 	else
 	{
-		printf("\n");
-		printf("|********|************************|*****************|*****************|********************|**********|*************|*****************|***********|\n");
+		char nomes_ordenados[100][100];
+		Pessoa dados_ordenados[100];
+		int num_funcionarios = 0;
+
+		while (fread(&funcionario, sizeof(struct Pessoa), 1, file) == 1)
+		{
+			strcpy(nomes_ordenados[num_funcionarios], funcionario.nome);
+			dados_ordenados[num_funcionarios] = funcionario;
+			num_funcionarios++;
+		}
+
+		for ( i = 0; i < num_funcionarios - 1; i++)
+		{
+			for ( j = i + 1; j < num_funcionarios; j++)
+			{
+				if (strcmp(nomes_ordenados[i], nomes_ordenados[j]) > 0)
+				{
+					char temp_nome[50];
+					Pessoa temp_dados;
+
+					strcpy(temp_nome, nomes_ordenados[i]);
+					strcpy(nomes_ordenados[i], nomes_ordenados[j]);
+					strcpy(nomes_ordenados[j], temp_nome);
+
+					temp_dados = dados_ordenados[i];
+					dados_ordenados[i] = dados_ordenados[j];
+					dados_ordenados[j] = temp_dados;
+				}
+			}
+		}
+
+		printf("\n|********|************************|*****************|*****************|********************|**********|*************|*****************|***********|\n");
 		printf("|Status  |Nome                    |CPF              |Telefone         |Data de contratacao |Salario   |Cargo        |Email            |Id         |\n");
 
-		while (fread(&funcionario, sizeof(Pessoa), 1, file) == 1)
+		for (i = 0; i < num_funcionarios; i++)
 		{
-
-			if (funcionario.status == 1)
+			if (dados_ordenados[i].status)
 			{
 				printf("|********|************************|*****************|*****************|********************|**********|*************|*****************|***********|\n");
-				printf("|Ativo   |%-24s|%-17s|%-17s|%-20s|%-10.2f|%-13s|%-17s|%-11s| \n", funcionario.nome, funcionario.cpf, funcionario.telefone, funcionario.data, funcionario.salario, funcionario.cargo, funcionario.email, funcionario.id);
+				printf("|Ativo   |%-24s|%-17s|%-17s|%-20s|%-10.2f|%-13s|%-17s|%-11s| \n", dados_ordenados[i].nome, dados_ordenados[i].cpf, dados_ordenados[i].telefone, dados_ordenados[i].data, dados_ordenados[i].salario, dados_ordenados[i].cargo, dados_ordenados[i].email, dados_ordenados[i].id);
 			}
 			else
 			{
 				printf("|********|************************|*****************|*****************|********************|**********|*************|*****************|***********|\n");
-				printf("|Inativo |%-24s|%-17s|%-17s|%-20s|%-10.2f|%-13s|%-17s|%-11s| \n", funcionario.nome, funcionario.cpf, funcionario.telefone, funcionario.data, funcionario.salario, funcionario.cargo, funcionario.email, funcionario.id);
+				printf("|Inativo |%-24s|%-17s|%-17s|%-20s|%-10.2f|%-13s|%-17s|%-11s| \n", dados_ordenados[i].nome, dados_ordenados[i].cpf, dados_ordenados[i].telefone, dados_ordenados[i].data, dados_ordenados[i].salario, dados_ordenados[i].cargo, dados_ordenados[i].email, dados_ordenados[i].id);
 			}
 		}
 
 		fclose(file);
-		system("pause");
+		pausarsistema();
 		desempilhar(pilha);
 	}
 }
 
 void editar_dados_funcionarios(struct Pilha * pilha)
 {
-	int tipo = 0, opc_v;
+	int tipo = 0, opc_v, controle = 0;
 	double salario_v;
 	char id_v[11], nome_v[100], cargo_v[100], email_v[150], telefone_v[20];
 
 	Pessoa funcionario;
 
-	system("clear || cls");
+	limpartela();
 	printf("*******************************************************************************\n");
 	printf("***               = = = = = Edição de funcionários = = = = =                ***\n");
 	printf("*******************************************************************************\n");
@@ -243,7 +300,7 @@ void editar_dados_funcionarios(struct Pilha * pilha)
 	{
 		do
 		{
-			system("clear || cls");
+			limpartela();
 			printf("*******************************************************************************\n");
 			printf("***               = = = = = Edição de funcionários = = = = =                ***\n");
 			printf("*******************************************************************************\n");
@@ -259,7 +316,7 @@ void editar_dados_funcionarios(struct Pilha * pilha)
 
 			char *opc = get_user_input("O que deseja fazer ? \t");
 			opc_v = atoi(opc);
-			system("clear || cls");
+			limpartela();
 
 			switch(opc_v)
 			{
@@ -270,9 +327,23 @@ void editar_dados_funcionarios(struct Pilha * pilha)
 				break;
 
 			case 2:
-				printf("Insira o novo Id do funcionario\t");
-				recebe_id(id_v, tipo);
-				strncpy(funcionario.id, id_v , 11);
+				do
+				{
+					printf("Insira o novo Id do funcionario\t");
+					recebe_id(id_v, tipo);
+
+					if (funcionario_com_id_existente(id_v))
+					{
+						printf("ID já cadastrado. Insira um ID diferente.\n");
+						pausarsistema();
+					}
+					else
+					{
+						strncpy(funcionario.id, id_v , 11);
+						controle = 1;
+					}
+				}
+				while(controle != 1);
 				break;
 
 			case 3:
@@ -300,23 +371,24 @@ void editar_dados_funcionarios(struct Pilha * pilha)
 				break;
 
 			case 0:
+				opc_v = 1000;
 				desempilhar(pilha);
-				system("pause");
+				pausarsistema();
 				break;
 
 			default:
 				printf("Opção inválida.\n");
 			}
 			printf("Alteração realizada\n");
-			system("pause");
+			pausarsistema();
 		}
-		while(opc_v != 0);
+		while(opc_v != 1000);
 		atualizar_funcionario(&funcionario);
 	}
 	else
 	{
 		printf("Funcionário não encontrado\n");
-		system("pause");
+		pausarsistema();
 		desempilhar(pilha);
 	}
 }
@@ -360,7 +432,7 @@ bool procurar_funcionario(Pessoa * funcionario, struct Pilha * pilha)
 		printf("Erro ao abrir o arquivo para leitura.\n");
 		return false;
 		fclose(file);
-		system("pause");
+		pausarsistema();
 		desempilhar(pilha);
 	}
 	else
@@ -370,8 +442,7 @@ bool procurar_funcionario(Pessoa * funcionario, struct Pilha * pilha)
 			if (funcionario->status == 1 && !strcmp(cpf_busca, funcionario->cpf))
 			{
 				fclose(file);
-				printf("Funcionário encontrado\n");
-				system("pause");
+				pausarsistema();
 				return true;
 				desempilhar(pilha);
 			}
@@ -386,7 +457,7 @@ void desabilita_funcionario(struct Pilha * pilha)
 	int controle = 0;
 	Pessoa funcionario;
 
-	system("clear || cls");
+	limpartela();
 	printf("*******************************************************************************\n");
 	printf("***              = = = = = Exclusão de funcionários = = = = =               ***\n");
 	printf("*******************************************************************************\n");
@@ -401,13 +472,16 @@ void desabilita_funcionario(struct Pilha * pilha)
 	{
 		printf("Erro ao abrir o arquivo\n");
 		return;
+		pausarsistema();
+		desempilhar(pilha);
 	}
 
 	while (fread(&funcionario, sizeof(Pessoa), 1, file) == 1)
 	{
-		if (strcmp(funcionario.cpf, cpf_v) == 0)
+		if (strcmp(funcionario.cpf, cpf_v) == 0 && funcionario.status == 1)
 		{
 			funcionario.status = 0;
+			strncpy(funcionario.data, "XX/XX/XXXX", 11);
 			fseek(file, -sizeof(Pessoa), SEEK_CUR);
 			fwrite(&funcionario, sizeof(Pessoa), 1, file);
 			controle = 1;
@@ -425,18 +499,18 @@ void desabilita_funcionario(struct Pilha * pilha)
 		printf("\n");
 		printf("Funcionário desabilitado com sucesso.\n");
 	}
-	system("pause");
+	pausarsistema();
 	fclose(file);
 	desempilhar(pilha);
 }
 
 void readimite_funcionario(struct Pilha * pilha)
 {
-	char cpf_v[12];
+	char cpf_v[12], data_v[11];
 	int controle = 0;
 	Pessoa funcionario;
 
-	system("clear || cls");
+	limpartela();
 	printf("*******************************************************************************\n");
 	printf("***             = = = = = Readmissão de funcionários = = = = =              ***\n");
 	printf("*******************************************************************************\n");
@@ -451,13 +525,20 @@ void readimite_funcionario(struct Pilha * pilha)
 	{
 		printf("Erro ao abrir o arquivo\n");
 		return;
+		pausarsistema();
+		desempilhar(pilha);
 	}
 
 	while (fread(&funcionario, sizeof(Pessoa), 1, file) == 1)
 	{
-		if (strcmp(funcionario.cpf, cpf_v) == 0)
+		if (strcmp(funcionario.cpf, cpf_v) == 0 && funcionario.status == 0)
 		{
 			funcionario.status = 1;
+
+			printf("Insira a nova data de contratacao do funcionario\t");
+			recebe_data(data_v);
+			strncpy(funcionario.data, data_v, 11);
+
 			fseek(file, -sizeof(Pessoa), SEEK_CUR);
 			fwrite(&funcionario, sizeof(Pessoa), 1, file);
 			controle = 1;
@@ -475,7 +556,55 @@ void readimite_funcionario(struct Pilha * pilha)
 		printf("\n");
 		printf("Funcionário readmitido com sucesso.\n");
 	}
-	system("pause");
+	pausarsistema();
 	fclose(file);
 	desempilhar(pilha);
+}
+
+bool funcionario_com_id_existente(char* id)
+{
+	FILE* file = fopen("funcionarios.dat", "rb");
+
+	if (file == NULL)
+	{
+		printf("Erro ao abrir o arquivo para leitura.\n");
+		return false;
+	}
+
+	Pessoa funcionario_atual;
+
+	while (fread(&funcionario_atual, sizeof(Pessoa), 1, file) == 1)
+	{
+		if (strcmp(funcionario_atual.id, id) == 0)
+		{
+			fclose(file);
+			return true;
+		}
+	}
+	fclose(file);
+	return false;
+}
+
+bool funcionario_com_cpf_existente(char* cpf)
+{
+	FILE* file = fopen("funcionarios.dat", "rb");
+
+	if (file == NULL)
+	{
+		printf("Erro ao abrir o arquivo para leitura.\n");
+		return false;
+	}
+
+	Pessoa funcionario_atual;
+
+	while (fread(&funcionario_atual, sizeof(Pessoa), 1, file) == 1)
+	{
+		if (strcmp(funcionario_atual.cpf, cpf) == 0)
+		{
+			fclose(file);
+			return true;
+		}
+	}
+	fclose(file);
+	return false;
 }

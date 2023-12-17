@@ -1,20 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Layout>
 	<Files>
-		<File Name="main.c" Top="No" Tabpos="1" TopLine="1">
-			<Cursor Line="26" Column="22"/>
+		<File Name="pessoas.c" Top="No" Tabpos="1" TopLine="577">
+			<Cursor Line="595" Column="16"/>
 		</File>
-		<File Name="pessoas.c" Top="Yes" Tabpos="2" TopLine="439">
-			<Cursor Line="448" Column="45"/>
+		<File Name="pedidos.h" Top="No" Tabpos="2" TopLine="1">
+			<Cursor Line="32" Column="22"/>
 		</File>
-		<File Name="pessoas.h" Top="No" Tabpos="3" TopLine="1">
-			<Cursor Line="15" Column="16"/>
-		</File>
-		<File Name="pedidos.h" Top="No" Tabpos="4" TopLine="1">
-			<Cursor Line="29" Column="1"/>
-		</File>
-		<File Name="pedidos.c" Top="No" Tabpos="5" TopLine="1">
-			<Cursor Line="12" Column="1"/>
+		<File Name="pedidos.c" Top="Yes" Tabpos="3" TopLine="392">
+			<Cursor Line="219" Column="26"/>
 		</File>
 	</Files>
 </Layout>
