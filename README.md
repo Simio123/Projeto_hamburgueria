@@ -15,6 +15,6 @@
 
 2- Abra o terminal do vscode ou do respectivo SO
 
-3- Compiles os arquivos com o comando: gcc -c *.c
+3- Compile os arquivos com o comando: gcc -c *.c
 
 4- Para linkar os arquvos use o comando: gcc *.o -o nome_do_programa
