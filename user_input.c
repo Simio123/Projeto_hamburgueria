@@ -6,11 +6,11 @@
 #elif __linux__
 #endif
 
-// Recebe a entrada do usuário que suporta até meio milhão de caracteres
+// Recebe a entrada do usuário que suporta até cinco milhões de caracteres
 // Boa sorte para estourar o buffer
 char *get_user_input(char *prompt)
 {
-	static char input_buf[500000];
+	static char input_buf[5000000];
 	printf(prompt);
 	char *fp = fgets(input_buf, sizeof(input_buf), stdin);
 	if (fp == NULL)
@@ -22,12 +22,15 @@ char *get_user_input(char *prompt)
 	return input_buf;
 }
 
+// Função que limpa o buffer para evitar quebra de codigo
 void limpar_buffer()
 {
 	int c;
 	while ((c = getchar()) != '\n' && c != EOF);
 }
 
+// A função foi feita pra identificar se o programa está sendo compilado no linux ou no windows
+// e com base nisso utiliza as devidas funções do sistema para limpar a tela
 void limpartela()
 {
 #ifdef _WIN32
@@ -37,11 +40,12 @@ void limpartela()
 	// Código para limpar tela no Linux
 	system("clear");
 #else
-	// Código para outros sistemas operacionais (se necessário)
 	printf("Limpar tela não suportado para este sistema operacional.\n");
 #endif
 }
 
+// A função foi feita pra identificar se o programa está sendo compilado no linux ou no windows
+// e com base nisso utiliza as devidas funções do sistema para congelar a tela
 void pausarsistema() {
 #ifdef _WIN32
     // Código para pausar o sistema no Windows
@@ -51,7 +55,6 @@ void pausarsistema() {
     printf("Pressione Enter para continuar...");
     getchar();
 #else
-    // Código para outros sistemas operacionais (se necessário)
     printf("Pausa não suportada para este sistema operacional.\n");
 #endif
 }

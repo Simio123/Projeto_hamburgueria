@@ -19,6 +19,10 @@ void legenda_pedido(void)
 	printf("*******************************************************************************\n");
 }
 
+
+//Essa função realiza o cadastro de um novo pedido, coletando
+// informações sobre produtos, cliente e comanda, e salva essas informações
+// em uma estrutura de dados.
 Pedidos* cadastro_pedido(Estoque *produto, struct Pilha * pilha)
 {
 	Pedidos *pedido = calloc(1, sizeof(Pedidos));
@@ -29,6 +33,8 @@ Pedidos* cadastro_pedido(Estoque *produto, struct Pilha * pilha)
 	double preco_t, preco_u;
 	int controle = 0, tipo = 3, tipo2 = 2, quantidade_v, n_pedidos = 0, controle2 = 0, controle3 = 0, controle4 = 0, controle5 = 0;
 	char id_v[17], nome_v[100], cpf_v[12], data_pedido_v[11], hora_pedido_v[9];
+
+	// Pega do sistema automaticamente a hora e a data atuais
 	strftime(hora_pedido_v, sizeof(hora_pedido_v), "%H:%M:%S", localtime(&t));
 	strftime(data_pedido_v, sizeof(data_pedido_v), "%d/%m/%Y", localtime(&t));
 
@@ -56,6 +62,11 @@ Pedidos* cadastro_pedido(Estoque *produto, struct Pilha * pilha)
 			}
 			while(controle3 != 1);
 
+
+			// Aqui está minha versão simia de um carrinho de compras utiliando uma matriz
+			// dentro da struct
+			// Obviamente seria mais prático criar um array de structs dentro da struct
+			// porém a preguiça de mudar é grande e a burrice pra fazer assim foi muita
 			do
 			{
 				legenda_pedido();
@@ -162,7 +173,6 @@ void salva_pedido(Pedidos * pedido)
 
 void pedidos_por_hora(Pedidos vetor[], int tamanho)
 {
-	// Implemente um algoritmo de ordenação para ordenar os pedidos por hora
 	int i, j;
 	Pedidos temp;
 
@@ -170,7 +180,6 @@ void pedidos_por_hora(Pedidos vetor[], int tamanho)
 	{
 		for (j = 0; j < tamanho - 1 - i; j++)
 		{
-			// Comparar as horas dos pedidos e trocar se estiverem fora de ordem
 			if (strcmp(vetor[j].hora_pedido, vetor[j + 1].hora_pedido) > 0)
 			{
 				temp = vetor[j];
@@ -181,11 +190,15 @@ void pedidos_por_hora(Pedidos vetor[], int tamanho)
 	}
 }
 
+// Essa função exibe os pedidos que estão em aberto
+// Ela lê os pedidos de um arquivo binário, seleciona aqueles que
+// estão em aberto, exibe suas informações por ordem de horario dos pedidos
+// do mais antigo para o mais novo
 void exibe_pedidos(struct Pilha* pilha)
 {
 	int i, j;
 	Pedidos ped;
-	Pedidos vetorPedidos[100]; // Vetor para armazenar os pedidos
+	Pedidos vetorPedidos[100];
 
 	limpartela();
 	printf("*******************************************************************************\n");
@@ -205,7 +218,6 @@ void exibe_pedidos(struct Pilha* pilha)
 	{
 		int numPedidos = 0;
 
-		// Ler os pedidos do arquivo e armazená-los no vetor
 		while (fread(&ped, sizeof(Pedidos), 1, file) == 1)
 		{
 			if (ped.status == 1)
@@ -215,10 +227,8 @@ void exibe_pedidos(struct Pilha* pilha)
 			}
 		}
 
-		// Ordenar os pedidos por hora
 		pedidos_por_hora(vetorPedidos, numPedidos);
 
-		// Exibir os pedidos ordenados
 		for (i = 0; i < numPedidos; i++)
 		{
 			printf("\n                     __________________________________                         \n");
@@ -247,6 +257,7 @@ void exibe_pedidos(struct Pilha* pilha)
 	}
 }
 
+// Exibe os pedidos que já foram finalizados
 void exibe_pedidos_f(struct Pilha * pilha)
 {
 	int i;
@@ -307,7 +318,6 @@ void finaliza_pedido(struct Pilha * pilha)
 	printf("*******************************************************************************\n");
 
 	limpar_buffer();
-
 	FILE* file2 = fopen("pedidos.dat", "rb+");
 
 	if (file2 == NULL)
@@ -318,7 +328,6 @@ void finaliza_pedido(struct Pilha * pilha)
 		desempilhar(pilha);
 		return;
 	}
-
 	do
 	{
 		printf("Insira id da comanda:");
@@ -335,7 +344,6 @@ void finaliza_pedido(struct Pilha * pilha)
 	}
 	while(controle2 != 1);
 
-
 	while (fread(&ped, sizeof(Pedidos), 1, file2) == 1)
 	{
 		if (strcmp(ped.id, id_v) == 0 && ped.status == 1)
@@ -347,22 +355,10 @@ void finaliza_pedido(struct Pilha * pilha)
 			break;
 		}
 	}
-
-	if (!controle)
-	{
-		printf("\n");
-		printf("Comanda não encontrada\n");
-	}
-	else
-	{
-		printf("\n");
-		printf("Pedido finalizado com sucesso.\n");
-	}
-	pausarsistema();
-	fclose(file2);
 	desempilhar(pilha);
 }
 
+// Verifica se a quantidade no estoque é suficiente para cobrir a requisição do pedido
 bool pedido_com_quantidade_existente(char *id, int quantidade, double *preco_t, double *preco_u)
 {
 	FILE *file = fopen("produtos.dat", "rb");
@@ -399,6 +395,7 @@ bool pedido_com_quantidade_existente(char *id, int quantidade, double *preco_t, 
 	return false;
 }
 
+// Impede o cadastramento do mesmo id para duas comandas
 bool pedido_com_id_existente(char* id)
 {
 	FILE* file = fopen("pedidos.dat", "rb");

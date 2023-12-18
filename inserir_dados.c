@@ -18,6 +18,7 @@ bool recebe_salario(double* salario_v)
 		if (salario_double <= 0)
 		{
 			printf("Salario invalido\n");
+			pausarsistema();
 		}
 		else
 		{
@@ -50,6 +51,7 @@ bool recebe_id(char* id_v, int tipo)
 		break;
 	default:
 		printf("Tipo inválido\n");
+		pausarsistema();
 		return false;
 	}
 
@@ -61,6 +63,7 @@ bool recebe_id(char* id_v, int tipo)
 		if (tamanho <= 0 || tamanho > 11)
 		{
 			printf("ID inválido\n");
+			pausarsistema();
 		}
 		else
 		{
@@ -86,6 +89,7 @@ bool recebe_cargo(char* cargo_v)
 		if (tamanho <= 1)
 		{
 			printf("Cargo inválido\n");
+			pausarsistema();
 		}
 		else
 		{
@@ -104,13 +108,13 @@ bool recebe_cargo(char* cargo_v)
 
 			if (cargo_valido)
 			{
-				printf("Cargo cadastrado com sucesso\n");
 				controle = 1;
 				strcpy((char*)cargo_v, cargo);
 			}
 			else
 			{
 				printf("O cargo é inválido, por favor tente novamente\n");
+				pausarsistema();
 			}
 		}
 	}
@@ -129,10 +133,10 @@ bool recebe_endereco(char* endereco_v)
 		if (tamanho <= 0 || endereco[0] == '\0' || endereco[0] == ' ')
 		{
 			printf("Endereço inválido. O endereço não pode estar vazio ou conter apenas espaços em branco.\n");
+			pausarsistema();
 		}
 		else
 		{
-			printf("Endereço cadastrado com sucesso!");
 			controle = 1;
 			strcpy((char*)endereco_v, endereco);
 		}
@@ -152,6 +156,7 @@ bool recebe_preco(double* preco_v)
 		if (preco_double <= 0)
 		{
 			printf("Preco invalido\n");
+			pausarsistema();
 		}
 		else
 		{
@@ -174,6 +179,7 @@ bool recebe_tipo(char* tipo_v)
 		if (tamanho <= 0)
 		{
 			printf("Tipo inválido\n");
+			pausarsistema();
 		}
 		else
 		{
@@ -192,13 +198,13 @@ bool recebe_tipo(char* tipo_v)
 
 			if (tipo_valido)
 			{
-				printf("Tipo cadastrado com sucesso\n");
 				controle = 1;
 				strcpy((char*)tipo_v, tipo);
 			}
 			else
 			{
 				printf("O tipo é inválido, por favor tente novamente\n");
+				pausarsistema();
 			}
 		}
 	}
@@ -217,6 +223,7 @@ bool recebe_quantidade(int* quantidade_v)
 		if (quantidade_int <= 0)
 		{
 			printf("Quantidade inválida\n");
+			pausarsistema();
 		}
 		else
 		{

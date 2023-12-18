@@ -13,18 +13,20 @@
 Estoque *produto;
 Pedidos *pedido;
 
-// Estrutura da pilha de telas
+// Cria um novo nó que aponta para o proximo
 struct No
 {
 	enum Tela tela;
 	struct No* proximo;
 };
 
+// Cria um nó
 struct Pilha
 {
 	struct No* topo;
 };
 
+// Cria a pilha
 struct Pilha* criarPilha()
 {
 	struct Pilha* pilha = (struct Pilha*)malloc(sizeof(struct Pilha));
@@ -32,6 +34,7 @@ struct Pilha* criarPilha()
 	return pilha;
 }
 
+// Empilha as telas uma por cima da outra sempre que o usuario avançar no crud
 void empilhar(struct Pilha* pilha, enum Tela tela)
 {
 	struct No* novoNo = (struct No*)malloc(sizeof(struct No));
@@ -40,6 +43,7 @@ void empilhar(struct Pilha* pilha, enum Tela tela)
 	pilha->topo = novoNo;
 }
 
+// Desempilha as telas sempre que o usuário voltar no crud
 enum Tela desempilhar(struct Pilha* pilha)
 {
 	if (pilha->topo == NULL)
@@ -55,11 +59,13 @@ enum Tela desempilhar(struct Pilha* pilha)
 	return telaDesempilhada;
 }
 
+// Chama uma função expecifica relacianada com o enum que está no topo da pilha
 void executarTela(struct Pilha* pilha)
 {
 	int opcao = 1000;
 	int controle = 0;
 
+	// O codigo é valido enquanto existir um elemento na pilha
 	while (pilha->topo != NULL)
 	{
 		enum Tela telaAtual = pilha->topo->tela;
@@ -218,6 +224,7 @@ void tela_inicial(int opcao, int controle, struct Pilha* pilha)
 	printf("O que deseja fazer?\n");
 	while (scanf("%d", &opcao) != 1)
 	{
+		// Limpa o buffer para evitar quebra de codigo
 		printf("Entrada inválida. Por favor, insira uma opção válida.\n");
 		while ((controle = getchar()) != '\n' && controle != EOF);
 	}

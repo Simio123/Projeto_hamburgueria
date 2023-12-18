@@ -28,6 +28,7 @@ bool recebe_nome(char* nome_v)
 		else
 		{
 			printf("Entrada invalida, por favor tente novamente\n");
+			pausarsistema();
 		}
 	}
 	return true;
@@ -59,7 +60,7 @@ bool valida_nome(char *nome)
 bool recebe_cpf(char* cpf_v)
 {
 	bool cpf_valido;
-	
+
 	do
 	{
 		char *cpf = get_user_input("");
@@ -73,6 +74,7 @@ bool recebe_cpf(char* cpf_v)
 		else
 		{
 			printf("Entrada invalida, por favor tente novamente\n");
+			pausarsistema();
 		}
 	}
 	while (!cpf_valido);
@@ -160,6 +162,7 @@ bool recebe_data(char* data_v)
 			if (!isdigit(data[i]) && data[i] != '/')
 			{
 				printf("Entrada invalida, por favor tente novamente\n");
+				pausarsistema();
 				formato_valido = false;
 				break;
 			}
@@ -175,6 +178,7 @@ bool recebe_data(char* data_v)
 			else
 			{
 				printf("Entrada invalida, por favor tente novamente\n");
+				pausarsistema();
 			}
 		}
 	}
@@ -263,6 +267,7 @@ bool recebe_email(char* email_v)
 		if (tamanho <= 0 || email[0] == '\0' || email[0] == ' ' || !valida_email(email))
 		{
 			printf("Email inválido. O email não pode estar vazio, conter apenas espaços em branco ou não estar em um formato válido.\n");
+			pausarsistema();
 		}
 		else
 		{
@@ -309,6 +314,7 @@ bool recebe_telefone(char* telefone_v)
 		if (tamanho != 14 || !valida_telefone(telefone))
 		{
 			printf("Número de telefone inválido. Certifique-se de que esteja no formato (xx)xxxxx-xxxx.\n");
+			pausarsistema();
 		}
 		else
 		{

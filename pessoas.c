@@ -17,6 +17,7 @@ void legenda_funcionario(void)
 	printf("*******************************************************************************\n");
 }
 
+// Cadastra um funcionário
 Pessoa* cadastro_funcionario(struct Pilha * pilha)
 {
 	limpar_buffer();
@@ -81,7 +82,7 @@ Pessoa* cadastro_funcionario(struct Pilha * pilha)
 		while(controle2 != 1);
 
 		legenda_funcionario();
-		printf("Insira o email do funcionario:");
+		printf("Insira o email do funcionario(necessita de ter @ e .):");
 		recebe_email(email_v);
 
 		legenda_funcionario();
@@ -135,6 +136,7 @@ void salva_funcionario(Pessoa * funcionario)
 	}
 }
 
+// Exibe apenas os funcionários que estão ativos
 void listagem_funcionarios(struct Pilha * pilha)
 {
 	Pessoa funcionario;
@@ -171,6 +173,7 @@ void listagem_funcionarios(struct Pilha * pilha)
 	}
 }
 
+// Exibe apenas os funcionários que foram demitidos
 void listagem_funcionarios_i(struct Pilha * pilha)
 {
 	Pessoa funcionario;
@@ -209,6 +212,7 @@ void listagem_funcionarios_i(struct Pilha * pilha)
 	}
 }
 
+// Exibe todos os funcionários por ordem alfabetica
 void listagem_todos_funcionarios(struct Pilha *pilha)
 {
 	int i, j;
@@ -321,7 +325,7 @@ void editar_dados_funcionarios(struct Pilha * pilha)
 			switch(opc_v)
 			{
 			case 1:
-				printf("Insira o novo salario do funcionario\t");
+				printf("Insira o novo salario do funcionario(apenas numeros):\t");
 				recebe_salario(&salario_v);
 				funcionario.salario = salario_v;
 				break;
@@ -347,25 +351,25 @@ void editar_dados_funcionarios(struct Pilha * pilha)
 				break;
 
 			case 3:
-				printf("Insira o novo nome do funcionario\t");
+				printf("Insira o novo nome do funcionario:\t");
 				recebe_nome(nome_v);
 				strncpy(funcionario.nome, nome_v, 100);
 				break;
 
 			case 4:
-				printf("Insira o novo cargo do funcionario\t");
+				printf("Insira o novo cargo do funcionario:\t");
 				recebe_cargo(cargo_v);
 				strncpy(funcionario.cargo, cargo_v, 100);
 				break;
 
 			case 5:
-				printf("Insira o novo email do funcionario\t");
+				printf("Insira o novo email do funcionario(necessita de ter @ e .):\t");
 				recebe_email(email_v);
 				strncpy(funcionario.email, email_v, 150);
 				break;
 
 			case 6:
-				printf("Insira o novo telefone do funcionario\t");
+				printf("Insira o novo telefone do funcionario no formato(xx)xxxxx-xxxx:\t");
 				recebe_telefone(telefone_v);
 				strncpy(funcionario.telefone, telefone_v, 20);
 				break;
@@ -378,6 +382,7 @@ void editar_dados_funcionarios(struct Pilha * pilha)
 
 			default:
 				printf("Opção inválida.\n");
+				pausarsistema();
 			}
 			printf("Alteração realizada\n");
 			pausarsistema();
@@ -420,6 +425,7 @@ void atualizar_funcionario(Pessoa * funcionario)
 	fclose(file);
 }
 
+// Procura um funcionário utilizando o cpf como chave
 bool procurar_funcionario(Pessoa * funcionario, struct Pilha * pilha)
 {
 	limpar_buffer();
@@ -451,6 +457,7 @@ bool procurar_funcionario(Pessoa * funcionario, struct Pilha * pilha)
 	return false;
 }
 
+// Demite um funcionário que está ativo
 void desabilita_funcionario(struct Pilha * pilha)
 {
 	char cpf_v[12];
@@ -504,6 +511,7 @@ void desabilita_funcionario(struct Pilha * pilha)
 	desempilhar(pilha);
 }
 
+// Readmite um funcionário que foi demitido
 void readimite_funcionario(struct Pilha * pilha)
 {
 	char cpf_v[12], data_v[11];
@@ -535,7 +543,7 @@ void readimite_funcionario(struct Pilha * pilha)
 		{
 			funcionario.status = 1;
 
-			printf("Insira a nova data de contratacao do funcionario\t");
+			printf("Insira a nova data de contratacao do funcionario no formato xx/xx/xxxx:\t");
 			recebe_data(data_v);
 			strncpy(funcionario.data, data_v, 11);
 
@@ -561,6 +569,7 @@ void readimite_funcionario(struct Pilha * pilha)
 	desempilhar(pilha);
 }
 
+// Essa função impede que dois ids iguais sejam cadastrados no sistema
 bool funcionario_com_id_existente(char* id)
 {
 	FILE* file = fopen("funcionarios.dat", "rb");
@@ -585,6 +594,7 @@ bool funcionario_com_id_existente(char* id)
 	return false;
 }
 
+// Essa função impede que dois cpfs iguais sejam cadastrados no sistema
 bool funcionario_com_cpf_existente(char* cpf)
 {
 	FILE* file = fopen("funcionarios.dat", "rb");

@@ -1,6 +1,7 @@
 #ifndef TELAS_H
 #define TELAS_H
 
+// A estrutura de enum(enumerate) serve para enumerar as variaveis abaixo
 enum Tela
 {
 	// Telas iniciais
@@ -67,9 +68,6 @@ void cliente(int opcao, int controle, struct Pilha* pilha);
 // Telas terciarias
 void estoque(int opcao, int controle, struct Pilha* pilha);
 void pedidos(int opcao, int controle, struct Pilha* pilha);
-void relatorios(int opcao, int controle, struct Pilha* pilha);
-void delivery(int opcao, int controle, struct Pilha* pilha);
-void opcoes_de_pagamento(int opcao, int controle, struct Pilha* pilha);
 
 // Easter eggs
 void beijo(int opcao, struct Pilha* pilha);

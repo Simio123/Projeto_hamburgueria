@@ -60,7 +60,7 @@ Estoque* cadastro_produto(struct Pilha* pilha)
 		recebe_quantidade(&quantidade_v);
 
 		legenda_produto();
-		printf("Insira data de validade do produto:");
+		printf("Insira data de validade do produto(no formato xx/xx/xxxx:");
 		recebe_data(data_v);
 
 		legenda_produto();
@@ -113,6 +113,7 @@ void salva_produto(Estoque * produto)
 	}
 }
 
+// Exibe todos os produtos que estão em estoque
 void listagem_produtos(struct Pilha * pilha)
 {
 	Estoque produto;
@@ -150,6 +151,7 @@ void listagem_produtos(struct Pilha * pilha)
 	}
 }
 
+// Exibe todos os pdorutos que estão sem estoque
 void listagem_produtos_i(struct Pilha * pilha)
 {
 	Estoque produto;
@@ -187,12 +189,12 @@ void listagem_produtos_i(struct Pilha * pilha)
 	}
 }
 
-
 int compararPorTipo(const void *a, const void *b)
 {
 	return strcmp(((Estoque*)a)->tipo, ((Estoque*)b)->tipo);
 }
 
+// Exibe todos os produtos agrupando-os por tipo
 void listagem_todos_produtos(struct Pilha *pilha)
 {
 	Estoque produto;
@@ -289,31 +291,31 @@ void editar_dados_produtos(struct Pilha * pilha)
 			switch(opc_v)
 			{
 			case 1:
-				printf("Insira a nova quantidade do produto\t");
+				printf("Insira a nova quantidade do produto:\t");
 				recebe_quantidade(&quantidade_v);
 				produto.quantidade = quantidade_v;
 				break;
 
 			case 2:
-				printf("Insira o novo preco do produto\t");
+				printf("Insira o novo preco do produto:\t");
 				recebe_preco(&preco_v);
 				produto.preco = preco_v;
 				break;
 
 			case 3:
-				printf("Insira o novo id do produto\t");
+				printf("Insira o novo id do produto:\t");
 				recebe_id(id_v, tipo);
 				strncpy(produto.id, id_v , 11);
 				break;
 
 			case 4:
-				printf("Insira o novo nome do produto\t");
+				printf("Insira o novo nome do produto:\t");
 				recebe_nome(nome_v);
 				strncpy(produto.nome, nome_v, 100);
 				break;
 
 			case 5:
-				printf("Insira a nova data de validde do produto\t");
+				printf("Insira a nova data de validde do produto (no formato xx/xx/xxxx):\t");
 				recebe_data(data_v);
 				strncpy(produto.validade, data_v, 11);
 				break;
@@ -374,6 +376,7 @@ void atualizar_produto(Estoque * produto)
 	fclose(file);
 }
 
+// Procura um produto especifico utilizando o nome como chave
 bool procurar_produto(Estoque * produto, struct Pilha * pilha)
 {
 	limpar_buffer();
@@ -406,6 +409,7 @@ bool procurar_produto(Estoque * produto, struct Pilha * pilha)
 	return false;
 }
 
+// Retira um produto do estoque
 void desabilita_produto(struct Pilha * pilha)
 {
 	char nome_v[100];
@@ -418,7 +422,7 @@ void desabilita_produto(struct Pilha * pilha)
 	printf("*******************************************************************************\n");
 
 	limpar_buffer();
-	printf("Insira o nome do produto que deseja retirar do estoque(apenas numeros):");
+	printf("Insira o nome do produto que deseja retirar do estoque:");
 	recebe_nome(nome_v);
 
 	FILE* file = fopen("produtos.dat", "rb+");
@@ -458,6 +462,7 @@ void desabilita_produto(struct Pilha * pilha)
 	desempilhar(pilha);
 }
 
+// Recoloca um produto no estoque sem a necessidade de recadastra-lo
 void repoe_produto(struct Pilha * pilha)
 {
 	char nome_v[100], data_v[11];
@@ -487,7 +492,7 @@ void repoe_produto(struct Pilha * pilha)
 		{
 			produto.status = 1;
 
-			printf("Insira a nova data de validade do produto\t");
+			printf("Insira a nova data de validade do produto (no formato xx/xx/xxxx):\t");
 			recebe_data(data_v);
 			strncpy(produto.validade, data_v, 11);
 
@@ -517,6 +522,7 @@ void repoe_produto(struct Pilha * pilha)
 	desempilhar(pilha);
 }
 
+// Exibe os produtos disponiveis na forma de cardápio
 void cardapio(struct Pilha * pilha)
 {
 	Estoque produto;
@@ -554,6 +560,7 @@ void cardapio(struct Pilha * pilha)
 	}
 }
 
+// Impede o cadastramento de produtos com o mesmo id
 bool produto_com_id_existente(char* id)
 {
 	FILE* file = fopen("produtos.dat", "rb");
