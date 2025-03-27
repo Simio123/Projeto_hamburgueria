@@ -27,14 +27,14 @@ int main()
 	struct Pilha* pilha = criarPilha();
 	// Coloca a tela principal como primeiro elemento da pilha
 	empilhar(pilha, TELA_INICIAL);
-	// Executa a função de empilhamento
+	// Executa a funÃ§Ã£o de empilhamento
 	executarTela(pilha);
 	return 0;
 }
 
-/* Utilizei a navegação por pilha, colocando uma tela por cima da outra quando conforme
-se avança no crud e desempilhando conforme volta nele, a filha funciona no modelo de FILO
-first in,last out o useja, o a primeira tela empilhada é a ultima a ser desempilhada
-no caso do programa a primeira tela é sempre atela inicial e o programa roda até que essa
-tela esteja na pilha */
+/* Utilizei a navegaÃ§Ã£o por pilha, colocando uma tela por cima da outra quando conforme
+se avanÃ§a no crud e desempilhando conforme volta nele, a pilha funciona no modelo de FILO
+first in, last out, a primeira tela empilhada Ã© a ultima a ser desempilhada
+no caso do programa a primeira tela Ã© sempre a tela inicial e o programa roda enquanto ela 
+estÃ¡ presente na pilha */
 
